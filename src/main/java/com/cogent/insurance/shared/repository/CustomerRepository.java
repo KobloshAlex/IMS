@@ -1,9 +1,9 @@
 package com.cogent.insurance.shared.repository;
 
 import com.cogent.insurance.entity.CustomerEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface CustomerRepository extends CrudRepository<CustomerEntity, Long> {
+public interface CustomerRepository extends PagingAndSortingRepository<CustomerEntity, Long> {
 
   CustomerEntity findByEmail(String email);
 

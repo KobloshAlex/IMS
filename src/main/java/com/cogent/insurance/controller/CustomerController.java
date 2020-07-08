@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/customers")
@@ -30,6 +34,21 @@ public class CustomerController {
   public CustomerResponseModel getCustomer(@PathVariable String id) {
 
     return modelMapper.map(customerService.getUserByUserId(id), CustomerResponseModel.class);
+  }
+
+  @GetMapping
+  public List<CustomerResponseModel> getCustomers(
+      @RequestParam(value = "page", defaultValue = "0") int page,
+      @RequestParam(value = "limit", defaultValue = "5") int limit) {
+
+    List<CustomerResponseModel> returnValue = new ArrayList<>();
+    List<CustomerDto> customers = customerService.getUsers(page,limit);
+
+    for (CustomerDto customer : customers) {
+      returnValue.add(modelMapper.map(customer, CustomerResponseModel.class));
+    }
+
+    return returnValue;
   }
 
   @PostMapping
@@ -54,7 +73,7 @@ public class CustomerController {
 
   @DeleteMapping(path = "/{id}")
   public CustomerDto deleteCustomer(@PathVariable String id) {
-    
+
     final CustomerDto returnValue = customerService.getUserByUserId(id);
     customerService.deleteCustomer(id);
 

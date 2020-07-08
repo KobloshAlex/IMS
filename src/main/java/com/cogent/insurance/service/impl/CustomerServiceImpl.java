@@ -6,7 +6,11 @@ import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -80,5 +84,25 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     customerRepository.delete(customerRepository.findByCustomerId(id));
+  }
+
+  @Override
+  public List<CustomerDto> getUsers(int page, int limit) {
+
+    // start pagination from page=1
+    if (page > 0) {
+      page -= 1;
+    }
+
+    List<CustomerDto> returnValue = new ArrayList<>();
+
+    List<CustomerEntity> customers =
+        customerRepository.findAll(PageRequest.of(page, limit)).getContent();
+
+    for (CustomerEntity customer : customers) {
+      returnValue.add(modelMapper.map(customer, CustomerDto.class));
+    }
+
+    return returnValue;
   }
 }
