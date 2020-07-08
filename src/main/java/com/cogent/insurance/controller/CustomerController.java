@@ -7,6 +7,7 @@ import com.cogent.insurance.shared.dto.CustomerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,9 +26,10 @@ public class CustomerController {
     this.modelMapper = modelMapper;
   }
 
-  @GetMapping
-  public String getCustomer() {
-    return "GET";
+  @GetMapping(path = "/{id}")
+  public CustomerResponseModel getCustomer(@PathVariable String id) {
+
+    return modelMapper.map(customerService.getUserByUserId(id), CustomerResponseModel.class);
   }
 
   @PostMapping
