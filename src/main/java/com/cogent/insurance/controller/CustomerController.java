@@ -49,11 +49,15 @@ public class CustomerController {
     final CustomerDto customerDto = modelMapper.map(customerRequestModel, CustomerDto.class);
 
     return modelMapper.map(
-            customerService.updateCustomer(id, customerDto), CustomerResponseModel.class);
+        customerService.updateCustomer(id, customerDto), CustomerResponseModel.class);
   }
 
-  @DeleteMapping
-  public String deleteCustomer() {
-    return "DELETE";
+  @DeleteMapping(path = "/{id}")
+  public CustomerDto deleteCustomer(@PathVariable String id) {
+    
+    final CustomerDto returnValue = customerService.getUserByUserId(id);
+    customerService.deleteCustomer(id);
+
+    return returnValue;
   }
 }

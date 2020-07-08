@@ -6,7 +6,6 @@ import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public CustomerDto getUserByUserId(String id) {
 
-    if(customerRepository.findByCustomerId(id) == null) {
+    if (customerRepository.findByCustomerId(id) == null) {
       throw new RuntimeException("Record with provided ID not found");
       // TODO: 7/8/2020 replace with custom exceptions
     }
@@ -56,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public CustomerDto updateCustomer(String id, CustomerDto customerDto) {
 
-    if(customerRepository.findByCustomerId(id) == null) {
+    if (customerRepository.findByCustomerId(id) == null) {
       throw new RuntimeException("Record with provided ID not found");
       // TODO: 7/8/2020 replace with custom exceptions
     }
@@ -70,5 +69,16 @@ public class CustomerServiceImpl implements CustomerService {
     customerEntity.setEmail(customerDto.getEmail());
 
     return modelMapper.map(customerRepository.save(customerEntity), CustomerDto.class);
+  }
+
+  @Override
+  public void deleteCustomer(String id) {
+
+    if (customerRepository.findByCustomerId(id) == null) {
+      throw new RuntimeException("Record with provided ID not found");
+      // TODO: 7/8/2020 replace with custom exceptions
+    }
+
+    customerRepository.delete(customerRepository.findByCustomerId(id));
   }
 }

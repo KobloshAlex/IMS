@@ -1,6 +1,8 @@
 package com.cogent.insurance.shared.dto;
 
-public class CustomerDto {
+import java.io.Serializable;
+
+public class CustomerDto implements Serializable {
 
   public static final long serialVersionUID = 123402043851390690L;
 
