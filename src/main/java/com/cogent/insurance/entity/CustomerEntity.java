@@ -1,23 +1,45 @@
 package com.cogent.insurance.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "Customers")
 public class CustomerEntity implements Serializable {
 
   public static final long serialVersionUID = 123402043851390690L;
 
-  private long id;
+  @Id @GeneratedValue private long id;
+
+  @Column(nullable = false)
   private String customerId;
+
+  @Column(nullable = false, length = 50)
   private String firstName;
+
+  @Column(nullable = false, length = 50)
   private String lastName;
+
+  @Column(nullable = false, length = 3)
   private Integer age;
+
+  @Column(nullable = false, length = 1)
   private Character sex;
+
+  @Column(nullable = false)
   private String address;
-  private String password;
+
+  @Column(nullable = false)
+  private String encryptedPassword;
+
+  @Column(nullable = false, length = 120, unique = true)
   private String email;
 
-    public CustomerEntity() {
-    }
+  public CustomerEntity() {}
 
   public long getId() {
     return id;
@@ -75,19 +97,19 @@ public class CustomerEntity implements Serializable {
     this.address = address;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
   public String getEmail() {
     return email;
   }
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getEncryptedPassword() {
+    return encryptedPassword;
+  }
+
+  public void setEncryptedPassword(String encryptedPassword) {
+    this.encryptedPassword = encryptedPassword;
   }
 }
