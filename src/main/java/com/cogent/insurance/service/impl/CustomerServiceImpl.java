@@ -52,4 +52,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     return modelMapper.map(customerRepository.findByCustomerId(id), CustomerDto.class);
   }
+
+  @Override
+  public CustomerDto updateCustomer(String id, CustomerDto customerDto) {
+
+    if(customerRepository.findByCustomerId(id) == null) {
+      throw new RuntimeException("Record with provided ID not found");
+      // TODO: 7/8/2020 replace with custom exceptions
+    }
+
+    CustomerEntity customerEntity = customerRepository.findByCustomerId(id);
+    customerEntity.setFirstName(customerDto.getFirstName());
+    customerEntity.setLastName(customerDto.getLastName());
+    customerEntity.setAge(customerDto.getAge());
+    customerEntity.setSex(customerDto.getSex());
+    customerEntity.setAddress(customerDto.getAddress());
+    customerEntity.setEmail(customerDto.getEmail());
+
+    return modelMapper.map(customerRepository.save(customerEntity), CustomerDto.class);
+  }
 }

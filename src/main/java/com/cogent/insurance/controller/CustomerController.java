@@ -42,9 +42,14 @@ public class CustomerController {
         customerService.createCustomer(customerDto), CustomerResponseModel.class);
   }
 
-  @PutMapping
-  public String updateCustomer() {
-    return "UPDATE";
+  @PutMapping(path = "/{id}")
+  public CustomerResponseModel updateCustomer(
+      @PathVariable String id, @RequestBody CustomerRequestModel customerRequestModel) {
+
+    final CustomerDto customerDto = modelMapper.map(customerRequestModel, CustomerDto.class);
+
+    return modelMapper.map(
+            customerService.updateCustomer(id, customerDto), CustomerResponseModel.class);
   }
 
   @DeleteMapping
