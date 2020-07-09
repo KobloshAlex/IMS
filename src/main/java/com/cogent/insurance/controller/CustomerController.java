@@ -42,7 +42,7 @@ public class CustomerController {
       @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
     List<CustomerResponseModel> returnValue = new ArrayList<>();
-    List<CustomerDto> customers = customerService.getUsers(page,limit);
+    List<CustomerDto> customers = customerService.getUsers(page, limit);
 
     for (CustomerDto customer : customers) {
       returnValue.add(modelMapper.map(customer, CustomerResponseModel.class));
