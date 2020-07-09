@@ -1,19 +1,16 @@
 package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.BranchManagerEntity;
-import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.BranchManagerService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.BranchManagerDto;
-import com.cogent.insurance.shared.dto.CustomerDto;
 import com.cogent.insurance.shared.repository.BranchManagerRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
