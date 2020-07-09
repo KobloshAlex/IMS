@@ -1,6 +1,8 @@
 package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.CustomerEntity;
+import com.cogent.insurance.exception.ErrorMessages;
+import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.CustomerDto;
@@ -35,16 +37,18 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public CustomerDto createCustomer(CustomerDto customerDto) {
 
-    // TODO: 7/8/2020 replace with custom exceptions
     if (customerRepository.findByEmail(customerDto.getEmail()) != null) {
       logger.error(
           getMethodName() + " cannot create customer record. Record with the same email exists");
-      throw new RuntimeException("Record is already exist");
+      throw new ServiceException(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
+    } else if (isRequiredFieldEmpty(customerDto)) {
+      logger.error(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+      throw new ServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
     }
 
     final CustomerEntity customerEntity = modelMapper.map(customerDto, CustomerEntity.class);
 
-    // TODO: 7/7/2020 Add BCrypt form spring security
+    // TODO: 7/7/2020 Add BCrypt from spring security
     customerEntity.setEncryptedPassword("encrypted-password");
     customerEntity.setCustomerId(utils.generateId(ID_LENGTH));
     logger.info(getMethodName() + "new customer record was created");
@@ -57,8 +61,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     if (customerRepository.findByCustomerId(id) == null) {
       logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
-      throw new RuntimeException("Record with provided ID not found");
-      // TODO: 7/8/2020 replace with custom exceptions
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
     return modelMapper.map(customerRepository.findByCustomerId(id), CustomerDto.class);
@@ -69,8 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     if (customerRepository.findByCustomerId(id) == null) {
       logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
-      throw new RuntimeException("Record with provided ID not found");
-      // TODO: 7/8/2020 replace with custom exceptions
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
     CustomerEntity customerEntity = customerRepository.findByCustomerId(id);
@@ -90,8 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     if (customerRepository.findByCustomerId(id) == null) {
       logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
-      throw new RuntimeException("Record with provided ID not found");
-      // TODO: 7/8/2020 replace with custom exceptions
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
     customerRepository.delete(customerRepository.findByCustomerId(id));
@@ -116,6 +117,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     return returnValue;
+  }
+
+  private boolean isRequiredFieldEmpty(CustomerDto customerDto) {
+    return customerDto.getEmail().trim().isEmpty()
+        || customerDto.getAddress().trim().isEmpty()
+        || customerDto.getFirstName().trim().isEmpty()
+        || customerDto.getLastName().trim().isEmpty();
   }
 
   private String getMethodName() {
