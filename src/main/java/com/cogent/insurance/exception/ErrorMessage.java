@@ -5,6 +5,7 @@ import java.util.Date;
 public class ErrorMessage {
   private Date timestamp;
   private String message;
+  private String stackTrace;
 
   public ErrorMessage() {}
 
@@ -23,6 +24,15 @@ public class ErrorMessage {
 
   public ErrorMessage setMessage(String message) {
     this.message = message;
+    return this;
+  }
+
+  public String getStackTrace() {
+    return stackTrace;
+  }
+
+  public ErrorMessage setStackTrace(String stackTrace) {
+    this.stackTrace = stackTrace;
     return this;
   }
 }

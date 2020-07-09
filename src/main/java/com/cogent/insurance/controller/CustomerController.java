@@ -22,6 +22,8 @@ import java.util.List;
 @RequestMapping("api/customers")
 public class CustomerController {
 
+  private static final String ID_PATH = "/{id}";
+
   private final CustomerService customerService;
   private final ModelMapper modelMapper;
 
@@ -30,14 +32,14 @@ public class CustomerController {
     this.modelMapper = modelMapper;
   }
 
-  @GetMapping(path = "/{id}")
+  @GetMapping(path = ID_PATH)
   public CustomerResponseModel getCustomer(@PathVariable String id) {
 
     return modelMapper.map(customerService.getUserByUserId(id), CustomerResponseModel.class);
   }
 
   @GetMapping
-  public List<CustomerResponseModel> getCustomers(
+  public List<CustomerResponseModel> getAllCustomers(
       @RequestParam(value = "page", defaultValue = "0") int page,
       @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
@@ -61,7 +63,7 @@ public class CustomerController {
         customerService.createCustomer(customerDto), CustomerResponseModel.class);
   }
 
-  @PutMapping(path = "/{id}")
+  @PutMapping(path = ID_PATH)
   public CustomerResponseModel updateCustomer(
       @PathVariable String id, @RequestBody CustomerRequestModel customerRequestModel) {
 
@@ -71,7 +73,7 @@ public class CustomerController {
         customerService.updateCustomer(id, customerDto), CustomerResponseModel.class);
   }
 
-  @DeleteMapping(path = "/{id}")
+  @DeleteMapping(path = ID_PATH)
   public CustomerDto deleteCustomer(@PathVariable String id) {
 
     final CustomerDto returnValue = customerService.getUserByUserId(id);

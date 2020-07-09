@@ -4,6 +4,7 @@ import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.CustomerService;
+import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import com.cogent.insurance.shared.repository.CustomerRepository;
@@ -39,10 +40,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     if (customerRepository.findByEmail(customerDto.getEmail()) != null) {
       logger.error(
-          getMethodName() + " cannot create customer record. Record with the same email exists");
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_CREATE_RECORD.getMessage());
       throw new ServiceException(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
+
     } else if (isRequiredFieldEmpty(customerDto)) {
-      logger.error(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.MISSING_REQUIRED_FIELD.getMessage());
+
       throw new ServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
     }
 
@@ -51,7 +57,8 @@ public class CustomerServiceImpl implements CustomerService {
     // TODO: 7/7/2020 Add BCrypt from spring security
     customerEntity.setEncryptedPassword("encrypted-password");
     customerEntity.setCustomerId(utils.generateId(ID_LENGTH));
-    logger.info(getMethodName() + "new customer record was created");
+    logger.info(
+        new Throwable().getStackTrace()[0].getMethodName() + LoggerMessages.SUCCESS_CREATE_RECORD);
 
     return modelMapper.map(customerRepository.save(customerEntity), CustomerDto.class);
   }
@@ -60,7 +67,9 @@ public class CustomerServiceImpl implements CustomerService {
   public CustomerDto getUserByUserId(String id) {
 
     if (customerRepository.findByCustomerId(id) == null) {
-      logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD.getMessage());
       throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
@@ -71,7 +80,9 @@ public class CustomerServiceImpl implements CustomerService {
   public CustomerDto updateCustomer(String id, CustomerDto customerDto) {
 
     if (customerRepository.findByCustomerId(id) == null) {
-      logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD.getMessage());
       throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
@@ -83,7 +94,9 @@ public class CustomerServiceImpl implements CustomerService {
     customerEntity.setAddress(customerDto.getAddress());
     customerEntity.setEmail(customerDto.getEmail());
 
-    logger.info(getMethodName() + "new customer record was updated");
+    logger.info(
+        new Throwable().getStackTrace()[0].getMethodName()
+            + LoggerMessages.SUCCESS_UPDATE_RECORD.getMessage());
     return modelMapper.map(customerRepository.save(customerEntity), CustomerDto.class);
   }
 
@@ -91,12 +104,16 @@ public class CustomerServiceImpl implements CustomerService {
   public void deleteCustomer(String id) {
 
     if (customerRepository.findByCustomerId(id) == null) {
-      logger.error(getMethodName() + " customer record was not found. Customer ID doesnt match");
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD.getMessage());
       throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
     }
 
     customerRepository.delete(customerRepository.findByCustomerId(id));
-    logger.info(getMethodName() + "new customer record was deleted");
+    logger.info(
+        new Throwable().getStackTrace()[0].getMethodName()
+            + LoggerMessages.SUCCESS_DELETE_RECORD.getMessage());
   }
 
   @Override
@@ -124,9 +141,5 @@ public class CustomerServiceImpl implements CustomerService {
         || customerDto.getAddress().trim().isEmpty()
         || customerDto.getFirstName().trim().isEmpty()
         || customerDto.getLastName().trim().isEmpty();
-  }
-
-  private String getMethodName() {
-    return new Throwable().getStackTrace()[0].getMethodName();
   }
 }
