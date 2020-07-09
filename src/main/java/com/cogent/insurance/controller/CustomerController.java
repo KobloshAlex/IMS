@@ -38,21 +38,6 @@ public class CustomerController {
     return modelMapper.map(customerService.getUserByUserId(id), CustomerResponseModel.class);
   }
 
-  @GetMapping
-  public List<CustomerResponseModel> getAllCustomers(
-      @RequestParam(value = "page", defaultValue = "0") int page,
-      @RequestParam(value = "limit", defaultValue = "5") int limit) {
-
-    List<CustomerResponseModel> returnValue = new ArrayList<>();
-    List<CustomerDto> customers = customerService.getUsers(page, limit);
-
-    for (CustomerDto customer : customers) {
-      returnValue.add(modelMapper.map(customer, CustomerResponseModel.class));
-    }
-
-    return returnValue;
-  }
-
   @PostMapping
   public CustomerResponseModel createCustomer(
       @RequestBody CustomerRequestModel customerRequestModel) {
@@ -78,6 +63,21 @@ public class CustomerController {
 
     final CustomerDto returnValue = customerService.getUserByUserId(id);
     customerService.deleteCustomer(id);
+
+    return returnValue;
+  }
+
+  @GetMapping
+  public List<CustomerResponseModel> getAllCustomers(
+      @RequestParam(value = "page", defaultValue = "0") int page,
+      @RequestParam(value = "limit", defaultValue = "5") int limit) {
+
+    List<CustomerResponseModel> returnValue = new ArrayList<>();
+    List<CustomerDto> customers = customerService.getUsers(page, limit);
+
+    for (CustomerDto customer : customers) {
+      returnValue.add(modelMapper.map(customer, CustomerResponseModel.class));
+    }
 
     return returnValue;
   }
