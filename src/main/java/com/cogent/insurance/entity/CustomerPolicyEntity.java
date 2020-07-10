@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -32,6 +34,22 @@ public class CustomerPolicyEntity implements Serializable {
 
   @Column(nullable = false, length = 30)
   private Boolean termConditions;
+
+  @ManyToOne
+  @JoinColumn(name = "branch_manager_id")
+  private BranchManagerEntity branchManager;
+
+  @ManyToOne
+  @JoinColumn(name = "agent_id")
+  private AgentEntity agentEntity;
+
+  @ManyToOne
+  @JoinColumn(name = "customers_id")
+  private CustomerEntity customerEntity;
+
+  @ManyToOne
+  @JoinColumn(name = "policy_id")
+  private PolicyEntity policyEntity;
 
   public long getId() {
     return id;
@@ -87,5 +105,37 @@ public class CustomerPolicyEntity implements Serializable {
 
   public void setTermConditions(Boolean termConditions) {
     this.termConditions = termConditions;
+  }
+
+  public BranchManagerEntity getBranchManager() {
+    return branchManager;
+  }
+
+  public void setBranchManager(BranchManagerEntity branchManager) {
+    this.branchManager = branchManager;
+  }
+
+  public AgentEntity getAgentEntity() {
+    return agentEntity;
+  }
+
+  public void setAgentEntity(AgentEntity agentEntity) {
+    this.agentEntity = agentEntity;
+  }
+
+  public CustomerEntity getCustomerEntity() {
+    return customerEntity;
+  }
+
+  public void setCustomerEntity(CustomerEntity customerEntity) {
+    this.customerEntity = customerEntity;
+  }
+
+  public PolicyEntity getPolicyEntity() {
+    return policyEntity;
+  }
+
+  public void setPolicyEntity(PolicyEntity policyEntity) {
+    this.policyEntity = policyEntity;
   }
 }

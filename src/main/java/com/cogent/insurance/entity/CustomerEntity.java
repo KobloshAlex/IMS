@@ -4,8 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Customers")
@@ -39,7 +43,13 @@ public class CustomerEntity implements Serializable {
   @Column(nullable = false, length = 120)
   private String email;
 
-  public CustomerEntity() {}
+  @ManyToOne
+  @JoinColumn(name = "branch_id")
+  private BranchEntity branchEntity;
+
+  @OneToMany(mappedBy = "customerEntity")
+  private List<CustomerPolicyEntity> customerPolicies;
+
 
   public long getId() {
     return id;
@@ -111,5 +121,21 @@ public class CustomerEntity implements Serializable {
 
   public void setEncryptedPassword(String encryptedPassword) {
     this.encryptedPassword = encryptedPassword;
+  }
+
+  public BranchEntity getBranchEntity() {
+    return branchEntity;
+  }
+
+  public void setBranchEntity(BranchEntity branchEntity) {
+    this.branchEntity = branchEntity;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicies() {
+    return customerPolicies;
+  }
+
+  public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicies) {
+    this.customerPolicies = customerPolicies;
   }
 }

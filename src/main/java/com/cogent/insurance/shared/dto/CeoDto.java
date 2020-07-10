@@ -1,6 +1,7 @@
 package com.cogent.insurance.shared.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CeoDto implements Serializable {
 
@@ -16,6 +17,7 @@ public class CeoDto implements Serializable {
     private String password;
     private String encryptedPassword;
     private String email;
+    private List<BranchDto> branches;
 
     public long getId() {
         return id;
@@ -95,5 +97,13 @@ public class CeoDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<BranchDto> getBranches() {
+        return branches;
+    }
+
+    public void setBranches(List<BranchDto> branches) {
+        this.branches = branches;
     }
 }

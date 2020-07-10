@@ -1,6 +1,7 @@
 package com.cogent.insurance.shared.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BranchDto implements Serializable {
 
@@ -12,6 +13,9 @@ public class BranchDto implements Serializable {
   private String branchCity;
   private String branchState;
   private String phone;
+  private CeoDto ceoDto;
+  private List<CustomerDto> customersDto;
+  private List<BranchManagerDto> branchManagersDto;
 
   public String getBranchId() {
     return branchId;
@@ -59,5 +63,29 @@ public class BranchDto implements Serializable {
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  public CeoDto getCeoDto() {
+    return ceoDto;
+  }
+
+  public void setCeoDto(CeoDto ceoDto) {
+    this.ceoDto = ceoDto;
+  }
+
+  public List<CustomerDto> getCustomersDto() {
+    return customersDto;
+  }
+
+  public void setCustomersDto(List<CustomerDto> customersDto) {
+    this.customersDto = customersDto;
+  }
+
+  public List<BranchManagerDto> getBranchManagersDto() {
+    return branchManagersDto;
+  }
+
+  public void setBranchManagersDto(List<BranchManagerDto> branchManagersDto) {
+    this.branchManagersDto = branchManagersDto;
   }
 }

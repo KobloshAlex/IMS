@@ -1,6 +1,9 @@
 package com.cogent.insurance.shared.dto;
 
+import com.cogent.insurance.entity.CustomerPolicyEntity;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class PolicyDto implements Serializable {
 
@@ -14,6 +17,7 @@ public class PolicyDto implements Serializable {
   private Double maturityAmount;
   private String policyType;
   private String date; // TODO: 7/9/2020 LocalDate JSON
+  private List<CustomerPolicyEntity> customerPolicy;
 
   public String getPolicyId() {
     return policyId;
@@ -77,5 +81,13 @@ public class PolicyDto implements Serializable {
 
   public void setDate(String date) {
     this.date = date;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicy() {
+    return customerPolicy;
+  }
+
+  public void setCustomerPolicy(List<CustomerPolicyEntity> customerPolicy) {
+    this.customerPolicy = customerPolicy;
   }
 }

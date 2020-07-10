@@ -1,6 +1,10 @@
 package com.cogent.insurance.shared.dto;
 
+import com.cogent.insurance.entity.BranchEntity;
+import com.cogent.insurance.entity.CustomerPolicyEntity;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class CustomerDto implements Serializable {
 
@@ -16,6 +20,9 @@ public class CustomerDto implements Serializable {
   private String password;
   private String encryptedPassword;
   private String email;
+  private BranchEntity branchEntity;
+  private List<CustomerPolicyEntity> customerPolicies;
+
 
   public long getId() {
     return id;
@@ -95,5 +102,21 @@ public class CustomerDto implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public BranchEntity getBranchEntity() {
+    return branchEntity;
+  }
+
+  public void setBranchEntity(BranchEntity branchEntity) {
+    this.branchEntity = branchEntity;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicies() {
+    return customerPolicies;
+  }
+
+  public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicies) {
+    this.customerPolicies = customerPolicies;
   }
 }

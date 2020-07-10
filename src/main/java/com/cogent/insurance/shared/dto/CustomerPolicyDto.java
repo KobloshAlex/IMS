@@ -1,5 +1,10 @@
 package com.cogent.insurance.shared.dto;
 
+import com.cogent.insurance.entity.AgentEntity;
+import com.cogent.insurance.entity.BranchManagerEntity;
+import com.cogent.insurance.entity.CustomerEntity;
+import com.cogent.insurance.entity.PolicyEntity;
+
 import java.io.Serializable;
 
 public class CustomerPolicyDto implements Serializable {
@@ -12,6 +17,12 @@ public class CustomerPolicyDto implements Serializable {
   private String relational;
   private Double agentCommissionAmount;
   private Boolean termConditions;
+  private BranchManagerEntity branchManager;
+  private AgentEntity agentEntity;
+  private CustomerEntity customerEntity;
+  private PolicyEntity policyEntity;
+
+
 
   public String getCustomerPolicyId() {
     return customerPolicyId;
@@ -59,5 +70,37 @@ public class CustomerPolicyDto implements Serializable {
 
   public void setTermConditions(Boolean termConditions) {
     this.termConditions = termConditions;
+  }
+
+  public BranchManagerEntity getBranchManager() {
+    return branchManager;
+  }
+
+  public void setBranchManager(BranchManagerEntity branchManager) {
+    this.branchManager = branchManager;
+  }
+
+  public AgentEntity getAgentEntity() {
+    return agentEntity;
+  }
+
+  public void setAgentEntity(AgentEntity agentEntity) {
+    this.agentEntity = agentEntity;
+  }
+
+  public CustomerEntity getCustomerEntity() {
+    return customerEntity;
+  }
+
+  public void setCustomerEntity(CustomerEntity customerEntity) {
+    this.customerEntity = customerEntity;
+  }
+
+  public PolicyEntity getPolicyEntity() {
+    return policyEntity;
+  }
+
+  public void setPolicyEntity(PolicyEntity policyEntity) {
+    this.policyEntity = policyEntity;
   }
 }

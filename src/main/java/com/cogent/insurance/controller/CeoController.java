@@ -1,7 +1,7 @@
 package com.cogent.insurance.controller;
 
-import com.cogent.insurance.model.request.GeneralRequestModel;
-import com.cogent.insurance.model.response.GeneralResponseModel;
+import com.cogent.insurance.model.request.CeoRequestModel;
+import com.cogent.insurance.model.response.CeoResponseModel;
 import com.cogent.insurance.service.CeoService;
 import com.cogent.insurance.shared.dto.CeoDto;
 import org.modelmapper.ModelMapper;
@@ -32,26 +32,26 @@ public class CeoController {
   }
 
   @GetMapping(path = ID_PATH)
-  public GeneralResponseModel getCustomer(@PathVariable String id) {
+  public CeoResponseModel getCustomer(@PathVariable String id) {
 
-    return modelMapper.map(ceoService.getCeoById(id), GeneralResponseModel.class);
+    return modelMapper.map(ceoService.getCeoById(id), CeoResponseModel.class);
   }
 
   @PostMapping
-  public GeneralResponseModel createCustomer(@RequestBody GeneralRequestModel generalRequestModel) {
+  public CeoResponseModel createCustomer(@RequestBody CeoRequestModel ceoRequestModel) {
 
-    final CeoDto ceoDto = modelMapper.map(generalRequestModel, CeoDto.class);
+    final CeoDto ceoDto = modelMapper.map(ceoRequestModel, CeoDto.class);
 
-    return modelMapper.map(ceoService.createCeo(ceoDto), GeneralResponseModel.class);
+    return modelMapper.map(ceoService.createCeo(ceoDto), CeoResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
-  public GeneralResponseModel updateCustomer(
-      @PathVariable String id, @RequestBody GeneralRequestModel generalRequestModel) {
+  public CeoResponseModel updateCustomer(
+      @PathVariable String id, @RequestBody CeoRequestModel ceoRequestModel) {
 
-    final CeoDto ceoDto = modelMapper.map(generalRequestModel, CeoDto.class);
+    final CeoDto ceoDto = modelMapper.map(ceoRequestModel, CeoDto.class);
 
-    return modelMapper.map(ceoService.updateCeo(id, ceoDto), GeneralResponseModel.class);
+    return modelMapper.map(ceoService.updateCeo(id, ceoDto), CeoResponseModel.class);
   }
 
   @DeleteMapping(path = ID_PATH)
@@ -64,13 +64,13 @@ public class CeoController {
   }
 
   @GetMapping
-  public List<GeneralResponseModel> getAllCustomers() {
+  public List<CeoResponseModel> getAllCustomers() {
 
-    List<GeneralResponseModel> returnValue = new ArrayList<>();
+    List<CeoResponseModel> returnValue = new ArrayList<>();
     List<CeoDto> ceo = ceoService.getAllCeo();
 
     for (CeoDto ceoDto : ceo) {
-      returnValue.add(modelMapper.map(ceoDto, GeneralResponseModel.class));
+      returnValue.add(modelMapper.map(ceoDto, CeoResponseModel.class));
     }
 
     return returnValue;

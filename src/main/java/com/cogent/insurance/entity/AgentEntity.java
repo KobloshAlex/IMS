@@ -4,12 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Agent")
-public class AgentEntity {
-  public static final long serialVersionUID = 7098373220975691264L;
+public class AgentEntity  implements Serializable {
+
+  public static final long serialVersionUID = 9179229876621407229L;
 
   @Id @GeneratedValue private long id;
 
@@ -42,6 +48,13 @@ public class AgentEntity {
 
   @Column(nullable = false, length = 120)
   private String email;
+
+  @ManyToOne
+  @JoinColumn(name = "branch_manager_id")
+  private BranchManagerEntity branchManager;
+
+  @OneToMany(mappedBy = "agentEntity")
+  private List<CustomerPolicyEntity> customerPolicies;
 
   public long getId() {
     return id;
@@ -129,5 +142,21 @@ public class AgentEntity {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public BranchManagerEntity getBranchManager() {
+    return branchManager;
+  }
+
+  public void setBranchManager(BranchManagerEntity branchManager) {
+    this.branchManager = branchManager;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicies() {
+    return customerPolicies;
+  }
+
+  public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicies) {
+    this.customerPolicies = customerPolicies;
   }
 }

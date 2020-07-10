@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "ceo")
@@ -38,6 +40,9 @@ public class CeoEntity implements Serializable {
 
   @Column(nullable = false, length = 120)
   private String email;
+
+  @OneToMany(mappedBy = "ceoEntity") //cascade
+  private List<BranchEntity> branches;
 
   public long getId() {
     return id;
@@ -109,5 +114,13 @@ public class CeoEntity implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public List<BranchEntity> getBranches() {
+    return branches;
+  }
+
+  public void setBranches(List<BranchEntity> branches) {
+    this.branches = branches;
   }
 }

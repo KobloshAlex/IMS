@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Policy")
@@ -34,6 +36,9 @@ public class PolicyEntity implements Serializable {
 
   @Column(nullable = false, length = 50)
   private String policyType;
+
+  @OneToMany(mappedBy = "policyEntity")
+  private List<CustomerPolicyEntity> customerPolicy;
 
   private String date;
 
@@ -107,5 +112,13 @@ public class PolicyEntity implements Serializable {
 
   public void setDate(String date) {
     this.date = date;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicy() {
+    return customerPolicy;
+  }
+
+  public void setCustomerPolicy(List<CustomerPolicyEntity> customerPolicy) {
+    this.customerPolicy = customerPolicy;
   }
 }
