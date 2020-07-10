@@ -97,6 +97,7 @@ public class BranchServiceImpl implements BranchService {
 
   @Override
   public void deleteBranch(String id) {
+
     if (branchRepository.findByBranchId(id) == null) {
       logger.error(
           new Throwable().getStackTrace()[0].getMethodName()
