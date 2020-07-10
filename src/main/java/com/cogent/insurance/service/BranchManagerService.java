@@ -15,4 +15,8 @@ public interface BranchManagerService {
   void deleteBranchManager(String id);
 
   List<BranchManagerDto> getAllBranchManagers();
+
+  void addAgent(String managerId, String agentId);
+
+  void addCustomerPolicy(String managerId, String policyId);
 }

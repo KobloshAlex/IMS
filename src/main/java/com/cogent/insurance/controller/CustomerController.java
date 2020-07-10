@@ -79,4 +79,10 @@ public class CustomerController {
 
     return returnValue;
   }
+
+  @PutMapping(path = "{customerId}/add-customer-policy/{customerPolicyId}")
+  public void addCustomerPolicyToCustomer(
+      @PathVariable String customerId, @PathVariable String customerPolicyId) {
+    customerService.addCustomerPolicy(customerId, customerPolicyId);
+  }
 }

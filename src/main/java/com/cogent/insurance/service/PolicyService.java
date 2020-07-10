@@ -15,4 +15,6 @@ public interface PolicyService {
   void deletePolicy(String id);
 
   List<PolicyDto> getAllPolicies();
+
+  void addCustomerPolicy(String policyId, String customerPolicyId);
 }

@@ -15,4 +15,6 @@ public interface CeoService {
   void deleteCeo(String id);
 
   List<CeoDto> getAllCeo();
+
+  void addBranch(String ceoId, String branchId);
 }

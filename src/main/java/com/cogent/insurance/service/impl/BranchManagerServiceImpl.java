@@ -1,13 +1,17 @@
 package com.cogent.insurance.service.impl;
 
+import com.cogent.insurance.entity.AgentEntity;
 import com.cogent.insurance.entity.BranchManagerEntity;
+import com.cogent.insurance.entity.CustomerPolicyEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.BranchManagerService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.BranchManagerDto;
+import com.cogent.insurance.shared.repository.AgentRepository;
 import com.cogent.insurance.shared.repository.BranchManagerRepository;
+import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +28,20 @@ public class BranchManagerServiceImpl implements BranchManagerService {
   private final Logger logger = LoggerFactory.getLogger(BranchManagerServiceImpl.class);
 
   private final BranchManagerRepository branchManagerRepository;
+  private final AgentRepository agentRepository;
+  private final CustomerPolicyRepository customerPolicyRepository;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
   public BranchManagerServiceImpl(
-      BranchManagerRepository branchManagerRepository, ModelMapper modelMapper, Utils utils) {
+      BranchManagerRepository branchManagerRepository,
+      AgentRepository agentRepository,
+      CustomerPolicyRepository customerPolicyRepository,
+      ModelMapper modelMapper,
+      Utils utils) {
     this.branchManagerRepository = branchManagerRepository;
+    this.agentRepository = agentRepository;
+    this.customerPolicyRepository = customerPolicyRepository;
     this.modelMapper = modelMapper;
     this.utils = utils;
   }
@@ -130,6 +142,53 @@ public class BranchManagerServiceImpl implements BranchManagerService {
     }
 
     return returnValue;
+  }
+
+  @Override
+  public void addAgent(String managerId, String agentId) {
+
+    final AgentEntity agentEntity = agentRepository.findByAgentId(agentId);
+    if (agentEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_AGENT.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    final BranchManagerEntity managerEntity = branchManagerRepository.findByManagerId(managerId);
+    if (managerEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_MANAGER.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    agentEntity.setBranchManager(managerEntity);
+    agentRepository.save(agentEntity);
+  }
+
+  @Override
+  public void addCustomerPolicy(String managerId, String policyId) {
+
+    final CustomerPolicyEntity policyEntity =
+        customerPolicyRepository.findByCustomerPolicyId(policyId);
+    if (policyEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_POLICY.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    final BranchManagerEntity managerEntity = branchManagerRepository.findByManagerId(managerId);
+    if (managerEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_MANAGER.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    policyEntity.setBranchManager(managerEntity);
+    customerPolicyRepository.save(policyEntity);
   }
 
   private boolean isRequiredFieldEmpty(BranchManagerDto branchManagerDto) {

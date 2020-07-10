@@ -1,5 +1,6 @@
 package com.cogent.insurance.service.impl;
 
+import com.cogent.insurance.entity.BranchEntity;
 import com.cogent.insurance.entity.CeoEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
@@ -7,6 +8,7 @@ import com.cogent.insurance.service.CeoService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.CeoDto;
+import com.cogent.insurance.shared.repository.BranchRepository;
 import com.cogent.insurance.shared.repository.CeoRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -24,11 +26,17 @@ public class CeoServiceImpl implements CeoService {
   private final Logger logger = LoggerFactory.getLogger(CeoServiceImpl.class);
 
   private final CeoRepository ceoRepository;
+  private final BranchRepository branchRepository;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
-  public CeoServiceImpl(CeoRepository ceoRepository, ModelMapper modelMapper, Utils utils) {
+  public CeoServiceImpl(
+      CeoRepository ceoRepository,
+      BranchRepository branchRepository,
+      ModelMapper modelMapper,
+      Utils utils) {
     this.ceoRepository = ceoRepository;
+    this.branchRepository = branchRepository;
     this.modelMapper = modelMapper;
     this.utils = utils;
   }
@@ -125,6 +133,29 @@ public class CeoServiceImpl implements CeoService {
     }
 
     return returnValue;
+  }
+
+  @Override
+  public void addBranch(String ceoID, String branchId) {
+
+    final CeoEntity ceoEntity = ceoRepository.findByCeoId(ceoID);
+    if (ceoEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_CEO.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    final BranchEntity branchEntity = branchRepository.findByBranchId(branchId);
+    if (branchEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_BRANCH.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    branchEntity.setCeoEntity(ceoEntity);
+    branchRepository.save(branchEntity);
   }
 
   private boolean isRequiredFieldEmpty(CeoDto ceoDto) {

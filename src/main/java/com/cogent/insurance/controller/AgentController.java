@@ -32,12 +32,12 @@ public class AgentController {
   }
 
   @GetMapping(path = ID_PATH)
-  public MAResponseModel getBranchManager(@PathVariable String id) {
+  public MAResponseModel getAgent(@PathVariable String id) {
     return modelMapper.map(agentService.getAgentById(id), MAResponseModel.class);
   }
 
   @PostMapping
-  public MAResponseModel createBranchManager(@RequestBody MARequestModel MARequestModel) {
+  public MAResponseModel createAgent(@RequestBody MARequestModel MARequestModel) {
 
     final AgentDto agentDto = modelMapper.map(MARequestModel, AgentDto.class);
 
@@ -45,7 +45,7 @@ public class AgentController {
   }
 
   @PutMapping(path = ID_PATH)
-  public MAResponseModel updateBranchManager(
+  public MAResponseModel updateAgent(
       @PathVariable String id, @RequestBody MARequestModel MARequestModel) {
 
     final AgentDto agentDto = modelMapper.map(MARequestModel, AgentDto.class);
@@ -54,7 +54,7 @@ public class AgentController {
   }
 
   @DeleteMapping(path = ID_PATH)
-  public AgentDto deleteBranchManager(@PathVariable String id) {
+  public AgentDto deleteAgent(@PathVariable String id) {
 
     final AgentDto returnValue = agentService.getAgentById(id);
     agentService.deleteAgent(id);
@@ -63,7 +63,7 @@ public class AgentController {
   }
 
   @GetMapping
-  public List<MAResponseModel> getAllBranchManagers() {
+  public List<MAResponseModel> getAllAgents() {
 
     List<MAResponseModel> returnValue = new ArrayList<>();
     final List<AgentDto> agents = agentService.getAllAgents();
@@ -73,5 +73,11 @@ public class AgentController {
     }
 
     return returnValue;
+  }
+
+  @PutMapping(path = "{agentId}/add-customer-policy/{customerPolicyId}")
+  public void addCustomerPolicyToAgent(
+      @PathVariable String agentId, @PathVariable String customerPolicyId) {
+    agentService.addCustomerPolicy(agentId, customerPolicyId);
   }
 }

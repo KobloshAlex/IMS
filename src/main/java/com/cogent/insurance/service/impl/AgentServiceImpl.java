@@ -1,6 +1,7 @@
 package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.AgentEntity;
+import com.cogent.insurance.entity.CustomerPolicyEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.AgentService;
@@ -8,6 +9,7 @@ import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.AgentDto;
 import com.cogent.insurance.shared.repository.AgentRepository;
+import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,11 +26,17 @@ public class AgentServiceImpl implements AgentService {
   private final Logger logger = LoggerFactory.getLogger(AgentServiceImpl.class);
 
   private final AgentRepository agentRepository;
+  private final CustomerPolicyRepository customerPolicyRepository;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
-  public AgentServiceImpl(AgentRepository agentRepository, ModelMapper modelMapper, Utils utils) {
+  public AgentServiceImpl(
+      AgentRepository agentRepository,
+      CustomerPolicyRepository customerPolicyRepository,
+      ModelMapper modelMapper,
+      Utils utils) {
     this.agentRepository = agentRepository;
+    this.customerPolicyRepository = customerPolicyRepository;
     this.modelMapper = modelMapper;
     this.utils = utils;
   }
@@ -128,6 +136,30 @@ public class AgentServiceImpl implements AgentService {
     }
 
     return returnValue;
+  }
+
+  @Override
+  public void addCustomerPolicy(String agentId, String customerPolicyId) {
+
+    final CustomerPolicyEntity policyEntity =
+        customerPolicyRepository.findByCustomerPolicyId(customerPolicyId);
+    if (policyEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_POLICY.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    final AgentEntity agentEntity = agentRepository.findByAgentId(agentId);
+    if (agentEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_AGENT.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    policyEntity.setAgentEntity(agentEntity);
+    customerPolicyRepository.save(policyEntity);
   }
 
   private boolean isRequiredFieldEmpty(AgentDto agentDto) {

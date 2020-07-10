@@ -79,4 +79,15 @@ public class BranchManagerController {
 
     return returnValue;
   }
+
+  @PutMapping(path = "{managerId}/add-agent/{agentId}")
+  public void addAgentToManager(@PathVariable String managerId, @PathVariable String agentId) {
+    branchManagerService.addAgent(managerId, agentId);
+  }
+
+  @PutMapping(path = "{managerId}/add-customer-policy/{customerPolicyId}")
+  public void addCustomerPolicyToManager(
+      @PathVariable String managerId, @PathVariable String customerPolicyId) {
+    branchManagerService.addCustomerPolicy(managerId, customerPolicyId);
+  }
 }

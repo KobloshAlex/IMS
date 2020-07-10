@@ -57,4 +57,10 @@ public class PolicyController {
 
     return policyService.getAllPolicies();
   }
+
+  @PutMapping(path = "{policyId}/add-customer-policy/{customerPolicyId}")
+  public void addCustomerPolicyToPolicy(
+      @PathVariable String policyId, @PathVariable String customerPolicyId) {
+    policyService.addCustomerPolicy(policyId, customerPolicyId);
+  }
 }

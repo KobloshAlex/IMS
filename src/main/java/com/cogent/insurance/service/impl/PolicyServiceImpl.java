@@ -1,5 +1,6 @@
 package com.cogent.insurance.service.impl;
 
+import com.cogent.insurance.entity.CustomerPolicyEntity;
 import com.cogent.insurance.entity.PolicyEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
@@ -7,6 +8,7 @@ import com.cogent.insurance.service.PolicyService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.PolicyDto;
+import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import com.cogent.insurance.shared.repository.PolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -24,12 +26,17 @@ public class PolicyServiceImpl implements PolicyService {
   private final Logger logger = LoggerFactory.getLogger(PolicyServiceImpl.class);
 
   private final PolicyRepository policyRepository;
+  private final CustomerPolicyRepository customerPolicyRepository;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
   public PolicyServiceImpl(
-      PolicyRepository policyRepository, ModelMapper modelMapper, Utils utils) {
+      PolicyRepository policyRepository,
+      CustomerPolicyRepository customerPolicyRepository,
+      ModelMapper modelMapper,
+      Utils utils) {
     this.policyRepository = policyRepository;
+    this.customerPolicyRepository = customerPolicyRepository;
     this.modelMapper = modelMapper;
     this.utils = utils;
   }
@@ -122,6 +129,30 @@ public class PolicyServiceImpl implements PolicyService {
     }
 
     return returnValue;
+  }
+
+  @Override
+  public void addCustomerPolicy(String policyId, String customerPolicyId) {
+
+    final CustomerPolicyEntity customerPolicyEntity =
+        customerPolicyRepository.findByCustomerPolicyId(customerPolicyId);
+    if (customerPolicyEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_POLICY.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    final PolicyEntity policyEntity = policyRepository.findByPolicyId(policyId);
+    if (policyEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_POLICY.getMessage());
+      throw new ServiceException(ErrorMessages.NO_RECORD_FOUND_ID.getErrorMessage());
+    }
+
+    customerPolicyEntity.setPolicyEntity(policyEntity);
+    customerPolicyRepository.save(customerPolicyEntity);
   }
 
   private boolean isRequiredFieldEmpty(PolicyDto policyDto) {

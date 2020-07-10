@@ -75,4 +75,9 @@ public class CeoController {
 
     return returnValue;
   }
+
+  @PutMapping(path = "{ceoId}/add-branch/{branchId}")
+  public void addBranchToCeo(@PathVariable String ceoId, @PathVariable String branchId) {
+    ceoService.addBranch(ceoId, branchId);
+  }
 }

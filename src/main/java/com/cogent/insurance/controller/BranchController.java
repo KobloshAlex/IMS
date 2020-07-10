@@ -57,4 +57,15 @@ public class BranchController {
 
     return branchService.getAllBranches();
   }
+
+  @PutMapping(path = "{branchId}/add-manager/{branchManagerId}")
+  public void addManagerToBranch(
+      @PathVariable String branchId, @PathVariable String branchManagerId) {
+    branchService.addBranchManager(branchId, branchManagerId);
+  }
+
+  @PutMapping(path = "{branchId}/add-customer/{customerId}")
+  public void addCustomerToBranch(@PathVariable String branchId, @PathVariable String customerId) {
+    branchService.addCustomer(branchId, customerId);
+  }
 }

@@ -7,5 +7,5 @@ public interface AgentRepository extends CrudRepository<AgentEntity, Long> {
 
   AgentEntity findByEmail(String email);
 
-  AgentEntity findByAgentId(String email);
+  AgentEntity findByAgentId(String id);
 }

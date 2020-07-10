@@ -15,4 +15,6 @@ public interface CustomerService {
   void deleteCustomer(String id);
 
   List<CustomerDto> getUsers(int page, int limit);
+
+  void addCustomerPolicy(String customerId, String customerPolicyId);
 }

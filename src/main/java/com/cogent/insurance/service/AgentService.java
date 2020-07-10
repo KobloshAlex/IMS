@@ -15,4 +15,6 @@ public interface AgentService {
   void deleteAgent(String id);
 
   List<AgentDto> getAllAgents();
+
+  void addCustomerPolicy(String agentId, String customerPolicyId);
 }

@@ -15,4 +15,8 @@ public interface BranchService {
   void deleteBranch(String id);
 
   List<BranchDto> getAllBranches();
+
+  void addBranchManager(String branchId, String branchManagerId);
+
+  void addCustomer(String branchId, String customerId);
 }
