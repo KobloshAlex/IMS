@@ -1,15 +1,23 @@
-package com.cogent.insurance.model.request;
+package com.cogent.insurance.model.response;
 
-// this model we send as request to api
-public class CustomerRequestModel {
+// this model we get as response from api
+public class GeneralResponseModel {
 
+  private String customerId;
   private String firstName;
   private String lastName;
   private Integer age;
   private Character sex;
   private String address;
-  private String password;
   private String email;
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
+  }
 
   public String getFirstName() {
     return firstName;
@@ -49,14 +57,6 @@ public class CustomerRequestModel {
 
   public void setAddress(String address) {
     this.address = address;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getEmail() {

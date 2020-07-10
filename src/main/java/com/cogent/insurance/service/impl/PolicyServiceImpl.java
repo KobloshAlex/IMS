@@ -127,7 +127,7 @@ public class PolicyServiceImpl implements PolicyService {
   private boolean isRequiredFieldEmpty(PolicyDto policyDto) {
     return policyDto.getPolicyName().trim().isEmpty()
         || policyDto.getPolicyType().trim().isEmpty()
-        || policyDto.getDate().toString().trim().isEmpty()
+        || policyDto.getDate().trim().isEmpty()
         || policyDto.getMaturityAmount().toString().trim().isEmpty()
         || policyDto.getPolicyTerm().toString().trim().isEmpty()
         || policyDto.getPolicyInterest().toString().trim().isEmpty();

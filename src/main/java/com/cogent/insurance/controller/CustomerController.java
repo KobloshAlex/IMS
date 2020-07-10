@@ -1,7 +1,7 @@
 package com.cogent.insurance.controller;
 
-import com.cogent.insurance.model.request.CustomerRequestModel;
-import com.cogent.insurance.model.response.CustomerResponseModel;
+import com.cogent.insurance.model.request.GeneralRequestModel;
+import com.cogent.insurance.model.response.GeneralResponseModel;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import org.modelmapper.ModelMapper;
@@ -33,29 +33,29 @@ public class CustomerController {
   }
 
   @GetMapping(path = ID_PATH)
-  public CustomerResponseModel getCustomer(@PathVariable String id) {
+  public GeneralResponseModel getCustomer(@PathVariable String id) {
 
-    return modelMapper.map(customerService.getUserByUserId(id), CustomerResponseModel.class);
+    return modelMapper.map(customerService.getUserByUserId(id), GeneralResponseModel.class);
   }
 
   @PostMapping
-  public CustomerResponseModel createCustomer(
-      @RequestBody CustomerRequestModel customerRequestModel) {
+  public GeneralResponseModel createCustomer(
+      @RequestBody GeneralRequestModel generalRequestModel) {
 
-    final CustomerDto customerDto = modelMapper.map(customerRequestModel, CustomerDto.class);
+    final CustomerDto customerDto = modelMapper.map(generalRequestModel, CustomerDto.class);
 
     return modelMapper.map(
-        customerService.createCustomer(customerDto), CustomerResponseModel.class);
+        customerService.createCustomer(customerDto), GeneralResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
-  public CustomerResponseModel updateCustomer(
-      @PathVariable String id, @RequestBody CustomerRequestModel customerRequestModel) {
+  public GeneralResponseModel updateCustomer(
+      @PathVariable String id, @RequestBody GeneralRequestModel generalRequestModel) {
 
-    final CustomerDto customerDto = modelMapper.map(customerRequestModel, CustomerDto.class);
+    final CustomerDto customerDto = modelMapper.map(generalRequestModel, CustomerDto.class);
 
     return modelMapper.map(
-        customerService.updateCustomer(id, customerDto), CustomerResponseModel.class);
+        customerService.updateCustomer(id, customerDto), GeneralResponseModel.class);
   }
 
   @DeleteMapping(path = ID_PATH)
@@ -68,15 +68,15 @@ public class CustomerController {
   }
 
   @GetMapping
-  public List<CustomerResponseModel> getAllCustomers(
+  public List<GeneralResponseModel> getAllCustomers(
       @RequestParam(value = "page", defaultValue = "0") int page,
       @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
-    List<CustomerResponseModel> returnValue = new ArrayList<>();
+    List<GeneralResponseModel> returnValue = new ArrayList<>();
     List<CustomerDto> customers = customerService.getUsers(page, limit);
 
     for (CustomerDto customer : customers) {
-      returnValue.add(modelMapper.map(customer, CustomerResponseModel.class));
+      returnValue.add(modelMapper.map(customer, GeneralResponseModel.class));
     }
 
     return returnValue;
