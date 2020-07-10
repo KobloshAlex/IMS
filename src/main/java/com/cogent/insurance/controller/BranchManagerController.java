@@ -1,7 +1,7 @@
 package com.cogent.insurance.controller;
 
-import com.cogent.insurance.model.request.BranchManagerRequestModel;
-import com.cogent.insurance.model.response.BranchManagerResponseModel;
+import com.cogent.insurance.model.request.MARequestModel;
+import com.cogent.insurance.model.response.MAResponseModel;
 import com.cogent.insurance.service.BranchManagerService;
 import com.cogent.insurance.shared.dto.BranchManagerDto;
 import org.modelmapper.ModelMapper;
@@ -33,33 +33,33 @@ public class BranchManagerController {
   }
 
   @GetMapping(path = ID_PATH)
-  public BranchManagerResponseModel getBranchManager(@PathVariable String id) {
+  public MAResponseModel getBranchManager(@PathVariable String id) {
     return modelMapper.map(
-        branchManagerService.getBranchManagerById(id), BranchManagerResponseModel.class);
+        branchManagerService.getBranchManagerById(id), MAResponseModel.class);
   }
 
   @PostMapping
-  public BranchManagerResponseModel createBranchManager(
-      @RequestBody BranchManagerRequestModel branchManagerRequestModel) {
+  public MAResponseModel createBranchManager(
+      @RequestBody MARequestModel MARequestModel) {
 
     final BranchManagerDto branchManagerDto =
-        modelMapper.map(branchManagerRequestModel, BranchManagerDto.class);
+        modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
         branchManagerService.createBranchManager(branchManagerDto),
-        BranchManagerResponseModel.class);
+        MAResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
-  public BranchManagerResponseModel updateBranchManager(
-      @PathVariable String id, @RequestBody BranchManagerRequestModel branchManagerRequestModel) {
+  public MAResponseModel updateBranchManager(
+      @PathVariable String id, @RequestBody MARequestModel MARequestModel) {
 
     final BranchManagerDto branchManagerDto =
-        modelMapper.map(branchManagerRequestModel, BranchManagerDto.class);
+        modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
         branchManagerService.updateBranchManager(id, branchManagerDto),
-        BranchManagerResponseModel.class);
+        MAResponseModel.class);
   }
 
   @DeleteMapping(path = ID_PATH)
@@ -72,13 +72,13 @@ public class BranchManagerController {
   }
 
   @GetMapping
-  public List<BranchManagerResponseModel> getAllBranchManagers() {
+  public List<MAResponseModel> getAllBranchManagers() {
 
-    List<BranchManagerResponseModel> returnValue = new ArrayList<>();
+    List<MAResponseModel> returnValue = new ArrayList<>();
     final List<BranchManagerDto> branchManagers = branchManagerService.getAllBranchManagers();
 
     for (BranchManagerDto manager : branchManagers) {
-      returnValue.add(modelMapper.map(manager, BranchManagerResponseModel.class));
+      returnValue.add(modelMapper.map(manager, MAResponseModel.class));
     }
 
     return returnValue;

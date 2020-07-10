@@ -105,6 +105,7 @@ public class BranchManagerServiceImpl implements BranchManagerService {
 
   @Override
   public void deleteBranchManager(String id) {
+
     if (branchManagerRepository.findByManagerId(id) == null) {
       logger.error(
           new Throwable().getStackTrace()[0].getMethodName()

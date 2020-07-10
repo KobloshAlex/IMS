@@ -1,7 +1,8 @@
-package com.cogent.insurance.model.response;
+package com.cogent.insurance.model.request;
 
-public class BranchManagerResponseModel {
-  private String branchManagerId;
+// this model we send as request to api
+public class MARequestModel {
+
   private String firstName;
   private String lastName;
   private Integer age;
@@ -9,15 +10,8 @@ public class BranchManagerResponseModel {
   private String branchAddress;
   private String branchCity;
   private String branchState;
+  private String password;
   private String email;
-
-  public String getBranchManagerId() {
-    return branchManagerId;
-  }
-
-  public void setBranchManagerId(String branchManagerId) {
-    this.branchManagerId = branchManagerId;
-  }
 
   public String getFirstName() {
     return firstName;
@@ -73,6 +67,14 @@ public class BranchManagerResponseModel {
 
   public void setBranchState(String branchState) {
     this.branchState = branchState;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public String getEmail() {
