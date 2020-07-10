@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Agent")
-public class AgentEntity  implements Serializable {
+public class AgentEntity implements Serializable {
 
   public static final long serialVersionUID = 9179229876621407229L;
 

@@ -23,7 +23,6 @@ public class CustomerDto implements Serializable {
   private BranchEntity branchEntity;
   private List<CustomerPolicyEntity> customerPolicies;
 
-
   public long getId() {
     return id;
   }

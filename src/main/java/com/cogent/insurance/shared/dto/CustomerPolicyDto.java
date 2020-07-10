@@ -22,8 +22,6 @@ public class CustomerPolicyDto implements Serializable {
   private CustomerEntity customerEntity;
   private PolicyEntity policyEntity;
 
-
-
   public String getCustomerPolicyId() {
     return customerPolicyId;
   }

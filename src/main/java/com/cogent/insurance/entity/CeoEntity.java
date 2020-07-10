@@ -41,7 +41,7 @@ public class CeoEntity implements Serializable {
   @Column(nullable = false, length = 120)
   private String email;
 
-  @OneToMany(mappedBy = "ceoEntity") //cascade
+  @OneToMany(mappedBy = "ceoEntity") // cascade
   private List<BranchEntity> branches;
 
   public long getId() {

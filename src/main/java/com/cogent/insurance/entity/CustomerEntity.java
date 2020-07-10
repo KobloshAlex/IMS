@@ -50,7 +50,6 @@ public class CustomerEntity implements Serializable {
   @OneToMany(mappedBy = "customerEntity")
   private List<CustomerPolicyEntity> customerPolicies;
 
-
   public long getId() {
     return id;
   }

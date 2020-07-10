@@ -34,20 +34,17 @@ public class BranchManagerController {
 
   @GetMapping(path = ID_PATH)
   public MAResponseModel getBranchManager(@PathVariable String id) {
-    return modelMapper.map(
-        branchManagerService.getBranchManagerById(id), MAResponseModel.class);
+    return modelMapper.map(branchManagerService.getBranchManagerById(id), MAResponseModel.class);
   }
 
   @PostMapping
-  public MAResponseModel createBranchManager(
-      @RequestBody MARequestModel MARequestModel) {
+  public MAResponseModel createBranchManager(@RequestBody MARequestModel MARequestModel) {
 
     final BranchManagerDto branchManagerDto =
         modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
-        branchManagerService.createBranchManager(branchManagerDto),
-        MAResponseModel.class);
+        branchManagerService.createBranchManager(branchManagerDto), MAResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
@@ -58,8 +55,7 @@ public class BranchManagerController {
         modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
-        branchManagerService.updateBranchManager(id, branchManagerDto),
-        MAResponseModel.class);
+        branchManagerService.updateBranchManager(id, branchManagerDto), MAResponseModel.class);
   }
 
   @DeleteMapping(path = ID_PATH)

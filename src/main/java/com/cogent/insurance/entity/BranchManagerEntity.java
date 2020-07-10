@@ -59,7 +59,6 @@ public class BranchManagerEntity implements Serializable {
   @OneToMany(mappedBy = "branchManager")
   private List<CustomerPolicyEntity> customerPolicies;
 
-
   public long getId() {
     return id;
   }

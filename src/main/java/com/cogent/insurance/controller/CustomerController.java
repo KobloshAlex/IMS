@@ -39,13 +39,11 @@ public class CustomerController {
   }
 
   @PostMapping
-  public GeneralResponseModel createCustomer(
-      @RequestBody GeneralRequestModel generalRequestModel) {
+  public GeneralResponseModel createCustomer(@RequestBody GeneralRequestModel generalRequestModel) {
 
     final CustomerDto customerDto = modelMapper.map(generalRequestModel, CustomerDto.class);
 
-    return modelMapper.map(
-        customerService.createCustomer(customerDto), GeneralResponseModel.class);
+    return modelMapper.map(customerService.createCustomer(customerDto), GeneralResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
