@@ -15,6 +15,7 @@ import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class BranchManagerServiceImpl implements BranchManagerService {
   private final Logger logger = LoggerFactory.getLogger(BranchManagerServiceImpl.class);
 
   private final BranchManagerRepository branchManagerRepository;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final AgentRepository agentRepository;
   private final CustomerPolicyRepository customerPolicyRepository;
   private final ModelMapper modelMapper;
@@ -35,11 +37,13 @@ public class BranchManagerServiceImpl implements BranchManagerService {
 
   public BranchManagerServiceImpl(
       BranchManagerRepository branchManagerRepository,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
       AgentRepository agentRepository,
       CustomerPolicyRepository customerPolicyRepository,
       ModelMapper modelMapper,
       Utils utils) {
     this.branchManagerRepository = branchManagerRepository;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.agentRepository = agentRepository;
     this.customerPolicyRepository = customerPolicyRepository;
     this.modelMapper = modelMapper;
@@ -66,8 +70,8 @@ public class BranchManagerServiceImpl implements BranchManagerService {
     final BranchManagerEntity branchManagerEntity =
         modelMapper.map(branchManagerDto, BranchManagerEntity.class);
 
-    // TODO: 7/7/2020 Add BCrypt from spring security
-    branchManagerEntity.setEncryptedPassword("encrypted-password");
+    branchManagerEntity.setEncryptedPassword(
+        bCryptPasswordEncoder.encode(branchManagerDto.getPassword()));
     branchManagerEntity.setManagerId(utils.generateId(ID_LENGTH));
     logger.info(
         new Throwable().getStackTrace()[0].getMethodName()

@@ -1,5 +1,7 @@
 package com.cogent.insurance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +47,7 @@ public class CustomerEntity implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "branch_id")
+  @JsonIgnore
   private BranchEntity branchEntity;
 
   @OneToMany(mappedBy = "customerEntity")

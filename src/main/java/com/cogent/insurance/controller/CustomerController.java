@@ -35,7 +35,7 @@ public class CustomerController {
   @GetMapping(path = ID_PATH)
   public GeneralResponseModel getCustomer(@PathVariable String id) {
 
-    return modelMapper.map(customerService.getUserByUserId(id), GeneralResponseModel.class);
+    return modelMapper.map(customerService.getCustomerByUserId(id), GeneralResponseModel.class);
   }
 
   @PostMapping
@@ -59,7 +59,7 @@ public class CustomerController {
   @DeleteMapping(path = ID_PATH)
   public CustomerDto deleteCustomer(@PathVariable String id) {
 
-    final CustomerDto returnValue = customerService.getUserByUserId(id);
+    final CustomerDto returnValue = customerService.getCustomerByUserId(id);
     customerService.deleteCustomer(id);
 
     return returnValue;
@@ -71,7 +71,7 @@ public class CustomerController {
       @RequestParam(value = "limit", defaultValue = "5") int limit) {
 
     List<GeneralResponseModel> returnValue = new ArrayList<>();
-    List<CustomerDto> customers = customerService.getUsers(page, limit);
+    List<CustomerDto> customers = customerService.getCustomers(page, limit);
 
     for (CustomerDto customer : customers) {
       returnValue.add(modelMapper.map(customer, GeneralResponseModel.class));

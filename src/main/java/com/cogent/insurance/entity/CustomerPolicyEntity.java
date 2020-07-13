@@ -1,5 +1,7 @@
 package com.cogent.insurance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,18 +39,22 @@ public class CustomerPolicyEntity implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "branch_manager_id")
+  @JsonIgnore
   private BranchManagerEntity branchManager;
 
   @ManyToOne
   @JoinColumn(name = "agent_id")
+  @JsonIgnore
   private AgentEntity agentEntity;
 
   @ManyToOne
   @JoinColumn(name = "customers_id")
+  @JsonIgnore
   private CustomerEntity customerEntity;
 
   @ManyToOne
   @JoinColumn(name = "policy_id")
+  @JsonIgnore
   private PolicyEntity policyEntity;
 
   public long getId() {

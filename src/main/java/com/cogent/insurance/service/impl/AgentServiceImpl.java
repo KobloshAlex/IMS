@@ -13,6 +13,7 @@ import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,16 +27,19 @@ public class AgentServiceImpl implements AgentService {
   private final Logger logger = LoggerFactory.getLogger(AgentServiceImpl.class);
 
   private final AgentRepository agentRepository;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final CustomerPolicyRepository customerPolicyRepository;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
   public AgentServiceImpl(
       AgentRepository agentRepository,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
       CustomerPolicyRepository customerPolicyRepository,
       ModelMapper modelMapper,
       Utils utils) {
     this.agentRepository = agentRepository;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.customerPolicyRepository = customerPolicyRepository;
     this.modelMapper = modelMapper;
     this.utils = utils;
@@ -60,8 +64,7 @@ public class AgentServiceImpl implements AgentService {
 
     final AgentEntity agentEntity = modelMapper.map(agentDto, AgentEntity.class);
 
-    // TODO: 7/7/2020 Add BCrypt from spring security
-    agentEntity.setEncryptedPassword("encrypted-password");
+    agentEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(agentDto.getPassword()));
     agentEntity.setAgentId(utils.generateId(ID_LENGTH));
     logger.info(
         new Throwable().getStackTrace()[0].getMethodName()

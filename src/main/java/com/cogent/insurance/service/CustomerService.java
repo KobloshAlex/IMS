@@ -1,20 +1,23 @@
 package com.cogent.insurance.service;
 
 import com.cogent.insurance.shared.dto.CustomerDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface CustomerService {
+public interface CustomerService extends UserDetailsService {
 
   CustomerDto createCustomer(CustomerDto customerDto);
 
-  CustomerDto getUserByUserId(String id);
+  CustomerDto getCustomerByUserId(String id);
 
   CustomerDto updateCustomer(String id, CustomerDto customerDto);
 
   void deleteCustomer(String id);
 
-  List<CustomerDto> getUsers(int page, int limit);
+  List<CustomerDto> getCustomers(int page, int limit);
 
   void addCustomerPolicy(String customerId, String customerPolicyId);
+
+  CustomerDto getCustomer(String email);
 }

@@ -13,6 +13,7 @@ import com.cogent.insurance.shared.repository.CeoRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,16 +28,19 @@ public class CeoServiceImpl implements CeoService {
 
   private final CeoRepository ceoRepository;
   private final BranchRepository branchRepository;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final ModelMapper modelMapper;
   private final Utils utils;
 
   public CeoServiceImpl(
       CeoRepository ceoRepository,
       BranchRepository branchRepository,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
       ModelMapper modelMapper,
       Utils utils) {
     this.ceoRepository = ceoRepository;
     this.branchRepository = branchRepository;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.modelMapper = modelMapper;
     this.utils = utils;
   }
@@ -60,8 +64,7 @@ public class CeoServiceImpl implements CeoService {
 
     final CeoEntity ceoEntity = modelMapper.map(ceoDto, CeoEntity.class);
 
-    // TODO: 7/7/2020 Add BCrypt from spring security
-    ceoEntity.setEncryptedPassword("encrypted-password");
+    ceoEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(ceoDto.getPassword()));
     ceoEntity.setCeoId(utils.generateId(ID_LENGTH));
     logger.info(
         new Throwable().getStackTrace()[0].getMethodName() + LoggerMessages.SUCCESS_CREATE_RECORD);
