@@ -1,10 +1,11 @@
 package com.cogent.insurance.service;
 
 import com.cogent.insurance.shared.dto.BranchManagerDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface BranchManagerService {
+public interface BranchManagerService extends UserDetailsService {
 
   BranchManagerDto createBranchManager(BranchManagerDto branchManagerDto);
 

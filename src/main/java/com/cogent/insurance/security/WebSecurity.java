@@ -1,5 +1,8 @@
 package com.cogent.insurance.security;
 
+import com.cogent.insurance.service.AgentService;
+import com.cogent.insurance.service.BranchManagerService;
+import com.cogent.insurance.service.CeoService;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.springframework.http.HttpMethod;
@@ -16,14 +19,22 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   private static final String LOGIN_URL = "/api/login";
 
   private final CustomerService customerService;
+  private final CeoService ceoService;
+  private final BranchManagerService branchManagerService;
+  private final AgentService agentService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final CustomerRepository customerRepository;
 
   public WebSecurity(
-      CustomerService customerService,
-      BCryptPasswordEncoder bCryptPasswordEncoder,
-      CustomerRepository customerRepository) {
+          CustomerService customerService,
+          CeoService ceoService,
+          BranchManagerService branchManagerService,
+          AgentService agentService, BCryptPasswordEncoder bCryptPasswordEncoder,
+          CustomerRepository customerRepository) {
     this.customerService = customerService;
+    this.ceoService = ceoService;
+    this.branchManagerService = branchManagerService;
+    this.agentService = agentService;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.customerRepository = customerRepository;
   }
@@ -49,7 +60,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(ceoService).passwordEncoder(bCryptPasswordEncoder);
     auth.userDetailsService(customerService).passwordEncoder(bCryptPasswordEncoder);
+    auth.userDetailsService(branchManagerService).passwordEncoder(bCryptPasswordEncoder);
+    auth.userDetailsService(agentService).passwordEncoder(bCryptPasswordEncoder);
   }
 
   private AuthenticationFilter getAuthenticationFilter() throws Exception {

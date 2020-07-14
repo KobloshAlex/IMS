@@ -1,10 +1,11 @@
 package com.cogent.insurance.service;
 
 import com.cogent.insurance.shared.dto.AgentDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface AgentService {
+public interface AgentService extends UserDetailsService {
 
   AgentDto createAgent(AgentDto agentDto);
 

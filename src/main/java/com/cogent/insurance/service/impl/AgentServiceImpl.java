@@ -13,6 +13,9 @@ import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -172,5 +175,18 @@ public class AgentServiceImpl implements AgentService {
         || agentDto.getBranchState().trim().isEmpty()
         || agentDto.getFirstName().trim().isEmpty()
         || agentDto.getLastName().trim().isEmpty();
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    final AgentEntity agentEntity = agentRepository.findByEmail(email);
+
+    if (agentEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_MANAGER.getMessage());
+      throw new UsernameNotFoundException(email);
+    }
+    return new User(agentEntity.getEmail(), agentEntity.getEncryptedPassword(), new ArrayList<>());
   }
 }

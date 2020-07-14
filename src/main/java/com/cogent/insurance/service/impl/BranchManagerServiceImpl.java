@@ -15,6 +15,9 @@ import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -202,5 +205,19 @@ public class BranchManagerServiceImpl implements BranchManagerService {
         || branchManagerDto.getBranchState().trim().isEmpty()
         || branchManagerDto.getFirstName().trim().isEmpty()
         || branchManagerDto.getLastName().trim().isEmpty();
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    final BranchManagerEntity managerEntity = branchManagerRepository.findByEmail(email);
+
+    if (managerEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_MANAGER.getMessage());
+      throw new UsernameNotFoundException(email);
+    }
+    return new User(
+        managerEntity.getEmail(), managerEntity.getEncryptedPassword(), new ArrayList<>());
   }
 }

@@ -13,6 +13,9 @@ import com.cogent.insurance.shared.repository.CeoRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -159,6 +162,21 @@ public class CeoServiceImpl implements CeoService {
 
     branchEntity.setCeoEntity(ceoEntity);
     branchRepository.save(branchEntity);
+  }
+
+  @Override
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    final CeoEntity ceoEntity = ceoRepository.findByEmail(email);
+
+    if (ceoEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_CEO.getMessage());
+      throw new UsernameNotFoundException(email);
+    }
+    //  return new CustomerPrincipal(ceoEntity);
+
+    return new User(ceoEntity.getEmail(), ceoEntity.getEncryptedPassword(), new ArrayList<>());
   }
 
   private boolean isRequiredFieldEmpty(CeoDto ceoDto) {
