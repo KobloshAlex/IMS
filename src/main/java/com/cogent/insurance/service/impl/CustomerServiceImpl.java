@@ -4,6 +4,7 @@ import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.entity.CustomerPolicyEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
+import com.cogent.insurance.security.principal.CustomerPrincipal;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
@@ -15,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -206,8 +206,9 @@ public class CustomerServiceImpl implements CustomerService {
       throw new UsernameNotFoundException(email);
     }
 
-    return new User(
-        customerEntity.getEmail(), customerEntity.getEncryptedPassword(), new ArrayList<>());
+    return new CustomerPrincipal(customerEntity);
+    // return new User(customerEntity.getEmail(), customerEntity.getEncryptedPassword(), new
+    // ArrayList<>());
   }
 
   private boolean isRequiredFieldEmpty(CustomerDto customerDto) {

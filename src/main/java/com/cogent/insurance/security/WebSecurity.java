@@ -1,6 +1,7 @@
 package com.cogent.insurance.security;
 
 import com.cogent.insurance.service.CustomerService;
+import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,14 +13,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-  private static final String LOGIN_URL = "/customers/login";
+  private static final String LOGIN_URL = "/api/login";
 
   private final CustomerService customerService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final CustomerRepository customerRepository;
 
-  public WebSecurity(CustomerService customerService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public WebSecurity(
+      CustomerService customerService,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
+      CustomerRepository customerRepository) {
     this.customerService = customerService;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    this.customerRepository = customerRepository;
   }
 
   @Override
@@ -30,11 +36,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, SecurityConstants.SING_UP_URL)
         .permitAll()
+        .antMatchers(HttpMethod.DELETE, "/api/customers/**")
+        .hasAnyRole("ADMIN")
         .anyRequest()
         .authenticated()
         .and()
         .addFilter(getAuthenticationFilter())
-        .addFilter(new AuthorizationFilter(authenticationManager()))
+        .addFilter(new AuthorizationFilter(authenticationManager(), customerRepository))
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }

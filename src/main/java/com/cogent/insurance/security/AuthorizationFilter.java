@@ -1,5 +1,8 @@
 package com.cogent.insurance.security;
 
+import com.cogent.insurance.entity.CustomerEntity;
+import com.cogent.insurance.security.principal.CustomerPrincipal;
+import com.cogent.insurance.shared.repository.CustomerRepository;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,12 +14,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
-  public AuthorizationFilter(AuthenticationManager authManager) {
+  private final CustomerRepository customerRepository;
+
+  public AuthorizationFilter(
+      AuthenticationManager authManager, CustomerRepository customerRepository) {
     super(authManager);
+    this.customerRepository = customerRepository;
   }
 
   @Override
@@ -51,7 +57,10 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
               .getSubject();
 
       if (user != null) {
-        return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+        final CustomerEntity customerEntity = customerRepository.findByEmail(user);
+        final CustomerPrincipal customerPrincipal = new CustomerPrincipal(customerEntity);
+        return new UsernamePasswordAuthenticationToken(
+            user, null, customerPrincipal.getAuthorities());
       }
 
       return null;

@@ -2,6 +2,7 @@ package com.cogent.insurance.security;
 
 import com.cogent.insurance.SpringApplicationContext;
 import com.cogent.insurance.model.request.login.UserRequestLoginModel;
+import com.cogent.insurance.security.principal.CustomerPrincipal;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +11,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -50,7 +50,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
       HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
 
-    final String customerName = ((User) auth.getPrincipal()).getUsername();
+    final String customerName = ((CustomerPrincipal) auth.getPrincipal()).getUsername();
 
     final String token =
         Jwts.builder()
