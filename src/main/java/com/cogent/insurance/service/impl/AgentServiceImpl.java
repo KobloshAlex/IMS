@@ -168,15 +168,6 @@ public class AgentServiceImpl implements AgentService {
     customerPolicyRepository.save(policyEntity);
   }
 
-  private boolean isRequiredFieldEmpty(AgentDto agentDto) {
-    return agentDto.getEmail().trim().isEmpty()
-        || agentDto.getBranchAddress().trim().isEmpty()
-        || agentDto.getBranchCity().trim().isEmpty()
-        || agentDto.getBranchState().trim().isEmpty()
-        || agentDto.getFirstName().trim().isEmpty()
-        || agentDto.getLastName().trim().isEmpty();
-  }
-
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     final AgentEntity agentEntity = agentRepository.findByEmail(email);
@@ -188,5 +179,14 @@ public class AgentServiceImpl implements AgentService {
       throw new UsernameNotFoundException(email);
     }
     return new User(agentEntity.getEmail(), agentEntity.getEncryptedPassword(), new ArrayList<>());
+  }
+
+  private boolean isRequiredFieldEmpty(AgentDto agentDto) {
+    return agentDto.getEmail().trim().isEmpty()
+        || agentDto.getBranchAddress().trim().isEmpty()
+        || agentDto.getBranchCity().trim().isEmpty()
+        || agentDto.getBranchState().trim().isEmpty()
+        || agentDto.getFirstName().trim().isEmpty()
+        || agentDto.getLastName().trim().isEmpty();
   }
 }

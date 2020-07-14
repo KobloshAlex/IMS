@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Customers")
@@ -52,7 +53,7 @@ public class CustomerEntity implements Serializable {
       name = "customers_roles",
       joinColumns = @JoinColumn(name = "customers_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
-  private Collection<RoleEntity> roles;
+  private Set<RoleEntity> roles;
 
   public long getId() {
     return id;
@@ -142,11 +143,11 @@ public class CustomerEntity implements Serializable {
     this.customerPolicies = customerPolicies;
   }
 
-  public Collection<RoleEntity> getRoles() {
+  public Set<RoleEntity> getRoles() {
     return roles;
   }
 
-  public void setRoles(Collection<RoleEntity> roles) {
+  public void setRoles(Set<RoleEntity> roles) {
     this.roles = roles;
   }
 }

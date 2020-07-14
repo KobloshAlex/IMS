@@ -2,16 +2,11 @@ package com.cogent.insurance.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Branch_manager")
@@ -61,6 +56,14 @@ public class BranchManagerEntity implements Serializable {
 
   @OneToMany(mappedBy = "branchManager")
   private List<CustomerPolicyEntity> customerPolicies;
+
+  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "branch_managers_roles",
+          joinColumns = @JoinColumn(name = "branch_manager_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+  private Set<RoleEntity> roles;
+
 
   public long getId() {
     return id;
@@ -172,5 +175,13 @@ public class BranchManagerEntity implements Serializable {
 
   public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicies) {
     this.customerPolicies = customerPolicies;
+  }
+
+  public Set<RoleEntity> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<RoleEntity> roles) {
+    this.roles = roles;
   }
 }

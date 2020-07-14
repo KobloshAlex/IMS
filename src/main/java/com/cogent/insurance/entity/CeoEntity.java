@@ -1,13 +1,10 @@
 package com.cogent.insurance.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ceo")
@@ -43,6 +40,13 @@ public class CeoEntity implements Serializable {
 
   @OneToMany(mappedBy = "ceoEntity") // cascade
   private List<BranchEntity> branches;
+
+  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "ceo_roles",
+          joinColumns = @JoinColumn(name = "ceo_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+  private Set<RoleEntity> roles;
 
   public long getId() {
     return id;
@@ -122,5 +126,13 @@ public class CeoEntity implements Serializable {
 
   public void setBranches(List<BranchEntity> branches) {
     this.branches = branches;
+  }
+
+  public Set<RoleEntity> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<RoleEntity> roles) {
+    this.roles = roles;
   }
 }

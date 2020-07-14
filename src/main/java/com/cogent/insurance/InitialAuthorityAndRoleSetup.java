@@ -1,9 +1,11 @@
 package com.cogent.insurance;
 
-import com.cogent.insurance.entity.AuthorityEntity;
+import com.cogent.insurance.entity.AgentEntity;
 import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.shared.Utils;
-import com.cogent.insurance.shared.repository.AuthorityRepository;
+import com.cogent.insurance.shared.repository.AgentRepository;
+import com.cogent.insurance.shared.repository.BranchManagerRepository;
+import com.cogent.insurance.shared.repository.CeoRepository;
 import com.cogent.insurance.shared.repository.CustomerRepository;
 import com.cogent.insurance.shared.repository.RoleRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -12,29 +14,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class InitialAuthorityAndRoleSetup {
 
-  private final AuthorityRepository authorityRepository;
   private final RoleRepository roleRepository;
   private final CustomerRepository customerRepository;
+  private final AgentRepository agentRepository;
+  private final BranchManagerRepository branchManagerRepository;
+  private final CeoRepository ceoRepository;
   private final Utils utils;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public InitialAuthorityAndRoleSetup(
-      AuthorityRepository authorityRepository,
       RoleRepository roleRepository,
       CustomerRepository customerRepository,
+      AgentRepository agentRepository,
+      BranchManagerRepository branchManagerRepository,
+      CeoRepository ceoRepository,
       Utils utils,
       BCryptPasswordEncoder bCryptPasswordEncoder) {
-    this.authorityRepository = authorityRepository;
     this.roleRepository = roleRepository;
     this.customerRepository = customerRepository;
+    this.agentRepository = agentRepository;
+    this.branchManagerRepository = branchManagerRepository;
+    this.ceoRepository = ceoRepository;
     this.utils = utils;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
@@ -42,52 +48,44 @@ public class InitialAuthorityAndRoleSetup {
   @EventListener
   @Transactional
   public void onApplicationEvent(ApplicationReadyEvent event) {
-    System.out.println("from authority ready event");
+    System.out.println("from ROLES ready event");
 
-    final AuthorityEntity readAuthority = createAuthority("READ_AUTHORITY");
-    final AuthorityEntity deleteAuthority = createAuthority("DELETE_AUTHORITY");
-    final AuthorityEntity writeAuthority = createAuthority("WRITE_AUTHORITY");
+    final RoleEntity roleCustomer = createRole("ROLE_CUSTOMER");
+    final RoleEntity roleCeo = createRole("ROLE_CEO");
+    final RoleEntity roleAgent = createRole("ROLE_AGENT");
+    final RoleEntity roleManager = createRole("ROLE_MANAGER");
 
-    final RoleEntity roleCustomer = createRole("ROLE_CUSTOMER", singletonList(readAuthority));
-    final RoleEntity roleAdmin =
-        createRole("ROLE_ADMIN", asList(readAuthority, deleteAuthority, writeAuthority));
-
-    if (roleAdmin == null) {
+    if (roleCeo == null || roleCustomer == null || roleAgent == null || roleManager == null) {
       return;
     }
 
-    //    CustomerEntity adminUser = new CustomerEntity();
-    //    adminUser.setCustomerId(utils.generateId(20));
-    //    adminUser.setFirstName("Admin");
-    //    adminUser.setLastName("Admin");
-    //    adminUser.setEmail("Admin@gmail.com");
-    //    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
-    //    adminUser.setAddress("address");
-    //    adminUser.setSex('M');
-    //    adminUser.setAge(22);
-    //    adminUser.setRoles(singletonList(roleAdmin));
-    //
-    //    customerRepository.save(adminUser);
+    Set<RoleEntity> roles = new HashSet<>();
+    roles.add(roleCustomer);
+    roles.add(roleAgent);
+    AgentEntity adminUser = new AgentEntity();
+    adminUser.setAgentId(utils.generateId(20));
+    adminUser.setFirstName("Admin");
+    adminUser.setLastName("Admin");
+    adminUser.setEmail("Admin@gmail.com");
+    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
+    adminUser.setBranchAddress("address");
+    adminUser.setSex('M');
+    adminUser.setAge(22);
+    adminUser.setBranchCity("bos");
+    adminUser.setBranchState("MA");
+    adminUser.setRoles(roles);
+
+    agentRepository.save(adminUser);
+
+    System.out.println(adminUser.getRoles().toString());
   }
 
   @Transactional
-  public AuthorityEntity createAuthority(String name) {
-
-    AuthorityEntity authority = authorityRepository.findByName(name);
-    if (authority == null) {
-      authority = new AuthorityEntity(name);
-      authorityRepository.save(authority);
-    }
-    return authority;
-  }
-
-  @Transactional
-  public RoleEntity createRole(String name, Collection<AuthorityEntity> authorities) {
+  public RoleEntity createRole(String name) {
 
     RoleEntity role = roleRepository.findByName(name);
     if (role == null) {
       role = new RoleEntity(name);
-      role.setAuthorities(authorities);
       roleRepository.save(role);
     }
 
