@@ -1,11 +1,10 @@
 package com.cogent.insurance.service;
 
 import com.cogent.insurance.shared.dto.CeoDto;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface CeoService extends UserDetailsService {
+public interface CeoService {
 
   CeoDto createCeo(CeoDto ceoDto);
 

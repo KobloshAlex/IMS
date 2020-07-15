@@ -9,7 +9,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -25,16 +24,7 @@ public class RoleEntity implements Serializable {
   private String name;
 
   @ManyToMany(mappedBy = "roles")
-  private Set<CustomerEntity> customers;
-
-  @ManyToMany(mappedBy = "roles")
-  private Set<CeoEntity> ceo;
-
-  @ManyToMany(mappedBy = "roles")
-  private Collection<AgentEntity> agents;
-
-  @ManyToMany(mappedBy = "roles")
-  private Set<BranchManagerEntity> managers;
+  private Collection<UserEntity> users;
 
   public RoleEntity() {}
 
@@ -58,54 +48,11 @@ public class RoleEntity implements Serializable {
     this.name = name;
   }
 
-  public Collection<CustomerEntity> getCustomers() {
-    return customers;
+  public Collection<UserEntity> getUsers() {
+    return users;
   }
 
-  public void setCustomers(Set<CustomerEntity> customers) {
-    this.customers = customers;
-  }
-
-  public Set<CeoEntity> getCeo() {
-    return ceo;
-  }
-
-  public void setCeo(Set<CeoEntity> ceo) {
-    this.ceo = ceo;
-  }
-
-  public Collection<AgentEntity> getAgents() {
-    return agents;
-  }
-
-  public void setAgents(Collection<AgentEntity> agents) {
-    this.agents = agents;
-  }
-
-  public Set<BranchManagerEntity> getManagers() {
-    return managers;
-  }
-
-  public void setManagers(Set<BranchManagerEntity> managers) {
-    this.managers = managers;
-  }
-
-  @Override
-  public String toString() {
-    return "RoleEntity{"
-        + "id="
-        + id
-        + ", name='"
-        + name
-        + '\''
-        + ", customers="
-        + customers
-        + ", ceo="
-        + ceo
-        + ", agents="
-        + agents
-        + ", managers="
-        + managers
-        + '}';
+  public void setUsers(Collection<UserEntity> users) {
+    this.users = users;
   }
 }

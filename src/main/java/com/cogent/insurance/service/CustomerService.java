@@ -1,11 +1,10 @@
 package com.cogent.insurance.service;
 
 import com.cogent.insurance.shared.dto.CustomerDto;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface CustomerService extends UserDetailsService {
+public interface CustomerService {
 
   CustomerDto createCustomer(CustomerDto customerDto);
 
@@ -19,5 +18,4 @@ public interface CustomerService extends UserDetailsService {
 
   void addCustomerPolicy(String customerId, String customerPolicyId);
 
-  CustomerDto getCustomer(String email);
 }

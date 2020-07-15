@@ -1,6 +1,9 @@
 package com.cogent.insurance.security;
 
+import com.cogent.insurance.SpringApplicationContext;
 import com.cogent.insurance.model.request.login.UserRequestLoginModel;
+import com.cogent.insurance.service.UserService;
+import com.cogent.insurance.shared.dto.UserDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,7 +14,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -44,10 +46,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
   @Override
   protected void successfulAuthentication(
-      HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
-      throws IOException, ServletException {
+      HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) {
 
-    final String username = ((User) auth.getPrincipal()).getUsername();
+    final String username = ((UserPrincipals) auth.getPrincipal()).getUsername();
     final String token =
         Jwts.builder()
             .setSubject(username)
@@ -55,6 +56,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
             .compact();
 
+    UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+    UserDto userDto = userService.getUser(username);
+
     res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+    res.addHeader("UserID", userDto.getUserId());
   }
 }

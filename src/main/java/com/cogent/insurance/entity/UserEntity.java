@@ -1,11 +1,9 @@
 package com.cogent.insurance.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -29,6 +27,13 @@ public class UserEntity implements Serializable {
 
   @Column(nullable = false, length = 100)
   private String email;
+
+  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "users_roles",
+          joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+  private Collection<RoleEntity> roles;
 
   public long getId() {
     return id;
@@ -76,5 +81,13 @@ public class UserEntity implements Serializable {
 
   public void setUserId(String userId) {
     this.userId = userId;
+  }
+
+  public Collection<RoleEntity> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Collection<RoleEntity> roles) {
+    this.roles = roles;
   }
 }

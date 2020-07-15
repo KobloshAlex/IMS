@@ -2,7 +2,6 @@ package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.entity.CustomerPolicyEntity;
-import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.CustomerService;
@@ -14,20 +13,12 @@ import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -177,52 +168,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     policyEntity.setCustomerEntity(customerEntity);
     customerPolicyRepository.save(policyEntity);
-  }
-
-  @Override
-  public CustomerDto getCustomer(String email) {
-    // add CustomerID to JSON header
-    final CustomerEntity customerEntity = customerRepository.findByEmail(email);
-
-    if (customerEntity == null) {
-      logger.error(
-          new Throwable().getStackTrace()[0].getMethodName()
-              + LoggerMessages.FAIL_GET_RECORD_CUSTOMER.getMessage());
-      throw new UsernameNotFoundException(email);
-    }
-
-    CustomerDto returnValue = new CustomerDto();
-    BeanUtils.copyProperties(
-        customerEntity,
-        returnValue); // using BeanUtil to avoid EAGER loading from CustomerEntity.customerPolicies
-
-    return returnValue;
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-    final CustomerEntity customerEntity = customerRepository.findByEmail(email);
-
-    if (customerEntity == null) {
-      logger.error(
-          new Throwable().getStackTrace()[0].getMethodName()
-              + LoggerMessages.FAIL_GET_RECORD_CUSTOMER.getMessage());
-      throw new UsernameNotFoundException(email);
-    }
-
-    Set<GrantedAuthority> authorities = new HashSet<>();
-    final Set<RoleEntity> roles = customerEntity.getRoles();
-    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-
-    return new User(
-        customerEntity.getEmail(),
-        customerEntity.getEncryptedPassword(),
-        true,
-        true,
-        true,
-        true,
-        authorities);
   }
 
   private boolean isRequiredFieldEmpty(CustomerDto customerDto) {

@@ -3,7 +3,6 @@ package com.cogent.insurance.service.impl;
 import com.cogent.insurance.entity.AgentEntity;
 import com.cogent.insurance.entity.BranchManagerEntity;
 import com.cogent.insurance.entity.CustomerPolicyEntity;
-import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.BranchManagerService;
@@ -16,18 +15,11 @@ import com.cogent.insurance.shared.repository.CustomerPolicyRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class BranchManagerServiceImpl implements BranchManagerService {
@@ -210,31 +202,5 @@ public class BranchManagerServiceImpl implements BranchManagerService {
         || branchManagerDto.getBranchState().trim().isEmpty()
         || branchManagerDto.getFirstName().trim().isEmpty()
         || branchManagerDto.getLastName().trim().isEmpty();
-  }
-
-  @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-    final BranchManagerEntity managerEntity = branchManagerRepository.findByEmail(email);
-
-    if (managerEntity == null) {
-      logger.error(
-          new Throwable().getStackTrace()[0].getMethodName()
-              + LoggerMessages.FAIL_GET_RECORD_MANAGER.getMessage());
-      throw new UsernameNotFoundException(email);
-    }
-
-    Set<GrantedAuthority> authorities = new HashSet<>();
-    final Set<RoleEntity> roles = managerEntity.getRoles();
-    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-
-    return new User(
-        managerEntity.getEmail(),
-        managerEntity.getEncryptedPassword(),
-        true,
-        true,
-        true,
-        true,
-        authorities);
   }
 }

@@ -1,44 +1,36 @@
 package com.cogent.insurance;
 
 import com.cogent.insurance.entity.RoleEntity;
+import com.cogent.insurance.entity.UserEntity;
 import com.cogent.insurance.shared.Utils;
-import com.cogent.insurance.shared.repository.AgentRepository;
-import com.cogent.insurance.shared.repository.BranchManagerRepository;
-import com.cogent.insurance.shared.repository.CeoRepository;
-import com.cogent.insurance.shared.repository.CustomerRepository;
 import com.cogent.insurance.shared.repository.RoleRepository;
+import com.cogent.insurance.shared.repository.UserRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+
 @Component
 public class InitialAuthorityAndRoleSetup {
 
   private final RoleRepository roleRepository;
-  private final CustomerRepository customerRepository;
-  private final AgentRepository agentRepository;
-  private final BranchManagerRepository branchManagerRepository;
-  private final CeoRepository ceoRepository;
+
   private final Utils utils;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final UserRepository userRepository;
 
   public InitialAuthorityAndRoleSetup(
       RoleRepository roleRepository,
-      CustomerRepository customerRepository,
-      AgentRepository agentRepository,
-      BranchManagerRepository branchManagerRepository,
-      CeoRepository ceoRepository,
       Utils utils,
-      BCryptPasswordEncoder bCryptPasswordEncoder) {
+      BCryptPasswordEncoder bCryptPasswordEncoder,
+      UserRepository userRepository) {
     this.roleRepository = roleRepository;
-    this.customerRepository = customerRepository;
-    this.agentRepository = agentRepository;
-    this.branchManagerRepository = branchManagerRepository;
-    this.ceoRepository = ceoRepository;
     this.utils = utils;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    this.userRepository = userRepository;
   }
 
   @EventListener
@@ -55,24 +47,17 @@ public class InitialAuthorityAndRoleSetup {
       return;
     }
 
-    //    Set<RoleEntity> roles = new HashSet<>();
-    //    roles.add(roleAgent);
-    //    AgentEntity adminUser = new AgentEntity();
-    //    adminUser.setAgentId(utils.generateId(20));
-    //    adminUser.setFirstName("Admin");
-    //    adminUser.setLastName("Admin");
-    //    adminUser.setEmail("agent1@gmail.com");
-    //    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
-    //    adminUser.setBranchAddress("address");
-    //    adminUser.setSex('M');
-    //    adminUser.setAge(22);
-    //    adminUser.setBranchCity("bos");
-    //    adminUser.setBranchState("MA");
-    //    adminUser.setRoles(roles);
-    //
-    //    agentRepository.save(adminUser);
-    //
-    //    System.out.println(adminUser.getRoles().toString());
+    UserEntity adminUser = new UserEntity();
+    adminUser.setUserId(utils.generateId(20));
+    adminUser.setFirstName("Admin");
+    adminUser.setLastName("Admin");
+    adminUser.setEmail("admin@gmail.com");
+    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
+    adminUser.setRoles(Arrays.asList(roleCustomer, roleAgent, roleManager, roleCeo));
+
+    if (!adminUser.getEmail().equals("admin@gmail.com")) {
+      userRepository.save(adminUser);
+    }
   }
 
   @Transactional

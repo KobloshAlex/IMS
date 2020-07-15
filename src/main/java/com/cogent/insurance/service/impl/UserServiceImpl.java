@@ -3,6 +3,7 @@ package com.cogent.insurance.service.impl;
 import com.cogent.insurance.entity.UserEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
+import com.cogent.insurance.security.UserPrincipals;
 import com.cogent.insurance.service.UserService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
@@ -11,8 +12,8 @@ import com.cogent.insurance.shared.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -139,6 +140,24 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public UserDto getUser(String email) {
+    // add CustomerID to JSON header
+    final UserEntity userEntity = userRepository.findByEmail(email);
+
+    if (userEntity == null) {
+      logger.error(
+          new Throwable().getStackTrace()[0].getMethodName()
+              + LoggerMessages.FAIL_GET_RECORD_CUSTOMER.getMessage());
+      throw new UsernameNotFoundException(email);
+    }
+
+    UserDto returnValue = new UserDto();
+    BeanUtils.copyProperties(userEntity, returnValue);
+
+    return returnValue;
+  }
+
+  @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
     final UserEntity userEntity = userRepository.findByEmail(email);
@@ -150,7 +169,9 @@ public class UserServiceImpl implements UserService {
       throw new UsernameNotFoundException(email);
     }
 
-    return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
+    return new UserPrincipals(userEntity);
+
+//    return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
   }
 
   private boolean isRequiredFieldEmpty(UserDto userDto) {
