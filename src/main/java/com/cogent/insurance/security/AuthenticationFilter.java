@@ -47,17 +47,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
       HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
 
-    final String customerName = ((User) auth.getPrincipal()).getUsername();
-    final String customerToken =
+    final String username = ((User) auth.getPrincipal()).getUsername();
+    final String token =
         Jwts.builder()
-            .setSubject(customerName)
+            .setSubject(username)
             .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
             .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
             .compact();
-    //    CustomerService userService =
-    //        (CustomerService) SpringApplicationContext.getBean("customerServiceImpl");
-    //    final CustomerDto customerDto = userService.getCustomer(customerName);
-    //    res.addHeader("CustomerID", customerDto.getCustomerId());
-    res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + customerToken);
+
+    res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
   }
 }

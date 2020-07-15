@@ -2,6 +2,7 @@ package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.entity.CustomerPolicyEntity;
+import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.CustomerService;
@@ -15,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,7 +25,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -206,9 +211,18 @@ public class CustomerServiceImpl implements CustomerService {
       throw new UsernameNotFoundException(email);
     }
 
-    //   return new CustomerPrincipal(customerEntity);
+    Set<GrantedAuthority> authorities = new HashSet<>();
+    final Set<RoleEntity> roles = customerEntity.getRoles();
+    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+
     return new User(
-        customerEntity.getEmail(), customerEntity.getEncryptedPassword(), new ArrayList<>());
+        customerEntity.getEmail(),
+        customerEntity.getEncryptedPassword(),
+        true,
+        true,
+        true,
+        true,
+        authorities);
   }
 
   private boolean isRequiredFieldEmpty(CustomerDto customerDto) {

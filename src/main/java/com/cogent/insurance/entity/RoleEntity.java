@@ -36,13 +36,6 @@ public class RoleEntity implements Serializable {
   @ManyToMany(mappedBy = "roles")
   private Set<BranchManagerEntity> managers;
 
-  //  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-  //  @JoinTable(
-  //      name = "roles_authorities",
-  //      joinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"),
-  //      inverseJoinColumns = @JoinColumn(name = "authorities_id", referencedColumnName = "id"))
-  //  private Collection<AuthorityEntity> authorities;
-
   public RoleEntity() {}
 
   public RoleEntity(String name) {

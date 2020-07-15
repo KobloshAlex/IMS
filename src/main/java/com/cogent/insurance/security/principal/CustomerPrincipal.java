@@ -1,17 +1,17 @@
-//package com.cogent.insurance.security.principal;
+// package com.cogent.insurance.security.principal;
 //
-//import com.cogent.insurance.entity.AuthorityEntity;
-//import com.cogent.insurance.entity.CustomerEntity;
-//import com.cogent.insurance.entity.RoleEntity;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+// import com.cogent.insurance.entity.AuthorityEntity;
+// import com.cogent.insurance.entity.CustomerEntity;
+// import com.cogent.insurance.entity.RoleEntity;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.authority.SimpleGrantedAuthority;
+// import org.springframework.security.core.userdetails.UserDetails;
 //
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.List;
+// import java.util.ArrayList;
+// import java.util.Collection;
+// import java.util.List;
 //
-//public class CustomerPrincipal implements UserDetails {
+// public class CustomerPrincipal implements UserDetails {
 //
 //  public static final long serialVersionUID = -8500151367184255041L;
 //
@@ -40,7 +40,8 @@
 //        });
 //
 //    authorityEntities.forEach(
-//        authorityEntity -> authorities.add(new SimpleGrantedAuthority(authorityEntity.getName())));
+//        authorityEntity -> authorities.add(new
+// SimpleGrantedAuthority(authorityEntity.getName())));
 //
 //    return authorities;
 //  }
@@ -75,4 +76,4 @@
 //    // TODO: 7/13/2020 Replace with email verification link
 //    return true;
 //  }
-//}
+// }

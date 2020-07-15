@@ -2,7 +2,6 @@ package com.cogent.insurance.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -43,9 +42,9 @@ public class CeoEntity implements Serializable {
 
   @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinTable(
-          name = "ceo_roles",
-          joinColumns = @JoinColumn(name = "ceo_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+      name = "ceo_roles",
+      joinColumns = @JoinColumn(name = "ceo_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
   private Set<RoleEntity> roles;
 
   public long getId() {

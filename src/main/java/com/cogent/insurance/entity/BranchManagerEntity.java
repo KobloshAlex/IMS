@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -59,11 +58,10 @@ public class BranchManagerEntity implements Serializable {
 
   @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinTable(
-          name = "branch_managers_roles",
-          joinColumns = @JoinColumn(name = "branch_manager_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+      name = "branch_managers_roles",
+      joinColumns = @JoinColumn(name = "branch_manager_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
   private Set<RoleEntity> roles;
-
 
   public long getId() {
     return id;

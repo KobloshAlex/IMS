@@ -4,6 +4,7 @@ import com.cogent.insurance.service.AgentService;
 import com.cogent.insurance.service.BranchManagerService;
 import com.cogent.insurance.service.CeoService;
 import com.cogent.insurance.service.CustomerService;
+import com.cogent.insurance.shared.repository.AgentRepository;
 import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,21 +23,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   private final CeoService ceoService;
   private final BranchManagerService branchManagerService;
   private final AgentService agentService;
+  private final AgentRepository agentRepository;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
-  private final CustomerRepository customerRepository;
 
   public WebSecurity(
-          CustomerService customerService,
-          CeoService ceoService,
-          BranchManagerService branchManagerService,
-          AgentService agentService, BCryptPasswordEncoder bCryptPasswordEncoder,
-          CustomerRepository customerRepository) {
+      CustomerService customerService,
+      CeoService ceoService,
+      BranchManagerService branchManagerService,
+      AgentService agentService,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
+      CustomerRepository customerRepository,
+      AgentRepository agentRepository) {
     this.customerService = customerService;
     this.ceoService = ceoService;
     this.branchManagerService = branchManagerService;
     this.agentService = agentService;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    this.customerRepository = customerRepository;
+    this.agentRepository = agentRepository;
   }
 
   @Override
@@ -47,13 +50,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, SecurityConstants.SING_UP_URL)
         .permitAll()
-        .antMatchers(HttpMethod.DELETE, "/api/customers/**")
-        .hasAnyRole("ADMIN")
+        .antMatchers(HttpMethod.DELETE, "/api/agents/**")
+        .hasAnyRole("AGENT")
         .anyRequest()
         .authenticated()
         .and()
         .addFilter(getAuthenticationFilter())
-        .addFilter(new AuthorizationFilter(authenticationManager(), customerRepository))
+        .addFilter(new AuthorizationFilter(authenticationManager(), agentRepository))
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }

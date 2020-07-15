@@ -1,6 +1,5 @@
 package com.cogent.insurance;
 
-import com.cogent.insurance.entity.AgentEntity;
 import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.repository.AgentRepository;
@@ -13,9 +12,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class InitialAuthorityAndRoleSetup {
@@ -59,25 +55,24 @@ public class InitialAuthorityAndRoleSetup {
       return;
     }
 
-    Set<RoleEntity> roles = new HashSet<>();
-    roles.add(roleCustomer);
-    roles.add(roleAgent);
-    AgentEntity adminUser = new AgentEntity();
-    adminUser.setAgentId(utils.generateId(20));
-    adminUser.setFirstName("Admin");
-    adminUser.setLastName("Admin");
-    adminUser.setEmail("Admin@gmail.com");
-    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
-    adminUser.setBranchAddress("address");
-    adminUser.setSex('M');
-    adminUser.setAge(22);
-    adminUser.setBranchCity("bos");
-    adminUser.setBranchState("MA");
-    adminUser.setRoles(roles);
-
-    agentRepository.save(adminUser);
-
-    System.out.println(adminUser.getRoles().toString());
+    //    Set<RoleEntity> roles = new HashSet<>();
+    //    roles.add(roleAgent);
+    //    AgentEntity adminUser = new AgentEntity();
+    //    adminUser.setAgentId(utils.generateId(20));
+    //    adminUser.setFirstName("Admin");
+    //    adminUser.setLastName("Admin");
+    //    adminUser.setEmail("agent1@gmail.com");
+    //    adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
+    //    adminUser.setBranchAddress("address");
+    //    adminUser.setSex('M');
+    //    adminUser.setAge(22);
+    //    adminUser.setBranchCity("bos");
+    //    adminUser.setBranchState("MA");
+    //    adminUser.setRoles(roles);
+    //
+    //    agentRepository.save(adminUser);
+    //
+    //    System.out.println(adminUser.getRoles().toString());
   }
 
   @Transactional

@@ -2,6 +2,7 @@ package com.cogent.insurance.service.impl;
 
 import com.cogent.insurance.entity.BranchEntity;
 import com.cogent.insurance.entity.CeoEntity;
+import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
 import com.cogent.insurance.service.CeoService;
@@ -13,6 +14,8 @@ import com.cogent.insurance.shared.repository.CeoRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +23,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CeoServiceImpl implements CeoService {
@@ -166,6 +171,7 @@ public class CeoServiceImpl implements CeoService {
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
     final CeoEntity ceoEntity = ceoRepository.findByEmail(email);
 
     if (ceoEntity == null) {
@@ -174,9 +180,19 @@ public class CeoServiceImpl implements CeoService {
               + LoggerMessages.FAIL_GET_RECORD_CEO.getMessage());
       throw new UsernameNotFoundException(email);
     }
-    //  return new CustomerPrincipal(ceoEntity);
 
-    return new User(ceoEntity.getEmail(), ceoEntity.getEncryptedPassword(), new ArrayList<>());
+    Set<GrantedAuthority> authorities = new HashSet<>();
+    final Set<RoleEntity> roles = ceoEntity.getRoles();
+    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+
+    return new User(
+        ceoEntity.getEmail(),
+        ceoEntity.getEncryptedPassword(),
+        true,
+        true,
+        true,
+        true,
+        authorities);
   }
 
   private boolean isRequiredFieldEmpty(CeoDto ceoDto) {
