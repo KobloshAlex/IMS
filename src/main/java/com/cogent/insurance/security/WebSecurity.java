@@ -4,12 +4,14 @@ import com.cogent.insurance.service.UserService;
 import com.cogent.insurance.shared.repository.UserRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
@@ -36,8 +38,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, SecurityConstants.SING_UP_URL)
         .permitAll()
-        .antMatchers(HttpMethod.DELETE, "/api/users/**")
-        .hasAnyRole("CEO")
         .anyRequest()
         .authenticated()
         .and()

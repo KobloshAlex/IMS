@@ -3,7 +3,6 @@ package com.cogent.insurance.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,9 +29,9 @@ public class UserEntity implements Serializable {
 
   @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   @JoinTable(
-          name = "users_roles",
-          joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+      name = "users_roles",
+      joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
   private Collection<RoleEntity> roles;
 
   public long getId() {

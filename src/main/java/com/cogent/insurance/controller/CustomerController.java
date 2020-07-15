@@ -5,6 +5,7 @@ import com.cogent.insurance.model.response.GeneralResponseModel;
 import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.shared.dto.CustomerDto;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,12 +33,14 @@ public class CustomerController {
     this.modelMapper = modelMapper;
   }
 
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
   @GetMapping(path = ID_PATH)
   public GeneralResponseModel getCustomer(@PathVariable String id) {
 
     return modelMapper.map(customerService.getCustomerByUserId(id), GeneralResponseModel.class);
   }
 
+  @Secured({"ROLE_MANAGER"})
   @PostMapping
   public GeneralResponseModel createCustomer(@RequestBody GeneralRequestModel generalRequestModel) {
 
@@ -46,6 +49,7 @@ public class CustomerController {
     return modelMapper.map(customerService.createCustomer(customerDto), GeneralResponseModel.class);
   }
 
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
   @PutMapping(path = ID_PATH)
   public GeneralResponseModel updateCustomer(
       @PathVariable String id, @RequestBody GeneralRequestModel generalRequestModel) {
@@ -56,6 +60,7 @@ public class CustomerController {
         customerService.updateCustomer(id, customerDto), GeneralResponseModel.class);
   }
 
+  @Secured({"ROLE_MANAGER"})
   @DeleteMapping(path = ID_PATH)
   public CustomerDto deleteCustomer(@PathVariable String id) {
 
@@ -65,6 +70,7 @@ public class CustomerController {
     return returnValue;
   }
 
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
   @GetMapping
   public List<GeneralResponseModel> getAllCustomers(
       @RequestParam(value = "page", defaultValue = "0") int page,
@@ -80,6 +86,7 @@ public class CustomerController {
     return returnValue;
   }
 
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
   @PutMapping(path = "{customerId}/add-customer-policy/{customerPolicyId}")
   public void addCustomerPolicyToCustomer(
       @PathVariable String customerId, @PathVariable String customerPolicyId) {

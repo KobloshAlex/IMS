@@ -1,5 +1,6 @@
 package com.cogent.insurance.service.impl;
 
+import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.entity.UserEntity;
 import com.cogent.insurance.exception.ErrorMessages;
 import com.cogent.insurance.exception.ServiceException;
@@ -8,6 +9,7 @@ import com.cogent.insurance.service.UserService;
 import com.cogent.insurance.shared.LoggerMessages;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.dto.UserDto;
+import com.cogent.insurance.shared.repository.RoleRepository;
 import com.cogent.insurance.shared.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -20,6 +22,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -33,16 +37,19 @@ public class UserServiceImpl implements UserService {
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final ModelMapper modelMapper;
   private final Utils utils;
+  private final RoleRepository roleRepository;
 
   public UserServiceImpl(
       UserRepository userRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
       ModelMapper modelMapper,
-      Utils utils) {
+      Utils utils,
+      RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.modelMapper = modelMapper;
     this.utils = utils;
+    this.roleRepository = roleRepository;
   }
 
   @Override
@@ -66,6 +73,15 @@ public class UserServiceImpl implements UserService {
 
     userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
     userEntity.setUserId(utils.generateId(ID_LENGTH));
+    Collection<RoleEntity> roles = new HashSet<>(); // set roles
+    for (String role : userDto.getRoles()) {
+      RoleEntity roleEntity = roleRepository.findByName(role);
+      if (roleEntity != null) {
+        roles.add(roleEntity);
+      }
+    }
+    userEntity.setRoles(roles);
+
     logger.info(
         new Throwable().getStackTrace()[0].getMethodName() + LoggerMessages.SUCCESS_CREATE_RECORD);
 
@@ -170,8 +186,6 @@ public class UserServiceImpl implements UserService {
     }
 
     return new UserPrincipals(userEntity);
-
-//    return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
   }
 
   private boolean isRequiredFieldEmpty(UserDto userDto) {

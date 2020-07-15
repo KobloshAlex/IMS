@@ -2,6 +2,7 @@ package com.cogent.insurance;
 
 import com.cogent.insurance.entity.RoleEntity;
 import com.cogent.insurance.entity.UserEntity;
+import com.cogent.insurance.shared.Roles;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.repository.RoleRepository;
 import com.cogent.insurance.shared.repository.UserRepository;
@@ -38,10 +39,10 @@ public class InitialAuthorityAndRoleSetup {
   public void onApplicationEvent(ApplicationReadyEvent event) {
     System.out.println("from ROLES ready event");
 
-    final RoleEntity roleCustomer = createRole("ROLE_CUSTOMER");
-    final RoleEntity roleCeo = createRole("ROLE_CEO");
-    final RoleEntity roleAgent = createRole("ROLE_AGENT");
-    final RoleEntity roleManager = createRole("ROLE_MANAGER");
+    final RoleEntity roleCustomer = createRole(Roles.ROLE_CUSTOMER.name());
+    final RoleEntity roleCeo = createRole(Roles.ROLE_CEO.name());
+    final RoleEntity roleAgent = createRole(Roles.ROLE_MANAGER.name());
+    final RoleEntity roleManager = createRole(Roles.ROLE_AGENT.name());
 
     if (roleCeo == null || roleCustomer == null || roleAgent == null || roleManager == null) {
       return;
@@ -51,11 +52,11 @@ public class InitialAuthorityAndRoleSetup {
     adminUser.setUserId(utils.generateId(20));
     adminUser.setFirstName("Admin");
     adminUser.setLastName("Admin");
-    adminUser.setEmail("admin@gmail.com");
+    adminUser.setEmail("admin");
     adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("123"));
     adminUser.setRoles(Arrays.asList(roleCustomer, roleAgent, roleManager, roleCeo));
 
-    if (!adminUser.getEmail().equals("admin@gmail.com")) {
+    if (userRepository.findByEmail("admin") == null) {
       userRepository.save(adminUser);
     }
   }

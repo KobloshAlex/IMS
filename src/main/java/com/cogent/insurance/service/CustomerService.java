@@ -17,5 +17,4 @@ public interface CustomerService {
   List<CustomerDto> getCustomers(int page, int limit);
 
   void addCustomerPolicy(String customerId, String customerPolicyId);
-
 }

@@ -2,6 +2,7 @@ package com.cogent.insurance.controller;
 
 import com.cogent.insurance.service.CustomerPolicyService;
 import com.cogent.insurance.shared.dto.CustomerPolicyDto;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Secured("ROLE_AGENT")
 @RestController
 @RequestMapping("api/customer-policies")
 public class CustomerPolicyController {
