@@ -1,9 +1,12 @@
 package com.cogent.insurance.controller;
 
+import com.cogent.insurance.entity.CustomerEntity;
 import com.cogent.insurance.model.request.UserRequestModel;
 import com.cogent.insurance.model.response.UserResponseModel;
+import com.cogent.insurance.service.CustomerService;
 import com.cogent.insurance.service.UserService;
 import com.cogent.insurance.shared.dto.UserDto;
+import com.cogent.insurance.shared.repository.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,10 +37,15 @@ public class UserController {
 
   private final UserService userService;
   private final ModelMapper modelMapper;
+  private final CustomerRepository customerRepository;
 
-  public UserController(UserService userService, ModelMapper modelMapper) {
+  public UserController(
+      UserService userService,
+      ModelMapper modelMapper,
+      CustomerRepository customerRepository) {
     this.userService = userService;
     this.modelMapper = modelMapper;
+    this.customerRepository = customerRepository;
   }
 
   @Secured({"ROLE_AGENT", "ROLE_MANAGER", "ROLE_CEO"})
