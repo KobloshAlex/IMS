@@ -35,4 +35,13 @@ public class ErrorMessage {
     this.stackTrace = stackTrace;
     return this;
   }
+
+  @Override
+  public String toString() {
+    return "ErrorMessage{" +
+            "timestamp=" + timestamp +
+            ", message='" + message + '\'' +
+            ", stackTrace='" + stackTrace + '\'' +
+            '}';
+  }
 }

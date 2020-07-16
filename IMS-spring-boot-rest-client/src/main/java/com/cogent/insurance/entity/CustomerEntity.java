@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ public class CustomerEntity implements Serializable {
 
   public static final long serialVersionUID = 123402043851390690L;
 
-  @Id @GeneratedValue private long id;
+  @Id @GeneratedValue() private long id;
 
   @Column(nullable = false)
   private String customerId;

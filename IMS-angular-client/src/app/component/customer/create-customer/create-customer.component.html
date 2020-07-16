@@ -1,0 +1,63 @@
+<h3>Create Customer</h3>
+<form (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Customer First Name</label>
+      <input [(ngModel)]="customer.firstName" class="form-control" id="customerFirstName" name="customerFirstName" required
+             type="text">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Customer Last Name</label>
+      <input [(ngModel)]="customer.lastName" class="form-control" id="customerLastName" name="customerLastName" required
+             type="text">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Customer Email</label>
+      <input [(ngModel)]="customer.email" class="form-control" id="customerEmail" name="customerEmail" required
+             type="text">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Customer Password</label>
+      <input [(ngModel)]="customer.password" class="form-control" id="customerPassword" name="customerPassword" required
+             type="password">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Customer Age</label>
+      <input [(ngModel)]="customer.age" class="form-control" id="customerAge" name="customerLastName" required
+             type="text">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Customer Address</label>
+      <input [(ngModel)]="customer.address" class="form-control" id="customerAddress" name="customerAddress" required
+             type="text">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Customer Sex</label>
+      <input [(ngModel)]="customer.sex" class="form-control" id="customerSex" name="customerSex" required
+             type="text">
+    </div>
+  </div>
+
+  <button class="btn btn-sm btn-outline-success" type="submit">
+    <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+            fill-rule="evenodd"/>
+      <path d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
+            fill-rule="evenodd"/>
+    </svg>
+    Submit
+  </button>
+</form>
+
