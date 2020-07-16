@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from '../customer';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CustomerService} from '../../../service/customer-service/customer.service';
+import {CustomerService} from '../../../service/customer.service';
 
 @Component({
   selector: 'app-create-customer',

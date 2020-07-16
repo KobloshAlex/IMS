@@ -42,7 +42,7 @@ public class CustomerController {
     return modelMapper.map(customerService.createCustomer(customerDto), GeneralResponseModel.class);
   }
 
- // @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
   @PutMapping(path = ID_PATH)
   public GeneralResponseModel updateCustomer(
       @PathVariable String id, @RequestBody GeneralRequestModel generalRequestModel) {
@@ -67,7 +67,7 @@ public class CustomerController {
   @GetMapping
   public List<GeneralResponseModel> getAllCustomers(
       @RequestParam(value = "page", defaultValue = "0") int page,
-      @RequestParam(value = "limit", defaultValue = "5") int limit) {
+      @RequestParam(value = "limit", defaultValue = "15") int limit) {
 
     List<GeneralResponseModel> returnValue = new ArrayList<>();
     List<CustomerDto> customers = customerService.getCustomers(page, limit);

@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <h2>Customer details</h2>
+  <h2>Agent details</h2>
 
-  <div *ngIf="customer" class="panel-body">
+  <div *ngIf="agent" class="panel-body">
     <table class="table table-stripped">
       <thead>
       <tr>
@@ -10,22 +10,26 @@
         <th>Last Name</th>
         <th>Age</th>
         <th>Sex</th>
-        <th>Address</th>
         <th>Email</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
       </tr>
       </thead>
       <tbody>
-      <td>{{customer.customerId}}</td>
-      <td>{{customer.firstName}}</td>
-      <td>{{customer.lastName}}</td>
-      <td>{{customer.age}}</td>
-      <td>{{customer.sex}}</td>
-      <td>{{customer.address}}</td>
-      <td>{{customer.email}}</td>
+      <td>{{agent.agentId}}</td>
+      <td>{{agent.firstName}}</td>
+      <td>{{agent.lastName}}</td>
+      <td>{{agent.age}}</td>
+      <td>{{agent.sex}}</td>
+      <td>{{agent.email}}</td>
+      <td>{{agent.branchAddress}}</td>
+      <td>{{agent.branchCity}}</td>
+      <td>{{agent.branchState}}</td>
       </tbody>
     </table>
 
-    <button (click)="backToCustomers()" mat-stroked-button color="primary">
+    <button (click)="backToAgents()" mat-stroked-button color="primary">
       <svg class="bi bi-arrow-90deg-up" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path
@@ -35,9 +39,9 @@
           d="M6 3.5a.5.5 0 0 0-.5.5v6.5A2.5 2.5 0 0 0 8 13h5.5a.5.5 0 0 0 0-1H8a1.5 1.5 0 0 1-1.5-1.5V4a.5.5 0 0 0-.5-.5z"
           fill-rule="evenodd"/>
       </svg>
-      Back to Customers List
+      Back to Agents List
     </button>
-    <button (click)="customerUpdate(customer)" mat-stroked-button color="primary">
+    <button (click)="agentUpdate(agent)" mat-stroked-button color="primary">
       <svg class="bi bi-plus-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"

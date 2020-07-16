@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Customer} from '../customer';
-import {CustomerService} from '../../../service/customer-service/customer.service';
+import {CustomerService} from '../../../service/customer.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -39,5 +39,4 @@ export class ShowCustomersComponent implements OnInit {
   customerUpdate(customer: Customer) {
     this.router.navigate(['update', customer]);
   }
-
 }
