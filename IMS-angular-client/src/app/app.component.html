@@ -1,4 +1,3 @@
-
 <button mat-button [matMenuTriggerFor]="menuCustomer">Customers</button>
 <mat-menu #menuCustomer="matMenu">
   <button mat-menu-item routerLink="customers" routerLinkActive="active">Show All Customers</button>
@@ -8,6 +7,11 @@
 <mat-menu #menuAgent="matMenu">
   <button mat-menu-item routerLink="agents" routerLinkActive="active">Show All Agents</button>
   <button mat-menu-item routerLink="addAgent" routerLinkActive="active">Add new Agent</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="menuManager">Managers</button>
+<mat-menu #menuManager="matMenu">
+  <button mat-menu-item routerLink="managers" routerLinkActive="active">Show All Managers</button>
+  <button mat-menu-item routerLink="addManager" routerLinkActive="active">Add new Manager</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

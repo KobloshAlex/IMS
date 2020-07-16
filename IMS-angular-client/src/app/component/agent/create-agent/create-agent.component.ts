@@ -10,7 +10,6 @@ import {AgentService} from '../../../service/agent.service';
 })
 export class CreateAgentComponent implements OnInit {
 
-
   agent: Agent = new Agent();
 
   constructor(private route: ActivatedRoute, private router: Router, private agentService: AgentService) {

@@ -21,6 +21,10 @@ import { CreateAgentComponent } from './component/agent/create-agent/create-agen
 import { ReadAgentComponent } from './component/agent/read-agent/read-agent.component';
 import { ShowAgentsComponent } from './component/agent/show-agents/show-agents.component';
 import { UpdateAgentComponent } from './component/agent/update-agent/update-agent.component';
+import { CreateManagerComponent } from './component/manager/create-manager/create-manager.component';
+import { ReadManagerComponent } from './component/manager/read-manager/read-manager.component';
+import { ShowManagerComponent } from './component/manager/show-manager/show-manager.component';
+import { UpdateManagerComponent } from './component/manager/update-manager/update-manager.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { UpdateAgentComponent } from './component/agent/update-agent/update-agen
     CreateAgentComponent,
     ReadAgentComponent,
     ShowAgentsComponent,
-    UpdateAgentComponent
+    UpdateAgentComponent,
+    CreateManagerComponent,
+    ReadManagerComponent,
+    ShowManagerComponent,
+    UpdateManagerComponent
   ],
   imports: [
     BrowserModule,

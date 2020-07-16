@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <h2>Create Manager</h2>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager First Name</mat-label>
+          <input matInput [(ngModel)]="manager.firstName" id="managerFirstName" name="managerFirstName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager Last Name</mat-label>
+          <input matInput [(ngModel)]="manager.lastName" id="managerLastName" name="managerLastName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager Email</mat-label>
+          <input matInput [(ngModel)]="manager.email" id="managerEmail" name="managerEmail" required type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager Password</mat-label>
+          <input matInput [(ngModel)]="manager.password" id="managerPassword" name="managerPassword" required
+                 type="password">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager Age</mat-label>
+          <input matInput [(ngModel)]="manager.age" id="managerAge" name="managerAge" required type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Manager Sex</mat-label>
+          <mat-select [(value)]="manager.sex" required>
+            <mat-option value="F">F</mat-option>
+            <mat-option value="M">M</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Branch Address</mat-label>
+          <input matInput [(ngModel)]="manager.branchAddress" id="managerBranchAddress" name="managerBranchAddress"
+                 required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Branch Address</mat-label>
+          <input matInput [(ngModel)]="manager.branchCity" id="managerBranchCity" name="managerBranchCity" required
+                 type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Branch Address</mat-label>
+          <input matInput [(ngModel)]="manager.branchState" id="managerBranchState" name="managerBranchState" required
+                 type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-stroked-button color="primary" type="submit">
+      <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+          fill-rule="evenodd"/>
+        <path
+          d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
+          fill-rule="evenodd"/>
+      </svg>
+      Submit
+    </button>
+  </form>
+</div>

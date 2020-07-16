@@ -10,7 +10,6 @@ import {AgentService} from '../../../service/agent.service';
 })
 export class UpdateAgentComponent implements OnInit {
 
-
   agentId: string;
   agent: Agent;
 

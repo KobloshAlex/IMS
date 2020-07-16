@@ -1,6 +1,7 @@
 package com.cogent.insurance.model.response;
 
 public class AgentResponseModel {
+
   private String agentId;
   private String firstName;
   private String lastName;

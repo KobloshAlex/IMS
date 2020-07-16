@@ -8,6 +8,10 @@ import {ShowAgentsComponent} from './component/agent/show-agents/show-agents.com
 import {CreateAgentComponent} from './component/agent/create-agent/create-agent.component';
 import {UpdateAgentComponent} from './component/agent/update-agent/update-agent.component';
 import {ReadAgentComponent} from './component/agent/read-agent/read-agent.component';
+import {ShowManagerComponent} from './component/manager/show-manager/show-manager.component';
+import {CreateManagerComponent} from './component/manager/create-manager/create-manager.component';
+import {UpdateManagerComponent} from './component/manager/update-manager/update-manager.component';
+import {ReadManagerComponent} from './component/manager/read-manager/read-manager.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -18,7 +22,12 @@ const routes: Routes = [
   {path: 'agents', component: ShowAgentsComponent},
   {path: 'addAgent', component: CreateAgentComponent},
   {path: 'updateAgent', component: UpdateAgentComponent},
-  {path: 'agentDetails/:agentId', component: ReadAgentComponent}
+  {path: 'agentDetails/:agentId', component: ReadAgentComponent},
+
+  {path: 'managers', component: ShowManagerComponent},
+  {path: 'addManager', component: CreateManagerComponent},
+  {path: 'updateManager', component: UpdateManagerComponent},
+  {path: 'managerDetails/:branchManagerId', component: ReadManagerComponent}
 ];
 
 @NgModule({

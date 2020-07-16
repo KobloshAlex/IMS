@@ -1,11 +1,12 @@
 package com.cogent.insurance.controller;
 
 import com.cogent.insurance.model.request.MARequestModel;
-import com.cogent.insurance.model.response.MAResponseModel;
+import com.cogent.insurance.model.response.ManagerResponseModel;
 import com.cogent.insurance.service.BranchManagerService;
 import com.cogent.insurance.shared.dto.BranchManagerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Secured("ROLE_CEO")
 @RestController
 @RequestMapping("api/branch-managers")
@@ -35,29 +37,29 @@ public class BranchManagerController {
   }
 
   @GetMapping(path = ID_PATH)
-  public MAResponseModel getBranchManager(@PathVariable String id) {
-    return modelMapper.map(branchManagerService.getBranchManagerById(id), MAResponseModel.class);
+  public ManagerResponseModel getBranchManager(@PathVariable String id) {
+    return modelMapper.map(branchManagerService.getBranchManagerById(id), ManagerResponseModel.class);
   }
 
   @PostMapping
-  public MAResponseModel createBranchManager(@RequestBody MARequestModel MARequestModel) {
+  public ManagerResponseModel createBranchManager(@RequestBody MARequestModel MARequestModel) {
 
     final BranchManagerDto branchManagerDto =
         modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
-        branchManagerService.createBranchManager(branchManagerDto), MAResponseModel.class);
+        branchManagerService.createBranchManager(branchManagerDto), ManagerResponseModel.class);
   }
 
   @PutMapping(path = ID_PATH)
-  public MAResponseModel updateBranchManager(
+  public ManagerResponseModel updateBranchManager(
       @PathVariable String id, @RequestBody MARequestModel MARequestModel) {
 
     final BranchManagerDto branchManagerDto =
         modelMapper.map(MARequestModel, BranchManagerDto.class);
 
     return modelMapper.map(
-        branchManagerService.updateBranchManager(id, branchManagerDto), MAResponseModel.class);
+        branchManagerService.updateBranchManager(id, branchManagerDto), ManagerResponseModel.class);
   }
 
   @DeleteMapping(path = ID_PATH)
@@ -70,13 +72,13 @@ public class BranchManagerController {
   }
 
   @GetMapping
-  public List<MAResponseModel> getAllBranchManagers() {
+  public List<ManagerResponseModel> getAllBranchManagers() {
 
-    List<MAResponseModel> returnValue = new ArrayList<>();
+    List<ManagerResponseModel> returnValue = new ArrayList<>();
     final List<BranchManagerDto> branchManagers = branchManagerService.getAllBranchManagers();
 
     for (BranchManagerDto manager : branchManagers) {
-      returnValue.add(modelMapper.map(manager, MAResponseModel.class));
+      returnValue.add(modelMapper.map(manager, ManagerResponseModel.class));
     }
 
     return returnValue;

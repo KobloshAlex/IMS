@@ -1,6 +1,7 @@
 package com.cogent.insurance.model.response;
 
-public class MAResponseModel {
+public class ManagerResponseModel {
+
   private String branchManagerId;
   private String firstName;
   private String lastName;
