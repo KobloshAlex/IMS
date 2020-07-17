@@ -6,14 +6,14 @@
       <div class="col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch Name</mat-label>
-          <input matInput [(ngModel)]="policy.policyName" id="policyBranchName" name="policyBranchName" required
+          <input [(ngModel)]="policy.policyName" id="policyBranchName" matInput name="policyBranchName" required
                  type="text">
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Policy Type</mat-label>
-          <input matInput [(ngModel)]="policy.policyType" id="policyType" name="policyType" required type="text">
+          <input [(ngModel)]="policy.policyType" id="policyType" matInput name="policyType" required type="text">
         </mat-form-field>
       </div>
     </div>
@@ -22,14 +22,14 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Policy Amount</mat-label>
-          <input matInput [(ngModel)]="policy.policyAmount" id="policyAmount" name="policyAmount" required
+          <input [(ngModel)]="policy.policyAmount" id="policyAmount" matInput name="policyAmount" required
                  type="text">
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Policy Date</mat-label>
-          <input matInput [(ngModel)]="policy.date" id="policyDate" name="policyDate" required type="text">
+          <input [(ngModel)]="policy.date" id="policyDate" matInput name="policyDate" required type="text">
         </mat-form-field>
       </div>
     </div>
@@ -38,14 +38,14 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Policy Term</mat-label>
-          <input matInput [(ngModel)]="policy.policyTerm" id="policyTerm" name="policyTerm" required type="text">
+          <input [(ngModel)]="policy.policyTerm" id="policyTerm" matInput name="policyTerm" required type="text">
         </mat-form-field>
       </div>
 
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Policy Interest</mat-label>
-          <input matInput [(ngModel)]="policy.policyInterest" id="policyInterest" name="policyInterest" required
+          <input [(ngModel)]="policy.policyInterest" id="policyInterest" matInput name="policyInterest" required
                  type="text">
         </mat-form-field>
       </div>
@@ -55,12 +55,13 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Maturity Amount</mat-label>
-          <input matInput [(ngModel)]="policy.maturityAmount" id="maturityAmount" name="maturityAmount" required type="text">
+          <input [(ngModel)]="policy.maturityAmount" id="maturityAmount" matInput name="maturityAmount" required
+                 type="text">
         </mat-form-field>
       </div>
     </div>
 
-    <button mat-stroked-button color="primary" type="submit">
+    <button color="primary" mat-stroked-button type="submit">
       <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path

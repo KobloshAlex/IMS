@@ -6,14 +6,14 @@
       <div class="col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch Name</mat-label>
-          <input matInput [(ngModel)]="branch.branchName" id="branchBranchName" name="branchBranchName" required
+          <input [(ngModel)]="branch.branchName" id="branchBranchName" matInput name="branchBranchName" required
                  type="text">
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch Phone</mat-label>
-          <input matInput [(ngModel)]="branch.phone" id="branchPhone" name="branchPhone" required type="text">
+          <input [(ngModel)]="branch.phone" id="branchPhone" matInput name="branchPhone" required type="text">
         </mat-form-field>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch Address</mat-label>
-          <input matInput [(ngModel)]="branch.branchAddress" id="branchAddress" name="branchAddress"
+          <input [(ngModel)]="branch.branchAddress" id="branchAddress" matInput name="branchAddress"
                  required
                  type="text">
         </mat-form-field>
@@ -32,7 +32,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch City</mat-label>
-          <input matInput [(ngModel)]="branch.branchCity" id="branchCity" name="branchCity" required
+          <input [(ngModel)]="branch.branchCity" id="branchCity" matInput name="branchCity" required
                  type="text">
         </mat-form-field>
       </div>
@@ -42,23 +42,23 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Branch State</mat-label>
-          <input matInput [(ngModel)]="branch.branchState" id="branchState" name="branchState" required
+          <input [(ngModel)]="branch.branchState" id="branchState" matInput name="branchState" required
                  type="text">
         </mat-form-field>
       </div>
     </div>
 
-      <button mat-stroked-button color="primary" type="submit">
-        <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
-             xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-            fill-rule="evenodd"/>
-          <path
-            d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
-            fill-rule="evenodd"/>
-        </svg>
-        Submit
-      </button>
+    <button color="primary" mat-stroked-button type="submit">
+      <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+          fill-rule="evenodd"/>
+        <path
+          d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
+          fill-rule="evenodd"/>
+      </svg>
+      Submit
+    </button>
   </form>
 </div>

@@ -7,7 +7,7 @@
       <div class="col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer First Name</mat-label>
-          <input matInput [(ngModel)]="customer.firstName" class="form-control" id="customerFirstName"
+          <input [(ngModel)]="customer.firstName" class="form-control" id="customerFirstName" matInput
                  name="customerFirstName" required
                  type="text">
         </mat-form-field>
@@ -15,7 +15,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Last Name</mat-label>
-          <input matInput [(ngModel)]="customer.lastName" class="form-control" id="customerLastName"
+          <input [(ngModel)]="customer.lastName" class="form-control" id="customerLastName" matInput
                  name="customerLastName" required
                  type="text">
         </mat-form-field>
@@ -26,7 +26,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Email</mat-label>
-          <input matInput [(ngModel)]="customer.email" class="form-control" id="customerEmail" name="customerEmail"
+          <input [(ngModel)]="customer.email" class="form-control" id="customerEmail" matInput name="customerEmail"
                  required
                  type="text">
         </mat-form-field>
@@ -36,7 +36,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Password</mat-label>
-          <input matInput [(ngModel)]="customer.password" class="form-control" id="customerPassword"
+          <input [(ngModel)]="customer.password" class="form-control" id="customerPassword" matInput
                  name="customerPassword" required
                  type="password">
         </mat-form-field>
@@ -47,7 +47,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Age</mat-label>
-          <input matInput [(ngModel)]="customer.age" class="form-control" id="customerAge" name="customerLastName"
+          <input [(ngModel)]="customer.age" class="form-control" id="customerAge" matInput name="customerLastName"
                  required
                  type="text">
         </mat-form-field>
@@ -55,7 +55,7 @@
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Address</mat-label>
-          <input matInput [(ngModel)]="customer.address" class="form-control" id="customerAddress"
+          <input [(ngModel)]="customer.address" class="form-control" id="customerAddress" matInput
                  name="customerAddress" required
                  type="text">
         </mat-form-field>
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <button mat-stroked-button color="primary" type="submit">
+    <button color="primary" mat-stroked-button type="submit">
       <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path
