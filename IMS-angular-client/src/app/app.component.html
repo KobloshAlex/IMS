@@ -13,5 +13,10 @@
   <button mat-menu-item routerLink="managers" routerLinkActive="active">Show All Managers</button>
   <button mat-menu-item routerLink="addManager" routerLinkActive="active">Add new Manager</button>
 </mat-menu>
+<button mat-button [matMenuTriggerFor]="menuCeo">CEO</button>
+<mat-menu #menuCeo="matMenu">
+  <button mat-menu-item routerLink="ceos" routerLinkActive="active">Show All CEO</button>
+  <button mat-menu-item routerLink="addCeo" routerLinkActive="active">Add new CEO</button>
+</mat-menu>
 
 <router-outlet></router-outlet>

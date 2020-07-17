@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <h2>Create Ceo</h2>
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo First Name</mat-label>
+          <input [(ngModel)]="ceo.firstName" id="ceoFirstName" matInput
+                 name="ceoFirstName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Last Name</mat-label>
+          <input [(ngModel)]="ceo.lastName" id="ceoLastName" matInput
+                 name="ceoLastName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Email</mat-label>
+          <input [(ngModel)]="ceo.email" id="ceoEmail" matInput name="ceoEmail"
+                 required
+                 type="text">
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Password</mat-label>
+          <input [(ngModel)]="ceo.password" id="ceoPassword" matInput
+                 name="ceoPassword" required
+                 type="password">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Age</mat-label>
+          <input [(ngModel)]="ceo.age" id="ceoAge" matInput name="ceoLastName"
+                 required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Address</mat-label>
+          <input [(ngModel)]="ceo.address" id="ceoAddress" matInput
+                 name="ceoAddress" required
+                 type="text">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ceo Sex</mat-label>
+          <mat-select [(value)]="ceo.sex" required>
+            <mat-option value="F">F</mat-option>
+            <mat-option value="M">M</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button color="primary" mat-stroked-button type="submit">
+      <svg class="bi bi-check2-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+          fill-rule="evenodd"/>
+        <path
+          d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
+          fill-rule="evenodd"/>
+      </svg>
+      Submit
+    </button>
+  </form>
+</div>

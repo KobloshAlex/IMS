@@ -12,6 +12,10 @@ import {ShowManagerComponent} from './component/manager/show-manager/show-manage
 import {CreateManagerComponent} from './component/manager/create-manager/create-manager.component';
 import {UpdateManagerComponent} from './component/manager/update-manager/update-manager.component';
 import {ReadManagerComponent} from './component/manager/read-manager/read-manager.component';
+import {ShowCeoComponent} from './component/ceo/show-ceo/show-ceo.component';
+import {CreateCeoComponent} from './component/ceo/create-ceo/create-ceo.component';
+import {UpdateCeoComponent} from './component/ceo/update-ceo/update-ceo.component';
+import {ReadCeoComponent} from './component/ceo/read-ceo/read-ceo.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -27,7 +31,12 @@ const routes: Routes = [
   {path: 'managers', component: ShowManagerComponent},
   {path: 'addManager', component: CreateManagerComponent},
   {path: 'updateManager', component: UpdateManagerComponent},
-  {path: 'managerDetails/:branchManagerId', component: ReadManagerComponent}
+  {path: 'managerDetails/:branchManagerId', component: ReadManagerComponent},
+
+  {path: 'ceos', component: ShowCeoComponent},
+  {path: 'addCeo', component: CreateCeoComponent},
+  {path: 'updateCeo', component: UpdateCeoComponent},
+  {path: 'ceoDetails/:ceoId', component: ReadCeoComponent}
 ];
 
 @NgModule({

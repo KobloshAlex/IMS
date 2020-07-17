@@ -10,7 +10,6 @@ import {CustomerService} from '../../../service/customer.service';
 })
 export class CreateCustomerComponent implements OnInit {
 
-
   customer: Customer = new Customer();
 
   constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {
@@ -35,5 +34,4 @@ export class CreateCustomerComponent implements OnInit {
   gotoList() {
     this.router.navigate(['/customers']);
   }
-
 }

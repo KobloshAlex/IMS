@@ -25,6 +25,10 @@ import { CreateManagerComponent } from './component/manager/create-manager/creat
 import { ReadManagerComponent } from './component/manager/read-manager/read-manager.component';
 import { ShowManagerComponent } from './component/manager/show-manager/show-manager.component';
 import { UpdateManagerComponent } from './component/manager/update-manager/update-manager.component';
+import { CreateCeoComponent } from './component/ceo/create-ceo/create-ceo.component';
+import { ReadCeoComponent } from './component/ceo/read-ceo/read-ceo.component';
+import { ShowCeoComponent } from './component/ceo/show-ceo/show-ceo.component';
+import { UpdateCeoComponent } from './component/ceo/update-ceo/update-ceo.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { UpdateManagerComponent } from './component/manager/update-manager/updat
     CreateManagerComponent,
     ReadManagerComponent,
     ShowManagerComponent,
-    UpdateManagerComponent
+    UpdateManagerComponent,
+    CreateCeoComponent,
+    ReadCeoComponent,
+    ShowCeoComponent,
+    UpdateCeoComponent
   ],
   imports: [
     BrowserModule,
