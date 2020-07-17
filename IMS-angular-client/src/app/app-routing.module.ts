@@ -24,6 +24,15 @@ import {ShowPolicyComponent} from './component/policy/show-policy/show-policy.co
 import {CreatePolicyComponent} from './component/policy/create-policy/create-policy.component';
 import {UpdatePolicyComponent} from './component/policy/update-policy/update-policy.component';
 import {ReadPolicyComponent} from './component/policy/read-policy/read-policy.component';
+import {ShowCustomerPolicyComponent} from './component/customer-policy/show-customer-policy/show-customer-policy.component';
+import {CreateCustomerPolicyComponent} from './component/customer-policy/create-customer-policy/create-customer-policy.component';
+import {UpdateCustomerPolicyComponent} from './component/customer-policy/update-customer-policy/update-customer-policy.component';
+import {ReadCustomerPolicyComponent} from './component/customer-policy/read-customer-policy/read-customer-policy.component';
+import {AddBranchComponent} from './component/ceo/add-branch/add-branch.component';
+import {AddCustomerComponent} from './component/branch/add-customer/add-customer.component';
+import {AddManagerComponent} from './component/branch/add-manager/add-manager.component';
+import {AddAgentComponent} from './component/manager/add-agent/add-agent.component';
+import {AddCustomerPolicyComponent} from './component/manager/add-customer-policy/add-customer-policy.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -40,21 +49,31 @@ const routes: Routes = [
   {path: 'addManager', component: CreateManagerComponent},
   {path: 'updateManager', component: UpdateManagerComponent},
   {path: 'managerDetails/:branchManagerId', component: ReadManagerComponent},
+  {path: 'managers/addAgent', component: AddAgentComponent},
+  {path: 'managers/addCustomerPolicy', component: AddCustomerPolicyComponent},
 
   {path: 'ceos', component: ShowCeoComponent},
   {path: 'addCeo', component: CreateCeoComponent},
   {path: 'updateCeo', component: UpdateCeoComponent},
   {path: 'ceoDetails/:ceoId', component: ReadCeoComponent},
+  {path: 'ceo/addBranch', component: AddBranchComponent},
 
   {path: 'branches', component: ShowBranchComponent},
   {path: 'addBranch', component: CreateBranchComponent},
   {path: 'updateBranch', component: UpdateBranchComponent},
   {path: 'branchDetails/:branchId', component: ReadBranchComponent},
+  {path: 'branches/addCustomer', component: AddCustomerComponent},
+  {path: 'branches/addManager', component: AddManagerComponent},
 
   {path: 'policies', component: ShowPolicyComponent},
   {path: 'addPolicy', component: CreatePolicyComponent},
   {path: 'updatePolicy', component: UpdatePolicyComponent},
   {path: 'policyDetails/:policyId', component: ReadPolicyComponent},
+
+  {path: 'customerPolicies', component: ShowCustomerPolicyComponent},
+  {path: 'addCustomerPolicy', component: CreateCustomerPolicyComponent},
+  {path: 'updateCustomerPolicy', component: UpdateCustomerPolicyComponent},
+  {path: 'customerPolicyDetails/:customerPolicyId', component: ReadCustomerPolicyComponent},
 ];
 
 @NgModule({

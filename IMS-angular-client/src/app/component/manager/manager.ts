@@ -1,3 +1,7 @@
+import {Branch} from '../branch/branch';
+import {Agent} from '../agent/agent';
+import {CustomerPolicy} from '../customer-policy/customerPolicy';
+
 export class Manager {
   branchManagerId: string;
   firstName: string;
@@ -9,4 +13,7 @@ export class Manager {
   branchState: string;
   password: string;
   email: string;
+  branch: Branch;
+  agents: Agent[];
+  customerPolicies: CustomerPolicy[];
 }

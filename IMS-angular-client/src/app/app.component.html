@@ -1,32 +1,44 @@
-<button mat-button [matMenuTriggerFor]="menuCustomer">Customers</button>
+<button [matMenuTriggerFor]="menuCustomer" mat-button>Customers</button>
 <mat-menu #menuCustomer="matMenu">
   <button mat-menu-item routerLink="customers" routerLinkActive="active">Show All Customers</button>
   <button mat-menu-item routerLink="add" routerLinkActive="active">Add new Customer</button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="menuAgent">Agents</button>
+<button [matMenuTriggerFor]="menuAgent" mat-button>Agents</button>
 <mat-menu #menuAgent="matMenu">
   <button mat-menu-item routerLink="agents" routerLinkActive="active">Show All Agents</button>
   <button mat-menu-item routerLink="addAgent" routerLinkActive="active">Add new Agent</button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="menuManager">Managers</button>
+<button [matMenuTriggerFor]="menuManager" mat-button>Managers</button>
 <mat-menu #menuManager="matMenu">
   <button mat-menu-item routerLink="managers" routerLinkActive="active">Show All Managers</button>
   <button mat-menu-item routerLink="addManager" routerLinkActive="active">Add new Manager</button>
+  <button mat-menu-item routerLink="managers/addAgent" routerLinkActive="active">Assign Agent to Manager</button>
+  <button mat-menu-item routerLink="managers/addCustomerPolicy" routerLinkActive="active">Assign Customer Policy to
+    Manager
+  </button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="menuCeo">CEO</button>
+<button [matMenuTriggerFor]="menuCeo" mat-button>CEO</button>
 <mat-menu #menuCeo="matMenu">
   <button mat-menu-item routerLink="ceos" routerLinkActive="active">Show All CEO</button>
   <button mat-menu-item routerLink="addCeo" routerLinkActive="active">Add new CEO</button>
+  <button mat-menu-item routerLink="ceo/addBranch" routerLinkActive="active">Assign Branch to CEO</button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="menuBranch">Branches</button>
+<button [matMenuTriggerFor]="menuBranch" mat-button>Branches</button>
 <mat-menu #menuBranch="matMenu">
   <button mat-menu-item routerLink="branches" routerLinkActive="active">Show All Branches</button>
   <button mat-menu-item routerLink="addBranch" routerLinkActive="active">Add new Branch</button>
+  <button mat-menu-item routerLink="branches/addCustomer" routerLinkActive="active">Assign Customer to Branch</button>
+  <button mat-menu-item routerLink="branches/addManager" routerLinkActive="active">Assign Manager to Branch</button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="menuPolicy">Policy</button>
+<button [matMenuTriggerFor]="menuPolicy" mat-button>Policy</button>
 <mat-menu #menuPolicy="matMenu">
   <button mat-menu-item routerLink="policies" routerLinkActive="active">Show All Policies</button>
   <button mat-menu-item routerLink="addPolicy" routerLinkActive="active">Add new Policy</button>
+</mat-menu>
+<button [matMenuTriggerFor]="menuCustomerPolicy" mat-button>Customer Policy</button>
+<mat-menu #menuCustomerPolicy="matMenu">
+  <button mat-menu-item routerLink="customerPolicies" routerLinkActive="active">Show All Customer Policies</button>
+  <button mat-menu-item routerLink="addCustomerPolicy" routerLinkActive="active">Add new Customer Policy</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

@@ -31,4 +31,12 @@ export class BranchService {
   getAllBranchs(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
+  addCustomerToBranch(branch: Object, branchId: string, customerId: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + branchId + '/add-customer/' + customerId, branch);
+  }
+
+  addManagerToBranch(branch: Object, branchId: string, managerId: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + branchId + '/add-manager/' + managerId, branch);
+  }
 }

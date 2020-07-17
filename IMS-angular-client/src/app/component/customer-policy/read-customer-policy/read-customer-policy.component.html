@@ -1,31 +1,29 @@
 <div class="container-fluid">
-  <h2>Customer details</h2>
+  <h2>Agent details</h2>
 
-  <div *ngIf="ceo" class="panel-body">
+  <div *ngIf="customerPolicy" class="panel-body">
     <table class="table table-stripped">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Sex</th>
-        <th>Address</th>
-        <th>Email</th>
+        <th>Customer Policy Id</th>
+        <th>Relational</th>
+        <th>Agent Commission Amount</th>
+        <th>Nominee Name</th>
+        <th>Premium Type</th>
+        <th>Policy Term Conditions</th>
       </tr>
       </thead>
       <tbody>
-      <td>{{ceo.ceoId}}</td>
-      <td>{{ceo.firstName}}</td>
-      <td>{{ceo.lastName}}</td>
-      <td>{{ceo.age}}</td>
-      <td>{{ceo.sex}}</td>
-      <td>{{ceo.address}}</td>
-      <td>{{ceo.email}}</td>
+      <td>{{customerPolicy.customerPolicyId}}</td>
+      <td>{{customerPolicy.relational}}</td>
+      <td>{{customerPolicy.agentCommissionAmount}}</td>
+      <td>{{customerPolicy.nomineeName }}</td>
+      <td>{{customerPolicy.premiumType}}</td>
+      <td>{{customerPolicy.termConditions}}</td>
       </tbody>
     </table>
 
-    <button (click)="backToCeos()" color="primary" mat-stroked-button>
+    <button (click)="backToCustomerPolicies()" color="primary" mat-stroked-button>
       <svg class="bi bi-arrow-90deg-up" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path
@@ -35,9 +33,9 @@
           d="M6 3.5a.5.5 0 0 0-.5.5v6.5A2.5 2.5 0 0 0 8 13h5.5a.5.5 0 0 0 0-1H8a1.5 1.5 0 0 1-1.5-1.5V4a.5.5 0 0 0-.5-.5z"
           fill-rule="evenodd"/>
       </svg>
-      Back to CEO List
+      Back to Agents List
     </button>
-    <button (click)="ceoUpdate(ceo)" color="primary" mat-stroked-button>
+    <button (click)="customerPolicyUpdate(customerPolicy)" color="primary" mat-stroked-button>
       <svg class="bi bi-plus-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"

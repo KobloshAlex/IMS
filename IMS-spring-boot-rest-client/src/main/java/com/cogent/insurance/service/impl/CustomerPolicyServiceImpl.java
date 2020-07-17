@@ -134,7 +134,6 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
     return customerPolicyDto.getAgentCommissionAmount().toString().trim().isEmpty()
         || customerPolicyDto.getNomineeName().trim().isEmpty()
         || customerPolicyDto.getPremiumType().trim().isEmpty()
-        || customerPolicyDto.getRelational().trim().isEmpty()
-        || customerPolicyDto.getTermConditions().toString().trim().isEmpty();
+        || customerPolicyDto.getRelational().trim().isEmpty();
   }
 }

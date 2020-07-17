@@ -1,3 +1,5 @@
+import {Branch} from '../branch/branch';
+
 export class Customer {
   customerId: string;
   firstName: string;
@@ -7,4 +9,5 @@ export class Customer {
   password: string;
   address: string;
   email: string;
+  branch: Branch;
 }

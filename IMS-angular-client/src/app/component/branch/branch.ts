@@ -1,3 +1,7 @@
+import {Ceo} from '../ceo/Ceo';
+import {Customer} from '../customer/customer';
+import {Manager} from '../manager/manager';
+
 export class Branch {
   branchId: string;
   branchName: string;
@@ -5,4 +9,7 @@ export class Branch {
   branchCity: string;
   branchState: string;
   phone: string;
+  ceo: Ceo;
+  customers: Customer[];
+  managers: Manager[];
 }

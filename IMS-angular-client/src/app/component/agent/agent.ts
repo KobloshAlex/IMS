@@ -1,3 +1,5 @@
+import {Manager} from '../manager/manager';
+
 export class Agent {
   agentId: string;
   firstName: string;
@@ -9,4 +11,5 @@ export class Agent {
   branchState: string;
   password: string;
   email: string;
+  manager: Manager;
 }

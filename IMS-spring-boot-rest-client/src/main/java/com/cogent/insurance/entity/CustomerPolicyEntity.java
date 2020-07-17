@@ -34,7 +34,7 @@ public class CustomerPolicyEntity implements Serializable {
   @Column(nullable = false, length = 30)
   private Double agentCommissionAmount;
 
-  @Column(nullable = false, length = 30)
+  @Column(length = 5)
   private Boolean termConditions;
 
   @ManyToOne

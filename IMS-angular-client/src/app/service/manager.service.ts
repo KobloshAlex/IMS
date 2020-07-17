@@ -31,4 +31,12 @@ export class ManagerService {
   getAllManagers(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
+  addAgentToManager(manager: Object, managerId: string, agentId: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + managerId + '/add-agent/' + agentId, manager);
+  }
+
+  addCustomerPolicyToManager(manager: Object, managerId: string, customerPolicy: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + managerId + '/add-customer-policy/' + customerPolicy, manager);
+  }
 }

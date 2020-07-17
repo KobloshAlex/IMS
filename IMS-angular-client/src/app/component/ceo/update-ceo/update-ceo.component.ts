@@ -11,6 +11,7 @@ import {CeoService} from '../../../service/ceo.service';
 export class UpdateCeoComponent implements OnInit {
 
   ceoId: string;
+  branchId: string;
   ceo: Ceo;
 
   constructor(private route: ActivatedRoute, private router: Router, private ceoService: CeoService) {
@@ -42,5 +43,17 @@ export class UpdateCeoComponent implements OnInit {
 
   gotoList() {
     this.router.navigate(['/ceos']);
+  }
+
+  addBranchToCeo() {
+    this.ceoService.addBranchToCeo(this.ceo, this.ceoId, this.branchId).subscribe(data => {
+        console.log(data);
+      },
+      error => console.log(error));
+    this.ceo = new Ceo();
+  }
+
+  submitBranch() {
+    this.addBranchToCeo();
   }
 }
