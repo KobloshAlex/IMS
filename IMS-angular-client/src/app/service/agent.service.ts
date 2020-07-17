@@ -31,4 +31,8 @@ export class AgentService {
   getAllAgents(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
+  addCustomerPolicyToAgent(agent: Object, agentId: string, customerPolicyId: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + agentId + '/add-customer-policy/' + customerPolicyId, agent);
+  }
 }

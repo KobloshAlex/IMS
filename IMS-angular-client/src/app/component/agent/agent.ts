@@ -1,4 +1,5 @@
 import {Manager} from '../manager/manager';
+import {CustomerPolicy} from '../customer-policy/customerPolicy';
 
 export class Agent {
   agentId: string;
@@ -12,4 +13,5 @@ export class Agent {
   password: string;
   email: string;
   manager: Manager;
+  customerPolicies: CustomerPolicy[];
 }

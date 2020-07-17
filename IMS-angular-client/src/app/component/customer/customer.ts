@@ -1,4 +1,5 @@
 import {Branch} from '../branch/branch';
+import {CustomerPolicy} from '../customer-policy/customerPolicy';
 
 export class Customer {
   customerId: string;
@@ -10,4 +11,5 @@ export class Customer {
   address: string;
   email: string;
   branch: Branch;
+  customerPolicies: CustomerPolicy[]
 }

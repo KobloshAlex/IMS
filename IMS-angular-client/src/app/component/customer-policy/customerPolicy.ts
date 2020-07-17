@@ -1,4 +1,6 @@
 import {Manager} from '../manager/manager';
+import {Agent} from '../agent/agent';
+import {Customer} from '../customer/customer';
 
 export class CustomerPolicy {
   customerPolicyId: string;
@@ -8,5 +10,7 @@ export class CustomerPolicy {
   agentCommissionAmount: number;
   termConditions: boolean;
   manager: Manager;
+  agent: Agent;
+  customer: Customer;
 }
 

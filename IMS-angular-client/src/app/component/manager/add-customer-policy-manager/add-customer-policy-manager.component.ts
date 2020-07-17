@@ -8,10 +8,10 @@ import {ManagerService} from '../../../service/manager.service';
 
 @Component({
   selector: 'app-add-customer-policy',
-  templateUrl: './add-customer-policy.component.html',
-  styleUrls: ['./add-customer-policy.component.css']
+  templateUrl: './add-customer-policy-manager.component.html',
+  styleUrls: ['./add-customer-policy-manager.component.css']
 })
-export class AddCustomerPolicyComponent implements OnInit {
+export class AddCustomerPolicyManagerComponent implements OnInit {
 
   managerList: Observable<Manager[]>;
   customerPolicyList: Observable<CustomerPolicy[]>;

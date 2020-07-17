@@ -32,25 +32,29 @@ import {AddBranchComponent} from './component/ceo/add-branch/add-branch.componen
 import {AddCustomerComponent} from './component/branch/add-customer/add-customer.component';
 import {AddManagerComponent} from './component/branch/add-manager/add-manager.component';
 import {AddAgentComponent} from './component/manager/add-agent/add-agent.component';
-import {AddCustomerPolicyComponent} from './component/manager/add-customer-policy/add-customer-policy.component';
+import {AddCustomerPolicyManagerComponent} from './component/manager/add-customer-policy-manager/add-customer-policy-manager.component';
+import {AddCustomerPolicyAgentComponent} from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
+import {AddCustomerPolicyCustomerComponent} from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
   {path: 'add', component: CreateCustomerComponent},
   {path: 'update', component: UpdateCustomerComponent},
   {path: 'details/:customerId', component: ReadCustomerComponent},
+  {path: 'customers/addCustomerPolicy', component: AddCustomerPolicyCustomerComponent},
 
   {path: 'agents', component: ShowAgentsComponent},
   {path: 'addAgent', component: CreateAgentComponent},
   {path: 'updateAgent', component: UpdateAgentComponent},
   {path: 'agentDetails/:agentId', component: ReadAgentComponent},
+  {path: 'agents/addCustomerPolicy', component: AddCustomerPolicyAgentComponent},
 
   {path: 'managers', component: ShowManagerComponent},
   {path: 'addManager', component: CreateManagerComponent},
   {path: 'updateManager', component: UpdateManagerComponent},
   {path: 'managerDetails/:branchManagerId', component: ReadManagerComponent},
   {path: 'managers/addAgent', component: AddAgentComponent},
-  {path: 'managers/addCustomerPolicy', component: AddCustomerPolicyComponent},
+  {path: 'managers/addCustomerPolicy', component: AddCustomerPolicyManagerComponent},
 
   {path: 'ceos', component: ShowCeoComponent},
   {path: 'addCeo', component: CreateCeoComponent},

@@ -31,4 +31,8 @@ export class CustomerService {
   getAllCustomers(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
+  addCustomerPolicyToCustomer(customer: Object, customerId: string, customerPolicyId: string): Observable<Object> {
+    return this.http.put(this.baseUrl + '/' + customerId + '/add-customer-policy/' + customerPolicyId, customer);
+  }
 }
