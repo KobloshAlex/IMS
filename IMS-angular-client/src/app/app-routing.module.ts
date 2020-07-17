@@ -20,6 +20,10 @@ import {ShowBranchComponent} from './component/branch/show-branch/show-branch.co
 import {CreateBranchComponent} from './component/branch/create-branch/create-branch.component';
 import {UpdateBranchComponent} from './component/branch/update-branch/update-branch.component';
 import {ReadBranchComponent} from './component/branch/read-branch/read-branch.component';
+import {ShowPolicyComponent} from './component/policy/show-policy/show-policy.component';
+import {CreatePolicyComponent} from './component/policy/create-policy/create-policy.component';
+import {UpdatePolicyComponent} from './component/policy/update-policy/update-policy.component';
+import {ReadPolicyComponent} from './component/policy/read-policy/read-policy.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -46,6 +50,11 @@ const routes: Routes = [
   {path: 'addBranch', component: CreateBranchComponent},
   {path: 'updateBranch', component: UpdateBranchComponent},
   {path: 'branchDetails/:branchId', component: ReadBranchComponent},
+
+  {path: 'policies', component: ShowPolicyComponent},
+  {path: 'addPolicy', component: CreatePolicyComponent},
+  {path: 'updatePolicy', component: UpdatePolicyComponent},
+  {path: 'policyDetails/:policyId', component: ReadPolicyComponent},
 ];
 
 @NgModule({

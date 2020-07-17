@@ -1,29 +1,31 @@
 <div class="container-fluid">
   <h2>Customer details</h2>
 
-  <div *ngIf="branch" class="panel-body">
+  <div *ngIf="policy" class="panel-body">
     <table class="table table-stripped">
       <thead>
       <tr>
         <th>ID</th>
-        <th>Branch Name</th>
-        <th>Branch Phone</th>
-        <th>Branch Address</th>
-        <th>Branch City</th>
-        <th>Branch State</th>
+        <th>Policy Name</th>
+        <th>Policy Type</th>
+        <th>Policy Term</th>
+        <th>Policy Interest</th>
+        <th>Policy Date</th>
+        <th>Policy Maturity Amount</th>
       </tr>
       </thead>
       <tbody>
-      <td>{{branch.branchId}}</td>
-      <td>{{branch.branchName}}</td>
-      <td>{{branch.phone}}</td>
-      <td>{{branch.branchAddress}}</td>
-      <td>{{branch.branchCity}}</td>
-      <td>{{branch.branchState}}</td>
+      <td>{{policy.policyId}}</td>
+      <td>{{policy.policyName}}</td>
+      <td>{{policy.policyType}}</td>
+      <td>{{policy.policyTerm}}</td>
+      <td>{{policy.policyInterest}}</td>
+      <td>{{policy.date}}</td>
+      <td>{{policy.maturityAmount}}</td>
       </tbody>
     </table>
 
-    <button (click)="backToBranch()" mat-stroked-button color="primary">
+    <button (click)="backToPolicy()" mat-stroked-button color="primary">
       <svg class="bi bi-arrow-90deg-up" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path
@@ -35,7 +37,7 @@
       </svg>
       Back to Customers List
     </button>
-    <button (click)="branchUpdate(branch)" mat-stroked-button color="primary">
+    <button (click)="policyUpdate(policy)" mat-stroked-button color="primary">
       <svg class="bi bi-plus-circle" fill="currentColor" height="1em" viewBox="0 0 16 16" width="1em"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"

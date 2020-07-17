@@ -34,5 +34,4 @@ export class CreateBranchComponent implements OnInit {
   gotoList() {
     this.router.navigate(['/branches']);
   }
-
 }

@@ -23,5 +23,10 @@
   <button mat-menu-item routerLink="branches" routerLinkActive="active">Show All Branches</button>
   <button mat-menu-item routerLink="addBranch" routerLinkActive="active">Add new Branch</button>
 </mat-menu>
+<button mat-button [matMenuTriggerFor]="menuPolicy">Policy</button>
+<mat-menu #menuPolicy="matMenu">
+  <button mat-menu-item routerLink="policies" routerLinkActive="active">Show All Policies</button>
+  <button mat-menu-item routerLink="addPolicy" routerLinkActive="active">Add new Policy</button>
+</mat-menu>
 
 <router-outlet></router-outlet>

@@ -33,6 +33,10 @@ import { CreateBranchComponent } from './component/branch/create-branch/create-b
 import { ReadBranchComponent } from './component/branch/read-branch/read-branch.component';
 import { ShowBranchComponent } from './component/branch/show-branch/show-branch.component';
 import { UpdateBranchComponent } from './component/branch/update-branch/update-branch.component';
+import { CreatePolicyComponent } from './component/policy/create-policy/create-policy.component';
+import { ReadPolicyComponent } from './component/policy/read-policy/read-policy.component';
+import { ShowPolicyComponent } from './component/policy/show-policy/show-policy.component';
+import { UpdatePolicyComponent } from './component/policy/update-policy/update-policy.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { UpdateBranchComponent } from './component/branch/update-branch/update-b
     CreateBranchComponent,
     ReadBranchComponent,
     ShowBranchComponent,
-    UpdateBranchComponent
+    UpdateBranchComponent,
+    CreatePolicyComponent,
+    ReadPolicyComponent,
+    ShowPolicyComponent,
+    UpdatePolicyComponent
   ],
   imports: [
     BrowserModule,
