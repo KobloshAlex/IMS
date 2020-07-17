@@ -121,4 +121,12 @@ public class BranchEntity implements Serializable {
   public void setCustomers(List<CustomerEntity> customers) {
     this.customers = customers;
   }
+
+  public List<BranchManagerEntity> getManagers() {
+    return managers;
+  }
+
+  public void setManagers(List<BranchManagerEntity> managers) {
+    this.managers = managers;
+  }
 }

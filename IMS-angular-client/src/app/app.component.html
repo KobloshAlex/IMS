@@ -18,5 +18,10 @@
   <button mat-menu-item routerLink="ceos" routerLinkActive="active">Show All CEO</button>
   <button mat-menu-item routerLink="addCeo" routerLinkActive="active">Add new CEO</button>
 </mat-menu>
+<button mat-button [matMenuTriggerFor]="menuBranch">Branches</button>
+<mat-menu #menuBranch="matMenu">
+  <button mat-menu-item routerLink="branches" routerLinkActive="active">Show All Branches</button>
+  <button mat-menu-item routerLink="addBranch" routerLinkActive="active">Add new Branch</button>
+</mat-menu>
 
 <router-outlet></router-outlet>

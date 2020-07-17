@@ -29,6 +29,10 @@ import { CreateCeoComponent } from './component/ceo/create-ceo/create-ceo.compon
 import { ReadCeoComponent } from './component/ceo/read-ceo/read-ceo.component';
 import { ShowCeoComponent } from './component/ceo/show-ceo/show-ceo.component';
 import { UpdateCeoComponent } from './component/ceo/update-ceo/update-ceo.component';
+import { CreateBranchComponent } from './component/branch/create-branch/create-branch.component';
+import { ReadBranchComponent } from './component/branch/read-branch/read-branch.component';
+import { ShowBranchComponent } from './component/branch/show-branch/show-branch.component';
+import { UpdateBranchComponent } from './component/branch/update-branch/update-branch.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { UpdateCeoComponent } from './component/ceo/update-ceo/update-ceo.compon
     CreateCeoComponent,
     ReadCeoComponent,
     ShowCeoComponent,
-    UpdateCeoComponent
+    UpdateCeoComponent,
+    CreateBranchComponent,
+    ReadBranchComponent,
+    ShowBranchComponent,
+    UpdateBranchComponent
   ],
   imports: [
     BrowserModule,

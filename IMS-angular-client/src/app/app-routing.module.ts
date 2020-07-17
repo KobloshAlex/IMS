@@ -16,6 +16,10 @@ import {ShowCeoComponent} from './component/ceo/show-ceo/show-ceo.component';
 import {CreateCeoComponent} from './component/ceo/create-ceo/create-ceo.component';
 import {UpdateCeoComponent} from './component/ceo/update-ceo/update-ceo.component';
 import {ReadCeoComponent} from './component/ceo/read-ceo/read-ceo.component';
+import {ShowBranchComponent} from './component/branch/show-branch/show-branch.component';
+import {CreateBranchComponent} from './component/branch/create-branch/create-branch.component';
+import {UpdateBranchComponent} from './component/branch/update-branch/update-branch.component';
+import {ReadBranchComponent} from './component/branch/read-branch/read-branch.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -36,7 +40,12 @@ const routes: Routes = [
   {path: 'ceos', component: ShowCeoComponent},
   {path: 'addCeo', component: CreateCeoComponent},
   {path: 'updateCeo', component: UpdateCeoComponent},
-  {path: 'ceoDetails/:ceoId', component: ReadCeoComponent}
+  {path: 'ceoDetails/:ceoId', component: ReadCeoComponent},
+
+  {path: 'branches', component: ShowBranchComponent},
+  {path: 'addBranch', component: CreateBranchComponent},
+  {path: 'updateBranch', component: UpdateBranchComponent},
+  {path: 'branchDetails/:branchId', component: ReadBranchComponent},
 ];
 
 @NgModule({

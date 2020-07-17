@@ -43,5 +43,4 @@ export class UpdateCustomerComponent implements OnInit {
   gotoList() {
     this.router.navigate(['/customers']);
   }
-
 }
