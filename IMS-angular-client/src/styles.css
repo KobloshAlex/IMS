@@ -34,3 +34,10 @@ h2{
   text-align: center !important;
   font-size: 30px !important;
 }
+.right {
+  text-align: right !important;
+}
+
+.bi{
+  margin-bottom: 3px !important;
+}

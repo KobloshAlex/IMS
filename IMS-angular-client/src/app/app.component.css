@@ -8,3 +8,9 @@
 .mat-stroked-button {
   outline: none;
 }
+
+.navigation {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}

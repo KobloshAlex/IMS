@@ -48,6 +48,7 @@ import {AddAgentComponent} from './component/manager/add-agent/add-agent.compone
 import {AddCustomerPolicyManagerComponent} from './component/manager/add-customer-policy-manager/add-customer-policy-manager.component';
 import { AddCustomerPolicyAgentComponent } from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
 import { AddCustomerPolicyCustomerComponent } from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
+import { AddCustomerPolicyPolicyComponent } from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { AddCustomerPolicyCustomerComponent } from './component/customer/add-cus
     AddAgentComponent,
     AddCustomerPolicyManagerComponent,
     AddCustomerPolicyAgentComponent,
-    AddCustomerPolicyCustomerComponent
+    AddCustomerPolicyCustomerComponent,
+    AddCustomerPolicyPolicyComponent
   ],
   imports: [
     BrowserModule,

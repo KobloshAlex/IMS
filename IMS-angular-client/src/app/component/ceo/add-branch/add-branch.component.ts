@@ -54,4 +54,12 @@ export class AddBranchComponent implements OnInit {
   goBack() {
     this.router.navigate(['ceos']);
   }
+
+  addNewLeft() {
+    this.router.navigate(['addCeo']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addBranch']);
+  }
 }

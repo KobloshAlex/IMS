@@ -55,4 +55,12 @@ export class AddCustomerComponent implements OnInit {
     this.router.navigate(['branches']);
   }
 
+  addNewLeft() {
+    this.router.navigate(['addBranch']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addCustomer']);
+  }
+
 }

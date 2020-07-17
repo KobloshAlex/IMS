@@ -35,6 +35,7 @@ import {AddAgentComponent} from './component/manager/add-agent/add-agent.compone
 import {AddCustomerPolicyManagerComponent} from './component/manager/add-customer-policy-manager/add-customer-policy-manager.component';
 import {AddCustomerPolicyAgentComponent} from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
 import {AddCustomerPolicyCustomerComponent} from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
+import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -73,6 +74,7 @@ const routes: Routes = [
   {path: 'addPolicy', component: CreatePolicyComponent},
   {path: 'updatePolicy', component: UpdatePolicyComponent},
   {path: 'policyDetails/:policyId', component: ReadPolicyComponent},
+  {path: 'policies/addCustomerPolicy', component: AddCustomerPolicyPolicyComponent},
 
   {path: 'customerPolicies', component: ShowCustomerPolicyComponent},
   {path: 'addCustomerPolicy', component: CreateCustomerPolicyComponent},

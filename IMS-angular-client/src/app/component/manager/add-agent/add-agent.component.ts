@@ -55,4 +55,12 @@ export class AddAgentComponent implements OnInit {
   goBack() {
     this.router.navigate(['managers']);
   }
+
+  addNewLeft() {
+    this.router.navigate(['addManager']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addAgent']);
+  }
 }

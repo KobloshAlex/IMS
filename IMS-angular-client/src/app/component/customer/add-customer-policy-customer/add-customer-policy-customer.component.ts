@@ -54,4 +54,12 @@ export class AddCustomerPolicyCustomerComponent implements OnInit {
   goBack() {
     this.router.navigate(['customers']);
   }
+
+  addNewLeft() {
+    this.router.navigate(['add']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addCustomerPolicy']);
+  }
 }

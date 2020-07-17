@@ -54,4 +54,12 @@ export class AddCustomerPolicyAgentComponent implements OnInit {
   goBack() {
     this.router.navigate(['agents']);
   }
+
+  addNewLeft() {
+    this.router.navigate(['addAgent']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addCustomerPolicy']);
+  }
 }

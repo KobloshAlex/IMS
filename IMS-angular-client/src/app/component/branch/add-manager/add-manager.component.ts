@@ -54,4 +54,12 @@ export class AddManagerComponent implements OnInit {
   goBack() {
     this.router.navigate(['branches']);
   }
+
+  addNewLeft() {
+    this.router.navigate(['addBranch']);
+  }
+
+  addNewRight() {
+    this.router.navigate(['addManager']);
+  }
 }
