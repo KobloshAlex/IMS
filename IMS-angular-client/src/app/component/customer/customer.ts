@@ -10,6 +10,6 @@ export class Customer {
   password: string;
   address: string;
   email: string;
-  branch: Branch;
-  customerPolicies: CustomerPolicy[]
+  branchEntity: Branch;
+  customerPolicies: CustomerPolicy[];
 }

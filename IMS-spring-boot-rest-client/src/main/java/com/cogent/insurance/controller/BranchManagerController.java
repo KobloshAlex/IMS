@@ -38,7 +38,8 @@ public class BranchManagerController {
 
   @GetMapping(path = ID_PATH)
   public ManagerResponseModel getBranchManager(@PathVariable String id) {
-    return modelMapper.map(branchManagerService.getBranchManagerById(id), ManagerResponseModel.class);
+    return modelMapper.map(
+        branchManagerService.getBranchManagerById(id), ManagerResponseModel.class);
   }
 
   @PostMapping

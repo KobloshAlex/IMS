@@ -16,7 +16,7 @@ export class AddCustomerPolicyManagerComponent implements OnInit {
   managerList: Observable<Manager[]>;
   customerPolicyList: Observable<CustomerPolicy[]>;
   manager: Manager;
-  managerId: string;
+  branchManagerId: string;
   customerPolicyId: string;
   public error: any;
 
@@ -37,7 +37,7 @@ export class AddCustomerPolicyManagerComponent implements OnInit {
   }
 
   addCustomerPolicyToManager() {
-    this.managerService.addCustomerPolicyToManager(this.manager, this.managerId, this.customerPolicyId).subscribe(data => {
+    this.managerService.addCustomerPolicyToManager(this.manager, this.branchManagerId, this.customerPolicyId).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);

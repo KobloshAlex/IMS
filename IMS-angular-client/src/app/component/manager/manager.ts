@@ -4,6 +4,7 @@ import {CustomerPolicy} from '../customer-policy/customerPolicy';
 
 export class Manager {
   branchManagerId: string;
+  managerId: string; //todo: managerId naming problem(change name in back-end entity)
   firstName: string;
   lastName: string;
   age: number;
@@ -13,7 +14,7 @@ export class Manager {
   branchState: string;
   password: string;
   email: string;
-  branch: Branch;
+  branchEntity: Branch;
   agents: Agent[];
   customerPolicies: CustomerPolicy[];
 }

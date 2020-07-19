@@ -12,6 +12,6 @@ export class Agent {
   branchState: string;
   password: string;
   email: string;
-  manager: Manager;
+  branchManager: Manager;
   customerPolicies: CustomerPolicy[];
 }

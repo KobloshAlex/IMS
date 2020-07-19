@@ -1,5 +1,10 @@
 package com.cogent.insurance.model.response;
 
+import com.cogent.insurance.entity.BranchManagerEntity;
+import com.cogent.insurance.entity.CustomerPolicyEntity;
+
+import java.util.List;
+
 public class AgentResponseModel {
 
   private String agentId;
@@ -11,6 +16,8 @@ public class AgentResponseModel {
   private String branchCity;
   private String branchState;
   private String email;
+  private BranchManagerEntity branchManager;
+  private List<CustomerPolicyEntity> customerPolicies;
 
   public String getAgentId() {
     return agentId;
@@ -82,5 +89,21 @@ public class AgentResponseModel {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public BranchManagerEntity getBranchManager() {
+    return branchManager;
+  }
+
+  public void setBranchManager(BranchManagerEntity branchManager) {
+    this.branchManager = branchManager;
+  }
+
+  public List<CustomerPolicyEntity> getCustomerPolicies() {
+    return customerPolicies;
+  }
+
+  public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicies) {
+    this.customerPolicies = customerPolicies;
   }
 }

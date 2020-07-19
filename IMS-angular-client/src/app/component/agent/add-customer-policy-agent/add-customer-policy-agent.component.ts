@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Agent} from '../../agent/agent';
 import {CustomerPolicy} from '../../customer-policy/customerPolicy';

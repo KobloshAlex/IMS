@@ -46,9 +46,9 @@ import {AddCustomerComponent} from './component/branch/add-customer/add-customer
 import {AddManagerComponent} from './component/branch/add-manager/add-manager.component';
 import {AddAgentComponent} from './component/manager/add-agent/add-agent.component';
 import {AddCustomerPolicyManagerComponent} from './component/manager/add-customer-policy-manager/add-customer-policy-manager.component';
-import { AddCustomerPolicyAgentComponent } from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
-import { AddCustomerPolicyCustomerComponent } from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
-import { AddCustomerPolicyPolicyComponent } from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
+import {AddCustomerPolicyAgentComponent} from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
+import {AddCustomerPolicyCustomerComponent} from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
+import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
 
 @NgModule({
   declarations: [

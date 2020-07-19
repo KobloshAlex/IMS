@@ -36,4 +36,9 @@ export class ReadAgentComponent implements OnInit {
   agentUpdate(agent: Agent) {
     this.router.navigate(['updateAgent', agent]);
   }
+
+  backToManagers() {
+    this.router.navigate(['managers']);
+  }
+
 }

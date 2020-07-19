@@ -36,4 +36,8 @@ export class ReadCustomerComponent implements OnInit {
   customerUpdate(customer: Customer) {
     this.router.navigate(['update', customer]);
   }
+
+  backToBranch() {
+    this.router.navigate(['branches']);
+  }
 }

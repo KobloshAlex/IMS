@@ -17,7 +17,7 @@ export class AddAgentComponent implements OnInit {
   managerList: Observable<Manager[]>;
   agentList: Observable<Agent[]>;
   manager: Manager;
-  managerId: string;
+  branchManagerId: string;
   agentId: string;
   public error: any;
 
@@ -38,7 +38,7 @@ export class AddAgentComponent implements OnInit {
   }
 
   addAgentToManager() {
-    this.managerService.addAgentToManager(this.manager, this.managerId, this.agentId).subscribe(data => {
+    this.managerService.addAgentToManager(this.manager, this.branchManagerId, this.agentId).subscribe(data => {
       console.log(data);
     }, error => {
       console.log(error);

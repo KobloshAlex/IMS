@@ -1,5 +1,7 @@
 package com.cogent.insurance.model.response;
 
+import com.cogent.insurance.entity.BranchEntity;
+
 public class ManagerResponseModel {
 
   private String branchManagerId;
@@ -11,6 +13,7 @@ public class ManagerResponseModel {
   private String branchCity;
   private String branchState;
   private String email;
+  private BranchEntity branchEntity;
 
   public String getBranchManagerId() {
     return branchManagerId;
@@ -82,5 +85,13 @@ public class ManagerResponseModel {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public BranchEntity getBranchEntity() {
+    return branchEntity;
+  }
+
+  public void setBranchEntity(BranchEntity branchEntity) {
+    this.branchEntity = branchEntity;
   }
 }

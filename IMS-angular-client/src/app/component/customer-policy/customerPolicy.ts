@@ -1,6 +1,7 @@
 import {Manager} from '../manager/manager';
 import {Agent} from '../agent/agent';
 import {Customer} from '../customer/customer';
+import {Policy} from '../policy/policy';
 
 export class CustomerPolicy {
   customerPolicyId: string;
@@ -9,8 +10,9 @@ export class CustomerPolicy {
   relational: string;
   agentCommissionAmount: number;
   termConditions: boolean;
-  manager: Manager;
-  agent: Agent;
-  customer: Customer;
+  branchManager: Manager;
+  agentEntity: Agent;
+  customerEntity: Customer;
+  policyEntity: Policy;
 }
 

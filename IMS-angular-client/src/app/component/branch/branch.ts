@@ -9,7 +9,7 @@ export class Branch {
   branchCity: string;
   branchState: string;
   phone: string;
-  ceo: Ceo;
+  ceoEntity: Ceo;
   customers: Customer[];
   managers: Manager[];
 }

@@ -1,6 +1,9 @@
 package com.cogent.insurance.model.response;
 
+import com.cogent.insurance.entity.BranchEntity;
+
 // this model we get as response from api
+// TODO: 7/19/2020 rename class
 public class GeneralResponseModel {
 
   private String customerId;
@@ -10,6 +13,7 @@ public class GeneralResponseModel {
   private Character sex;
   private String address;
   private String email;
+  private BranchEntity branchEntity;
 
   public String getCustomerId() {
     return customerId;
@@ -65,5 +69,13 @@ public class GeneralResponseModel {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public BranchEntity getBranchEntity() {
+    return branchEntity;
+  }
+
+  public void setBranchEntity(BranchEntity branchEntity) {
+    this.branchEntity = branchEntity;
   }
 }

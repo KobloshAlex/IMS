@@ -38,7 +38,7 @@ public class PolicyEntity implements Serializable {
   private String policyType;
 
   @OneToMany(mappedBy = "policyEntity")
-  private List<CustomerPolicyEntity> customerPolicy;
+  private List<CustomerPolicyEntity> customerPolicies;
 
   private String date;
 
@@ -114,11 +114,11 @@ public class PolicyEntity implements Serializable {
     this.date = date;
   }
 
-  public List<CustomerPolicyEntity> getCustomerPolicy() {
-    return customerPolicy;
+  public List<CustomerPolicyEntity> getCustomerPolicies() {
+    return customerPolicies;
   }
 
-  public void setCustomerPolicy(List<CustomerPolicyEntity> customerPolicy) {
-    this.customerPolicy = customerPolicy;
+  public void setCustomerPolicies(List<CustomerPolicyEntity> customerPolicy) {
+    this.customerPolicies = customerPolicy;
   }
 }

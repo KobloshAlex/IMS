@@ -1,5 +1,7 @@
 package com.cogent.insurance.shared.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class CeoDto implements Serializable {
   private String password;
   private String encryptedPassword;
   private String email;
-  private List<BranchDto> branches;
+  @JsonIgnore private List<BranchDto> branches;
 
   public long getId() {
     return id;

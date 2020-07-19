@@ -18,7 +18,6 @@ export class ReadCustomerPolicyComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerPolicy = new CustomerPolicy();
-
     this.customerPolicyId = this.route.snapshot.params['customerPolicyId'];
 
 
@@ -35,5 +34,21 @@ export class ReadCustomerPolicyComponent implements OnInit {
 
   customerPolicyUpdate(customerPolicy: CustomerPolicy) {
     this.router.navigate(['updateCustomerPolicy', customerPolicy]);
+  }
+
+  backToAgents() {
+    this.router.navigate(['agents']);
+  }
+
+  backToManagers() {
+    this.router.navigate(['managers']);
+  }
+
+  backToCustomers() {
+    this.router.navigate(['customers']);
+  }
+
+  backToPolicy() {
+    this.router.navigate(['policies']);
   }
 }

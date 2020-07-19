@@ -10,7 +10,7 @@ import {ManagerService} from '../../../service/manager.service';
 })
 export class UpdateManagerComponent implements OnInit {
 
-  managerId: string;
+  branchManagerId: string;
   manager: Manager;
 
   constructor(private route: ActivatedRoute, private router: Router, private managerService: ManagerService) {
@@ -18,9 +18,9 @@ export class UpdateManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.manager = new Manager();
-    this.managerId = this.route.snapshot.params['branchManagerId'];
+    this.branchManagerId = this.route.snapshot.params['branchManagerId'];
 
-    this.managerService.getManager(this.managerId).subscribe(data => {
+    this.managerService.getManager(this.branchManagerId).subscribe(data => {
         console.log(data);
         this.manager = data;
       },
@@ -28,7 +28,7 @@ export class UpdateManagerComponent implements OnInit {
   }
 
   updateManager() {
-    this.managerService.updateManager(this.manager, this.managerId).subscribe(data => {
+    this.managerService.updateManager(this.manager, this.branchManagerId).subscribe(data => {
         console.log(data);
       },
       error => console.log(error));

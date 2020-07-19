@@ -36,4 +36,8 @@ export class ReadBranchComponent implements OnInit {
   branchUpdate(branch: Branch) {
     this.router.navigate(['updateBranch', branch]);
   }
+
+  backToCeos() {
+    this.router.navigate(['ceos']);
+  }
 }

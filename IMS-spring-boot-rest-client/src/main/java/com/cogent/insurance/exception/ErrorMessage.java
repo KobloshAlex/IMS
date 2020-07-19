@@ -38,10 +38,15 @@ public class ErrorMessage {
 
   @Override
   public String toString() {
-    return "ErrorMessage{" +
-            "timestamp=" + timestamp +
-            ", message='" + message + '\'' +
-            ", stackTrace='" + stackTrace + '\'' +
-            '}';
+    return "ErrorMessage{"
+        + "timestamp="
+        + timestamp
+        + ", message='"
+        + message
+        + '\''
+        + ", stackTrace='"
+        + stackTrace
+        + '\''
+        + '}';
   }
 }

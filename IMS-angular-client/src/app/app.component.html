@@ -3,13 +3,17 @@
   <mat-menu #menuCustomer="matMenu">
     <button mat-menu-item routerLink="customers" routerLinkActive="active">Show All Customers</button>
     <button mat-menu-item routerLink="add" routerLinkActive="active">Add new Customer</button>
-    <button mat-menu-item routerLink="customers/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to Customer</button>
+    <button mat-menu-item routerLink="customers/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
+      Customer
+    </button>
   </mat-menu>
   <button [matMenuTriggerFor]="menuAgent" mat-button>Agents</button>
   <mat-menu #menuAgent="matMenu">
     <button mat-menu-item routerLink="agents" routerLinkActive="active">Show All Agents</button>
     <button mat-menu-item routerLink="addAgent" routerLinkActive="active">Add new Agent</button>
-    <button mat-menu-item routerLink="agents/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to Agent</button>
+    <button mat-menu-item routerLink="agents/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
+      Agent
+    </button>
   </mat-menu>
   <button [matMenuTriggerFor]="menuManager" mat-button>Managers</button>
   <mat-menu #menuManager="matMenu">
@@ -37,7 +41,9 @@
   <mat-menu #menuPolicy="matMenu">
     <button mat-menu-item routerLink="policies" routerLinkActive="active">Show All Policies</button>
     <button mat-menu-item routerLink="addPolicy" routerLinkActive="active">Add new Policy</button>
-    <button mat-menu-item routerLink="policies/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to Policy</button>
+    <button mat-menu-item routerLink="policies/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
+      Policy
+    </button>
   </mat-menu>
   <button [matMenuTriggerFor]="menuCustomerPolicy" mat-button>Customer Policy</button>
   <mat-menu #menuCustomerPolicy="matMenu">

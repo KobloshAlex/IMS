@@ -13,7 +13,7 @@ public class BranchDto implements Serializable {
   private String branchCity;
   private String branchState;
   private String phone;
-  private CeoDto ceoDto;
+  private CeoDto ceoEntity;
   private List<CustomerDto> customersDto;
   private List<BranchManagerDto> branchManagersDto;
 
@@ -65,12 +65,12 @@ public class BranchDto implements Serializable {
     this.phone = phone;
   }
 
-  public CeoDto getCeoDto() {
-    return ceoDto;
+  public CeoDto getCeoEntity() {
+    return ceoEntity;
   }
 
-  public void setCeoDto(CeoDto ceoDto) {
-    this.ceoDto = ceoDto;
+  public void setCeoEntity(CeoDto ceoEntity) {
+    this.ceoEntity = ceoEntity;
   }
 
   public List<CustomerDto> getCustomersDto() {

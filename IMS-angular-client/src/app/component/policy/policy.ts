@@ -1,3 +1,5 @@
+import {CustomerPolicy} from '../customer-policy/customerPolicy';
+
 export class Policy {
   policyId: string;
   policyName: string;
@@ -7,4 +9,5 @@ export class Policy {
   maturityAmount: number;
   policyType: string;
   date: string;
+  customerPolicies: CustomerPolicy[];
 }
