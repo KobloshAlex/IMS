@@ -1,11 +1,14 @@
 package com.cogent.insurance.shared.repository;
 
-import com.cogent.insurance.entity.RoleEntity;
+import com.cogent.insurance.entity.Role;
+import com.cogent.insurance.shared.Roles;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface RoleRepository extends CrudRepository<RoleEntity, Long> {
+import java.util.Optional;
 
-  RoleEntity findByName(String name);
+@Repository
+public interface RoleRepository extends CrudRepository<Role, Long> {
+
+  Optional<Role> findByName(Roles name);
 }

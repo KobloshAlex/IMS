@@ -1,11 +1,19 @@
 package com.cogent.insurance.shared.repository;
 
-import com.cogent.insurance.entity.UserEntity;
+import com.cogent.insurance.entity.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
+import java.util.Optional;
 
-  UserEntity findByEmail(String email);
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-  UserEntity findByUserId(String id);
+  User findByEmail(String email);
+
+  User findByUserId(String id);
+
+  Optional<User> findByUsername(String username);
+
+  Boolean existsByUsername(String username);
+
+  Boolean existsByEmail(String email);
 }

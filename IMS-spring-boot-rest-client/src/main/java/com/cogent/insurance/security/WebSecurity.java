@@ -1,59 +1,75 @@
 package com.cogent.insurance.security;
 
-import com.cogent.insurance.service.UserService;
-import com.cogent.insurance.shared.repository.UserRepository;
+import com.cogent.insurance.security.jwt.AuthEntryPointJwt;
+import com.cogent.insurance.security.jwt.AuthTokenFilter;
+import com.cogent.insurance.security.services.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-// @EnableGlobalMethodSecurity(securedEnabled = true)
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+  @Autowired UserDetailsServiceImpl userDetailsService;
 
-  private static final String LOGIN_URL = "/api/login";
+  @Autowired private AuthEntryPointJwt unauthorizedHandler;
 
-  private final UserService userService;
-  private final UserRepository userRepository;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-  public WebSecurity(
-      UserService userService,
-      UserRepository userRepository,
-      BCryptPasswordEncoder bCryptPasswordEncoder) {
-    this.userService = userService;
-    this.userRepository = userRepository;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+  @Bean
+  public AuthTokenFilter authenticationJwtTokenFilter() {
+    return new AuthTokenFilter();
   }
 
   @Override
-  protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity
+  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder());
+  }
+
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.cors()
+        .and()
         .csrf()
         .disable()
+        .exceptionHandling()
+        .authenticationEntryPoint(unauthorizedHandler)
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
         .authorizeRequests()
-        .antMatchers("/**") // disable JWT Auth
+        .antMatchers("/api/auth/**")
+        .permitAll()
+        .antMatchers("/api/test/**")
         .permitAll()
         .anyRequest()
-        .authenticated()
-        .and()
-        .addFilter(getAuthenticationFilter())
-        .addFilter(new AuthorizationFilter(authenticationManager(), userRepository))
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-  }
+        .authenticated();
 
-  @Override
-  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
-  }
-
-  private AuthenticationFilter getAuthenticationFilter() throws Exception {
-    final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
-    filter.setFilterProcessesUrl(LOGIN_URL);
-
-    return filter;
+    http.addFilterBefore(
+        authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 }
