@@ -51,12 +51,16 @@ import {AddCustomerPolicyCustomerComponent} from './component/customer/add-custo
 import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
 import {LoginComponent} from './component/auth/login/login.component';
 import {RegisterComponent} from './component/auth/register/register.component';
-import {HomeComponent} from './component/home/home.component';
+import {HomeComponent} from './component/template-pages/home/home.component';
 import {ProfileComponent} from './component/auth/profile/profile.component';
 
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { WeatherApiComponent } from './component/weather-api/weather-api.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AboutComponent } from './component/template-pages/about/about.component';
+import { ResourcesComponent } from './component/template-pages/resources/resources.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +105,9 @@ import {MatIconModule} from '@angular/material/icon';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
+    WeatherApiComponent,
+    AboutComponent,
+    ResourcesComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +125,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatPaginatorModule,
     MatCardModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   exports: [MatButtonModule],
   providers: [authInterceptorProviders],

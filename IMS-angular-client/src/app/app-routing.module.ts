@@ -39,7 +39,10 @@ import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-
 import {ProfileComponent} from './component/auth/profile/profile.component';
 import {RegisterComponent} from './component/auth/register/register.component';
 import {LoginComponent} from './component/auth/login/login.component';
-import {HomeComponent} from './component/home/home.component';
+import {HomeComponent} from './component/template-pages/home/home.component';
+import {WeatherApiComponent} from './component/weather-api/weather-api.component';
+import {AboutComponent} from './component/template-pages/about/about.component';
+import {ResourcesComponent} from './component/template-pages/resources/resources.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -85,11 +88,16 @@ const routes: Routes = [
   {path: 'updateCustomerPolicy', component: UpdateCustomerPolicyComponent},
   {path: 'customerPolicyDetails/:customerPolicyId', component: ReadCustomerPolicyComponent},
 
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'resources', component: ResourcesComponent },
+
+  { path: 'weather', component: WeatherApiComponent }
 ];
 
 @NgModule({
