@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class PolicyService {
 
-  private baseUrl = 'http://localhost:8080/api/policy';
+  private baseUrl = 'http://localhost:8080/cogent-insurance/api/policy';
 
   constructor(private http: HttpClient) {
   }

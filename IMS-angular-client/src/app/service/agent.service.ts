@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class AgentService {
 
-  private baseUrl = 'http://localhost:8080/api/agents';
+  private baseUrl = 'http://localhost:8080/cogent-insurance/api/agents';
 
   constructor(private http: HttpClient) {
   }

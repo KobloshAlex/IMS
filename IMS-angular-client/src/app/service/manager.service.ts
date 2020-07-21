@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class ManagerService {
 
-  private baseUrl = 'http://localhost:8080/api/branch-managers';
+  private baseUrl = 'http://localhost:8080/cogent-insurance/api/branch-managers';
 
   constructor(private http: HttpClient) {
   }

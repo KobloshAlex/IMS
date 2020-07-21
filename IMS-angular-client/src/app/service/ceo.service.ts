@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class CeoService {
 
-  private baseUrl = 'http://localhost:8080/api/ceo';
+  private baseUrl = 'http://localhost:8080/cogent-insurance/api/ceo';
 
   constructor(private http: HttpClient) {
   }
