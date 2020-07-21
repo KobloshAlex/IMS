@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {CreateCustomerComponent} from './component/customer/create-customer/create-customer.component';
 import {ReadCustomerComponent} from './component/customer/read-customer/read-customer.component';
@@ -49,6 +49,14 @@ import {AddCustomerPolicyManagerComponent} from './component/manager/add-custome
 import {AddCustomerPolicyAgentComponent} from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
 import {AddCustomerPolicyCustomerComponent} from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
 import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
+import {LoginComponent} from './component/auth/login/login.component';
+import {RegisterComponent} from './component/auth/register/register.component';
+import {HomeComponent} from './component/home/home.component';
+import {ProfileComponent} from './component/auth/profile/profile.component';
+
+import {authInterceptorProviders} from './helpers/auth.interceptor';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -88,7 +96,11 @@ import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-
     AddCustomerPolicyManagerComponent,
     AddCustomerPolicyAgentComponent,
     AddCustomerPolicyCustomerComponent,
-    AddCustomerPolicyPolicyComponent
+    AddCustomerPolicyPolicyComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,10 +115,13 @@ import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-
     MatTableModule,
     _MatMenuDirectivesModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatIconModule,
+    ReactiveFormsModule
   ],
   exports: [MatButtonModule],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

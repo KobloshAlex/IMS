@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .mat-button,
 .mat-flat-button,
@@ -25,19 +31,33 @@ button:focus {
   width: 100% !important;
 }
 
-th{
+th {
   padding-bottom: 20px !important;
   padding-top: 10px !important;
 }
 
-h2{
+h2 {
   text-align: center !important;
   font-size: 30px !important;
 }
+
 .right {
   text-align: right !important;
 }
 
-.bi{
+.bi {
   margin-bottom: 3px !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.table thead th {
+  border: none !important;
 }

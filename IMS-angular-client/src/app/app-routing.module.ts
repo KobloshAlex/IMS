@@ -36,6 +36,10 @@ import {AddCustomerPolicyManagerComponent} from './component/manager/add-custome
 import {AddCustomerPolicyAgentComponent} from './component/agent/add-customer-policy-agent/add-customer-policy-agent.component';
 import {AddCustomerPolicyCustomerComponent} from './component/customer/add-customer-policy-customer/add-customer-policy-customer.component';
 import {AddCustomerPolicyPolicyComponent} from './component/policy/add-customer-policy-policy/add-customer-policy-policy.component';
+import {ProfileComponent} from './component/auth/profile/profile.component';
+import {RegisterComponent} from './component/auth/register/register.component';
+import {LoginComponent} from './component/auth/login/login.component';
+import {HomeComponent} from './component/home/home.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -80,6 +84,12 @@ const routes: Routes = [
   {path: 'addCustomerPolicy', component: CreateCustomerPolicyComponent},
   {path: 'updateCustomerPolicy', component: UpdateCustomerPolicyComponent},
   {path: 'customerPolicyDetails/:customerPolicyId', component: ReadCustomerPolicyComponent},
+
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

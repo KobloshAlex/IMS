@@ -28,28 +28,28 @@ public class PolicyController {
     this.policyService = policyService;
   }
 
-  @Secured({"ROLE_CUSTOMER", "ROLE_AGENT"})
+  @Secured({"ROLE_CUSTOMER", "ROLE_AGENT", "ROLE_CEO"})
   @GetMapping(path = ID_PATH)
   public PolicyDto getPolicy(@PathVariable String id) {
 
     return policyService.getPolicyById(id);
   }
 
-  @Secured({"ROLE_AGENT"})
+  @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @PostMapping
   public PolicyDto createPolicy(@RequestBody PolicyDto policyDto) {
 
     return policyService.createPolicy(policyDto);
   }
 
-  @Secured({"ROLE_AGENT"})
+  @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @PutMapping(path = ID_PATH)
   public PolicyDto createPolicy(@PathVariable String id, @RequestBody PolicyDto policyDto) {
 
     return policyService.updatePolicy(id, policyDto);
   }
 
-  @Secured({"ROLE_AGENT"})
+  @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @DeleteMapping(path = ID_PATH)
   public PolicyDto deletePolicy(@PathVariable String id) {
 
@@ -59,7 +59,7 @@ public class PolicyController {
     return returnValue;
   }
 
-  @Secured({"ROLE_AGENT"})
+  @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @GetMapping
   public List<PolicyDto> getAllBranches() {
 
