@@ -52,6 +52,7 @@
   </mat-menu>
 
   <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
+  <button *ngIf="showCustomer" routerLink="payment/1" mat-button>Make a payment</button>
   <button *ngIf="!isLoggedIn" routerLink="home" routerLinkActive="active" mat-button>Home</button>
   <button *ngIf="!isLoggedIn" routerLink="about" routerLinkActive="active" mat-button>About</button>
   <button *ngIf="!isLoggedIn" routerLink="resources" routerLinkActive="active" mat-button>Resources</button>

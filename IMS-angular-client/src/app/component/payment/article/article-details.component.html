@@ -1,0 +1,15 @@
+<div class="container mt-3">
+  <div class="card p-3" style="width:28rem;" *ngIf="article">
+    <div class="card-body mx-auto">
+      <h5 class="card-title">{{article.type}}</h5>
+      <p class="card-text">{{article.description}}</p>
+      <p><b>Price: </b>{{article.price / 100}}$</p>
+    </div>
+    <div class="card-body">
+      <app-payment
+        name="{{article.type}}"
+        price="{{article.price}}"
+        description="{{article.description}}"></app-payment>
+    </div>
+  </div>
+</div>

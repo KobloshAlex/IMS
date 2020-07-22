@@ -43,6 +43,7 @@ import {HomeComponent} from './component/template-pages/home/home.component';
 import {WeatherApiComponent} from './component/weather-api/weather-api.component';
 import {AboutComponent} from './component/template-pages/about/about.component';
 import {ResourcesComponent} from './component/template-pages/resources/resources.component';
+import {ArticleDetailsComponent} from './component/payment/article/article-details.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -88,16 +89,17 @@ const routes: Routes = [
   {path: 'updateCustomerPolicy', component: UpdateCustomerPolicyComponent},
   {path: 'customerPolicyDetails/:customerPolicyId', component: ReadCustomerPolicyComponent},
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'profile', component: ProfileComponent},
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'resources', component: ResourcesComponent },
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'resources', component: ResourcesComponent},
 
-  { path: 'weather', component: WeatherApiComponent }
+  {path: 'weather', component: WeatherApiComponent},
+  {path: 'payment/:id', component: ArticleDetailsComponent},
 ];
 
 @NgModule({

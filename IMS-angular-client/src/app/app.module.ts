@@ -57,10 +57,16 @@ import {ProfileComponent} from './component/auth/profile/profile.component';
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-import { WeatherApiComponent } from './component/weather-api/weather-api.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AboutComponent } from './component/template-pages/about/about.component';
-import { ResourcesComponent } from './component/template-pages/resources/resources.component';
+import {WeatherApiComponent} from './component/weather-api/weather-api.component';
+import {AboutComponent} from './component/template-pages/about/about.component';
+import {ResourcesComponent} from './component/template-pages/resources/resources.component';
+import {NgxStripeModule} from 'ngx-stripe';
+import {ModalComponent} from './component/payment/modal/modal.component';
+import {PaymentComponent} from './component/payment/payment/payment.component';
+import {ArticleDetailsComponent} from './component/payment/article/article-details.component';
+import {ToastrModule} from 'ngx-toastr';
+
+const stripe_public_key = 'pk_test_51H5WtTLS6ZAlEryRY52RAlok50DKKElgTOcidgyzyHLN9GUYTgTIUW33JRQwk1mlnGbUIegpQyPoYYI8H6JC4k1r00J7p8MpGM';
 
 @NgModule({
   declarations: [
@@ -108,6 +114,9 @@ import { ResourcesComponent } from './component/template-pages/resources/resourc
     WeatherApiComponent,
     AboutComponent,
     ResourcesComponent,
+    ModalComponent,
+    PaymentComponent,
+    ArticleDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,7 +135,8 @@ import { ResourcesComponent } from './component/template-pages/resources/resourc
     MatCardModule,
     MatIconModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    NgxStripeModule.forRoot(stripe_public_key),
+    ToastrModule.forRoot()
   ],
   exports: [MatButtonModule],
   providers: [authInterceptorProviders],
