@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Article} from '../Article';
-import {ArticleService} from '../../../service/article.service';
+import {PaymentPolicy} from '../PaymentPolicy';
+import {PolicyPaymentService} from '../../../service/policy-payment.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -10,10 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ArticleDetailsComponent implements OnInit {
 
-  article: Article;
+  article: PaymentPolicy;
 
   constructor(
-    private articleService: ArticleService,
+    private articleService: PolicyPaymentService,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {

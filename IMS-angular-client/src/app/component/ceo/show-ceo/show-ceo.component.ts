@@ -11,6 +11,8 @@ import {CeoService} from '../../../service/ceo.service';
 })
 export class ShowCeoComponent implements OnInit {
 
+  isSignUpFailed = false;
+  errorMessage = '';
   ceo: Observable<Ceo[]>;
 
   constructor(private ceoService: CeoService, private router: Router) {
@@ -28,8 +30,13 @@ export class ShowCeoComponent implements OnInit {
     this.ceoService.deleteCeo(id).subscribe(data => {
         console.log(data);
         this.fetchCeoList();
+        this.isSignUpFailed = false;
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
   }
 
   ceoDetails(id: string) {

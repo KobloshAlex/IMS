@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@Secured("ROLE_AGENT")
+@Secured({"ROLE_AGENT", "ROLE_CEO", "ROLE_CUSTOMER"})
 @RestController
 @RequestMapping("api/customer-policies")
 public class CustomerPolicyController {

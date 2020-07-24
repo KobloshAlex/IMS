@@ -44,6 +44,7 @@ import {WeatherApiComponent} from './component/weather-api/weather-api.component
 import {AboutComponent} from './component/template-pages/about/about.component';
 import {ResourcesComponent} from './component/template-pages/resources/resources.component';
 import {ArticleDetailsComponent} from './component/payment/article/article-details.component';
+import {SingleReadComponent} from './component/customer-policy/single-read/single-read.component';
 
 const routes: Routes = [
   {path: 'customers', component: ShowCustomersComponent},
@@ -88,6 +89,7 @@ const routes: Routes = [
   {path: 'addCustomerPolicy', component: CreateCustomerPolicyComponent},
   {path: 'updateCustomerPolicy', component: UpdateCustomerPolicyComponent},
   {path: 'customerPolicyDetails/:customerPolicyId', component: ReadCustomerPolicyComponent},
+  {path: 'showSingle/:customerPolicyId', component: SingleReadComponent},
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

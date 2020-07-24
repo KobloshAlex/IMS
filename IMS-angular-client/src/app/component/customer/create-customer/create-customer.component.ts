@@ -9,7 +9,8 @@ import {CustomerService} from '../../../service/customer.service';
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
-
+  isError = false;
+  errorMessage = '';
   customer: Customer = new Customer();
 
   constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {
@@ -22,9 +23,15 @@ export class CreateCustomerComponent implements OnInit {
     this.customerService.createCustomer(this.customer).subscribe(data => {
         console.log(data);
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isError = true;
+      }
+    );
     this.customer = new Customer();
-    this.gotoList();
+    if (this.isError == true) {
+      this.gotoList();
+    }
   }
 
   onSubmit() {

@@ -11,6 +11,7 @@
                  type="text">
         </mat-form-field>
       </div>
+
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label>Customer Last Name</mat-label>
@@ -86,6 +87,9 @@
       Submit
     </button>
   </form>
+  <div class="alert alert-warning" *ngIf="isError">
+    Fail to create Record<br/>{{ errorMessage }}
+  </div>
 </div>
 
 

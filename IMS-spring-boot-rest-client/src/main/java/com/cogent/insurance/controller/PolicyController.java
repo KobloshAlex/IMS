@@ -18,6 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/policy")
+@Secured({"ROLE_MANAGER", "ROLE_CEO"})
 public class PolicyController {
 
   private static final String ID_PATH = "/{id}";
@@ -28,7 +29,7 @@ public class PolicyController {
     this.policyService = policyService;
   }
 
-  @Secured({"ROLE_CUSTOMER", "ROLE_AGENT", "ROLE_CEO"})
+  @Secured({"ROLE_CUSTOMER", "ROLE_AGENT", "ROLE_CEO", "ROLE_MANAGER"})
   @GetMapping(path = ID_PATH)
   public PolicyDto getPolicy(@PathVariable String id) {
 
@@ -37,14 +38,14 @@ public class PolicyController {
 
   @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @PostMapping
-  public PolicyDto createPolicy(@RequestBody PolicyDto policyDto) {
+  public PolicyDto updatePolicy(@RequestBody PolicyDto policyDto) {
 
     return policyService.createPolicy(policyDto);
   }
 
   @Secured({"ROLE_AGENT", "ROLE_CEO"})
   @PutMapping(path = ID_PATH)
-  public PolicyDto createPolicy(@PathVariable String id, @RequestBody PolicyDto policyDto) {
+  public PolicyDto updatePolicy(@PathVariable String id, @RequestBody PolicyDto policyDto) {
 
     return policyService.updatePolicy(id, policyDto);
   }
@@ -59,9 +60,9 @@ public class PolicyController {
     return returnValue;
   }
 
-  @Secured({"ROLE_AGENT", "ROLE_CEO"})
+  @Secured({"ROLE_MANAGER", "ROLE_CEO"})
   @GetMapping
-  public List<PolicyDto> getAllBranches() {
+  public List<PolicyDto> getAllPolicies() {
 
     return policyService.getAllPolicies();
   }

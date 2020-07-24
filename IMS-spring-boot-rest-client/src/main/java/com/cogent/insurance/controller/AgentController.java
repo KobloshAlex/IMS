@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@Secured({"ROLE_AGENT", "ROLE_MANAGER"})
 @RestController
 @RequestMapping("api/agents")
 public class AgentController {
@@ -34,12 +33,12 @@ public class AgentController {
     this.agentService = agentService;
     this.modelMapper = modelMapper;
   }
-
+  @Secured({"ROLE_AGENT", "ROLE_MANAGER"})
   @GetMapping(path = ID_PATH)
   public AgentResponseModel getAgent(@PathVariable String id) {
     return modelMapper.map(agentService.getAgentById(id), AgentResponseModel.class);
   }
-
+  @Secured({"ROLE_MANAGER"})
   @PostMapping
   public AgentResponseModel createAgent(@RequestBody MARequestModel MARequestModel) {
 
@@ -47,7 +46,7 @@ public class AgentController {
 
     return modelMapper.map(agentService.createAgent(agentDto), AgentResponseModel.class);
   }
-
+  @Secured({"ROLE_MANAGER"})
   @PutMapping(path = ID_PATH)
   public AgentResponseModel updateAgent(
       @PathVariable String id, @RequestBody MARequestModel MARequestModel) {
@@ -56,7 +55,7 @@ public class AgentController {
 
     return modelMapper.map(agentService.updateAgent(id, agentDto), AgentResponseModel.class);
   }
-
+  @Secured({"ROLE_MANAGER"})
   @DeleteMapping(path = ID_PATH)
   public AgentDto deleteAgent(@PathVariable String id) {
 
@@ -65,7 +64,7 @@ public class AgentController {
 
     return returnValue;
   }
-
+  @Secured({"ROLE_AGENT", "ROLE_MANAGER"})
   @GetMapping
   public List<AgentResponseModel> getAllAgents() {
 
@@ -78,7 +77,7 @@ public class AgentController {
 
     return returnValue;
   }
-
+  @Secured({"ROLE_MANAGER"})
   @PutMapping(path = "{agentId}/add-customer-policy/{customerPolicyId}")
   public void addCustomerPolicyToAgent(
       @PathVariable String agentId, @PathVariable String customerPolicyId) {

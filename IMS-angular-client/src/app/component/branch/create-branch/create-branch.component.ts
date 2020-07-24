@@ -9,7 +9,8 @@ import {BranchService} from '../../../service/branch.service';
   styleUrls: ['./create-branch.component.css']
 })
 export class CreateBranchComponent implements OnInit {
-
+  isError = false;
+  errorMessage = '';
   branch: Branch = new Branch();
 
   constructor(private route: ActivatedRoute, private router: Router, private branchService: BranchService) {
@@ -22,9 +23,15 @@ export class CreateBranchComponent implements OnInit {
     this.branchService.createBranch(this.branch).subscribe(data => {
         console.log(data);
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isError = true;
+      }
+    );
     this.branch = new Branch();
-    this.gotoList();
+    if (this.isError == true) {
+      this.gotoList();
+    }
   }
 
   onSubmit() {

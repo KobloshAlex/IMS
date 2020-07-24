@@ -65,6 +65,7 @@ import {ModalComponent} from './component/payment/modal/modal.component';
 import {PaymentComponent} from './component/payment/payment/payment.component';
 import {ArticleDetailsComponent} from './component/payment/article/article-details.component';
 import {ToastrModule} from 'ngx-toastr';
+import { SingleReadComponent } from './component/customer-policy/single-read/single-read.component';
 
 const stripe_public_key = 'pk_test_51H5WtTLS6ZAlEryRY52RAlok50DKKElgTOcidgyzyHLN9GUYTgTIUW33JRQwk1mlnGbUIegpQyPoYYI8H6JC4k1r00J7p8MpGM';
 
@@ -117,6 +118,7 @@ const stripe_public_key = 'pk_test_51H5WtTLS6ZAlEryRY52RAlok50DKKElgTOcidgyzyHLN
     ModalComponent,
     PaymentComponent,
     ArticleDetailsComponent,
+    SingleReadComponent,
   ],
   imports: [
     BrowserModule,

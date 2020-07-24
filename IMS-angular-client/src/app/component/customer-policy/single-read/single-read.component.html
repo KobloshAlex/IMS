@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Table V01</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="limiter">
+  <div class="container-table100">
+
+    <div  *ngIf="customerPolicy" class="wrap-table100">
+      <h2>Customer Policy details</h2>
+      <div class="table100">
+          <table>
+            <thead>
+            <tr class="table100-head">
+              <th>Customer Policy Id</th>
+              <th>Relational</th>
+              <th>Nominee Name</th>
+              <th>Premium Type</th>
+              <th>Policy Term Conditions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{customerPolicy.customerPolicyId}}</td>
+              <td>{{customerPolicy.relational}}</td>
+              <td>{{customerPolicy.nomineeName }}</td>
+              <td>{{customerPolicy.premiumType}}</td>
+              <td>{{customerPolicy.termConditions}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    <div  *ngIf="customerPolicy" class="wrap-table100">
+      <h2>Agent Details details</h2>
+      <div class="table100">
+        <table>
+          <thead>
+          <tr class="table100-head">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Branch Address</th>
+            <th>Branch City</th>
+            <th>Branch State</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{customerPolicy.agentEntity.firstName}}</td>
+            <td>{{customerPolicy.agentEntity.lastName}}</td>
+            <td>{{customerPolicy.agentEntity.email}}</td>
+            <td>{{customerPolicy.agentEntity.branchAddress}}</td>
+            <td>{{customerPolicy.agentEntity.branchCity}}</td>
+            <td>{{customerPolicy.agentEntity.branchState}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div  *ngIf="customerPolicy" class="wrap-table100">
+      <h2>Policy Owner details</h2>
+      <div class="table100">
+        <table>
+          <thead>
+          <tr class="table100-head">
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Address</th>
+            <th>Email</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{customerPolicy.customerEntity.customerId}}</td>
+            <td>{{customerPolicy.customerEntity.firstName}}</td>
+            <td>{{customerPolicy.customerEntity.lastName}}</td>
+            <td>{{customerPolicy.customerEntity.age}}</td>
+            <td>{{customerPolicy.customerEntity.sex}}</td>
+            <td>{{customerPolicy.customerEntity.address}}</td>
+            <td>{{customerPolicy.customerEntity.email}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

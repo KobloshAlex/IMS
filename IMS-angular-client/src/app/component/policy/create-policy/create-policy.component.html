@@ -74,4 +74,7 @@
       Submit
     </button>
   </form>
+  <div class="alert alert-warning" *ngIf="isError">
+    Fail to create Record<br/>{{ errorMessage }}
+  </div>
 </div>

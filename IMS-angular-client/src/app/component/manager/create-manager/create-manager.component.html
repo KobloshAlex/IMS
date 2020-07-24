@@ -64,7 +64,7 @@
       </div>
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
-          <mat-label>Branch Address</mat-label>
+          <mat-label>Branch City</mat-label>
           <input [(ngModel)]="manager.branchCity" id="managerBranchCity" matInput name="managerBranchCity" required
                  type="text">
         </mat-form-field>
@@ -74,7 +74,7 @@
     <div class="row">
       <div class="form-group col-md-6">
         <mat-form-field class="example-full-width">
-          <mat-label>Branch Address</mat-label>
+          <mat-label>Branch State</mat-label>
           <input [(ngModel)]="manager.branchState" id="managerBranchState" matInput name="managerBranchState" required
                  type="text">
         </mat-form-field>
@@ -94,6 +94,9 @@
       Submit
     </button>
   </form>
+  <div class="alert alert-warning" *ngIf="isError">
+    Fail to create Record<br/>{{ errorMessage }}
+  </div>
 </div>
 
 

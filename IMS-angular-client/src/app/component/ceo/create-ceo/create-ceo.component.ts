@@ -9,7 +9,8 @@ import {CeoService} from '../../../service/ceo.service';
   styleUrls: ['./create-ceo.component.css']
 })
 export class CreateCeoComponent implements OnInit {
-
+  isError = false;
+  errorMessage = '';
   ceo: Ceo = new Ceo();
 
   constructor(private route: ActivatedRoute, private router: Router, private ceoService: CeoService) {
@@ -22,9 +23,15 @@ export class CreateCeoComponent implements OnInit {
     this.ceoService.createCeo(this.ceo).subscribe(data => {
         console.log(data);
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isError = true;
+      }
+    );
     this.ceo = new Ceo();
-    this.gotoList();
+    if (this.isError == true) {
+      this.gotoList();
+    }
   }
 
   onSubmit() {

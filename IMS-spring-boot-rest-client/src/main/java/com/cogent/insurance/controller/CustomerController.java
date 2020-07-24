@@ -63,7 +63,7 @@ public class CustomerController {
     return returnValue;
   }
 
-  @Secured({"ROLE_MANAGER", "ROLE_AGENT"})
+  @Secured({"ROLE_MANAGER", "ROLE_AGENT", "ROLE_CEO"})
   @GetMapping
   public List<GeneralResponseModel> getAllCustomers(
       @RequestParam(value = "page", defaultValue = "0") int page,

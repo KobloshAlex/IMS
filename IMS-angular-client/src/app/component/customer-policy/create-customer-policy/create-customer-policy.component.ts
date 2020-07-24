@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomerPolicy} from '../customerPolicy';
 import {CustomerPolicyService} from '../../../service/customer-policy.service';
+import {Ceo} from '../../ceo/Ceo';
 
 @Component({
   selector: 'app-create-customer-policy',
@@ -9,7 +10,8 @@ import {CustomerPolicyService} from '../../../service/customer-policy.service';
   styleUrls: ['./create-customer-policy.component.css']
 })
 export class CreateCustomerPolicyComponent implements OnInit {
-
+  isError = false;
+  errorMessage = '';
   customerPolicy: CustomerPolicy = new CustomerPolicy();
 
   constructor(private route: ActivatedRoute, private router: Router, private customerPolicyService: CustomerPolicyService) {
@@ -22,9 +24,15 @@ export class CreateCustomerPolicyComponent implements OnInit {
     this.customerPolicyService.createCustomerPolicy(this.customerPolicy).subscribe(data => {
         console.log(data);
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isError = true;
+      }
+    );
     this.customerPolicy = new CustomerPolicy();
-    this.gotoList();
+    if (this.isError == true) {
+      this.gotoList();
+    }
   }
 
   onSubmit() {

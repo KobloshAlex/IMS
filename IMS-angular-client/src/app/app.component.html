@@ -1,13 +1,13 @@
 <nav class="navigation">
-  <button *ngIf="showCustomer" [matMenuTriggerFor]="menuCustomer" mat-button>Customers</button>
+  <button *ngIf="showManager || showAgent" [matMenuTriggerFor]="menuCustomer" mat-button>Customers</button>
   <mat-menu #menuCustomer="matMenu">
     <button mat-menu-item routerLink="customers" routerLinkActive="active">Show All Customers</button>
-    <button mat-menu-item routerLink="add" routerLinkActive="active">Add new Customer</button>
+    <button *ngIf="!showAgent" mat-menu-item routerLink="add" routerLinkActive="active">Add new Customer</button>
     <button mat-menu-item routerLink="customers/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
       Customer
     </button>
   </mat-menu>
-  <button *ngIf="showAgent || showManager" [matMenuTriggerFor]="menuAgent" mat-button>Agents</button>
+  <button *ngIf="showManager" [matMenuTriggerFor]="menuAgent" mat-button>Agents</button>
   <mat-menu #menuAgent="matMenu">
     <button mat-menu-item routerLink="agents" routerLinkActive="active">Show All Agents</button>
     <button mat-menu-item routerLink="addAgent" routerLinkActive="active">Add new Agent</button>
@@ -34,30 +34,32 @@
   <mat-menu #menuBranch="matMenu">
     <button mat-menu-item routerLink="branches" routerLinkActive="active">Show All Branches</button>
     <button mat-menu-item routerLink="addBranch" routerLinkActive="active">Add new Branch</button>
-    <button mat-menu-item routerLink="branches/addCustomer" routerLinkActive="active">Assign Customer to Branch</button>
+    <button *ngIf="!showCeo" mat-menu-item routerLink="branches/addCustomer" routerLinkActive="active">Assign Customer to Branch</button>
     <button mat-menu-item routerLink="branches/addManager" routerLinkActive="active">Assign Manager to Branch</button>
   </mat-menu>
-  <button *ngIf="showCeo" [matMenuTriggerFor]="menuPolicy" mat-button>Policy</button>
+  <button *ngIf="showCeo || showManager" [matMenuTriggerFor]="menuPolicy" mat-button>Policy</button>
   <mat-menu #menuPolicy="matMenu">
     <button mat-menu-item routerLink="policies" routerLinkActive="active">Show All Policies</button>
     <button mat-menu-item routerLink="addPolicy" routerLinkActive="active">Add new Policy</button>
-    <button mat-menu-item routerLink="policies/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
+    <button *ngIf="!showCeo" mat-menu-item routerLink="policies/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
       Policy
     </button>
   </mat-menu>
-  <button *ngIf="showCeo" [matMenuTriggerFor]="menuCustomerPolicy" mat-button>Customer Policy</button>
+  <button *ngIf="showManager || showAgent" [matMenuTriggerFor]="menuCustomerPolicy" mat-button>Customer Policy</button>
   <mat-menu #menuCustomerPolicy="matMenu">
-    <button mat-menu-item routerLink="customerPolicies" routerLinkActive="active">Show All Customer-Policies</button>
-    <button mat-menu-item routerLink="addCustomerPolicy" routerLinkActive="active">Add new Customer-Policy</button>
+    <button *ngIf="showManager || showAgent" mat-menu-item routerLink="customerPolicies" routerLinkActive="active">Show All Customer-Policies</button>
+    <button *ngIf="showAgent" mat-menu-item routerLink="addCustomerPolicy" routerLinkActive="active">Add new Customer-Policy</button>
   </mat-menu>
 
-  <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
   <button *ngIf="showCustomer" routerLink="payment/1" mat-button>Make a payment</button>
+  <button *ngIf="showCustomer" routerLink="showSingle/ptjdhOiR07qWG0CA7UeCiYKvv6B2iH" mat-button>Show my insurance</button>
+  <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
+
   <button *ngIf="!isLoggedIn" routerLink="home" routerLinkActive="active" mat-button>Home</button>
   <button *ngIf="!isLoggedIn" routerLink="about" routerLinkActive="active" mat-button>About</button>
   <button *ngIf="!isLoggedIn" routerLink="resources" routerLinkActive="active" mat-button>Resources</button>
   <button *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" mat-button>Login</button>
-  <button *ngIf="!isLoggedIn" routerLink="register" routerLinkActive="active" mat-button>Sign Up</button>
+  <button *ngIf="showCeo" routerLink="register" routerLinkActive="active" mat-button>Create IMS User</button>
 </nav>
 
 <router-outlet></router-outlet>

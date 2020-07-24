@@ -9,7 +9,8 @@ import {ManagerService} from '../../../service/manager.service';
   styleUrls: ['./create-manager.component.css']
 })
 export class CreateManagerComponent implements OnInit {
-
+  isError = false;
+  errorMessage = '';
   manager: Manager = new Manager();
 
   constructor(private route: ActivatedRoute, private router: Router, private managerService: ManagerService) {
@@ -22,9 +23,15 @@ export class CreateManagerComponent implements OnInit {
     this.managerService.createManager(this.manager).subscribe(data => {
         console.log(data);
       },
-      error => console.log(error));
+      err => {
+        this.errorMessage = err.error.message;
+        this.isError = true;
+      }
+    );
     this.manager = new Manager();
-    this.gotoList();
+    if (this.isError == true) {
+      this.gotoList();
+    }
   }
 
   onSubmit() {

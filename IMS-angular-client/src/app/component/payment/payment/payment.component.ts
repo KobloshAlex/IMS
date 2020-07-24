@@ -79,7 +79,7 @@ export class PaymentComponent implements OnInit {
           this.paymentService.makePayment(paymentIntentDto).subscribe(
             data => {
               this.abrirModal(data[`id`], this.name, data[`description`], data[`amount`]);
-              this.router.navigate(['/']);
+              this.router.navigate(['/showSingle/ptjdhOiR07qWG0CA7UeCiYKvv6B2iH']);
             }
           );
           this.error = undefined;
