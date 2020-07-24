@@ -258,7 +258,7 @@ table {
  * Global Styles
  */
 body {
-  color: #768089;
+  color: #3f4142;
   font-family: "Roboto Condensed", "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -2279,7 +2279,7 @@ form textarea {
 }
 
 .boxed-feature {
-  background: #f1f1f1;
+  background: rgba(241, 241, 241, 0.7);
   border-radius: 5px;
   padding: 20px 30px;
   margin-bottom: 30px;

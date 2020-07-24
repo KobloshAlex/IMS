@@ -22,7 +22,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/branch-managers")
-@Secured("ROLE_CEO")
+@Secured({"ROLE_CEO", "ROLE_MANAGER"})
 public class BranchManagerController {
 
   private static final String ID_PATH = "/{id}";

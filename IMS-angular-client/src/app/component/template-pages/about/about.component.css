@@ -258,7 +258,7 @@ table {
  * Global Styles
  */
 body {
-  color: #768089;
+  color: #3f4142;
   font-family: "Roboto Condensed", "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -2097,8 +2097,8 @@ form textarea {
   line-height: 1.8;
   font-weight: 400;
   margin: 0 auto 20px;
-  background-color: white;
-  box-shadow: 0 0 0 10px white;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 .features .feature-numbered .feature-title {

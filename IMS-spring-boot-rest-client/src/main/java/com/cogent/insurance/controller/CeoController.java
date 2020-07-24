@@ -36,13 +36,13 @@ public class CeoController {
   }
 
   @GetMapping(path = ID_PATH)
-  public CeoResponseModel getCustomer(@PathVariable String id) {
+  public CeoResponseModel getCeo(@PathVariable String id) {
 
     return modelMapper.map(ceoService.getCeoById(id), CeoResponseModel.class);
   }
 
   @PostMapping
-  public CeoResponseModel createCustomer(@RequestBody CeoRequestModel ceoRequestModel) {
+  public CeoResponseModel createCeo(@RequestBody CeoRequestModel ceoRequestModel) {
 
     final CeoDto ceoDto = modelMapper.map(ceoRequestModel, CeoDto.class);
 
@@ -50,7 +50,7 @@ public class CeoController {
   }
 
   @PutMapping(path = ID_PATH)
-  public CeoResponseModel updateCustomer(
+  public CeoResponseModel updateCeo(
       @PathVariable String id, @RequestBody CeoRequestModel ceoRequestModel) {
 
     final CeoDto ceoDto = modelMapper.map(ceoRequestModel, CeoDto.class);
@@ -59,7 +59,7 @@ public class CeoController {
   }
 
   @DeleteMapping(path = ID_PATH)
-  public CeoDto deleteCustomer(@PathVariable String id) {
+  public CeoDto deleteCeo(@PathVariable String id) {
 
     final CeoDto returnValue = ceoService.getCeoById(id);
     ceoService.deleteCeo(id);
@@ -68,7 +68,7 @@ public class CeoController {
   }
 
   @GetMapping
-  public List<CeoResponseModel> getAllCustomers() {
+  public List<CeoResponseModel> getAllCeo() {
 
     List<CeoResponseModel> returnValue = new ArrayList<>();
     List<CeoDto> ceo = ceoService.getAllCeo();

@@ -15,12 +15,12 @@
       Agent
     </button>
   </mat-menu>
-  <button *ngIf="showCeo" [matMenuTriggerFor]="menuManager" mat-button>Managers</button>
+  <button *ngIf="showCeo || showManager" [matMenuTriggerFor]="menuManager" mat-button>Managers</button>
   <mat-menu #menuManager="matMenu">
-    <button mat-menu-item routerLink="managers" routerLinkActive="active">Show All Managers</button>
-    <button mat-menu-item routerLink="addManager" routerLinkActive="active">Add new Manager</button>
-    <button mat-menu-item routerLink="managers/addAgent" routerLinkActive="active">Assign Agent to Manager</button>
-    <button mat-menu-item routerLink="managers/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
+    <button *ngIf="showCeo || showManager" mat-menu-item routerLink="managers" routerLinkActive="active">Show All Managers</button>
+    <button *ngIf="showCeo" mat-menu-item routerLink="addManager" routerLinkActive="active">Add new Manager</button>
+    <button *ngIf="showManager" mat-menu-item routerLink="managers/addAgent" routerLinkActive="active">Assign Agent to Manager</button>
+    <button *ngIf="showCeo" mat-menu-item routerLink="managers/addCustomerPolicy" routerLinkActive="active">Assign Customer-Policy to
       Manager
     </button>
   </mat-menu>
@@ -53,13 +53,13 @@
 
   <button *ngIf="showCustomer" routerLink="payment/1" mat-button>Make a payment</button>
   <button *ngIf="showCustomer" routerLink="showSingle/ptjdhOiR07qWG0CA7UeCiYKvv6B2iH" mat-button>Show my insurance</button>
-  <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
 
   <button *ngIf="!isLoggedIn" routerLink="home" routerLinkActive="active" mat-button>Home</button>
   <button *ngIf="!isLoggedIn" routerLink="about" routerLinkActive="active" mat-button>About</button>
   <button *ngIf="!isLoggedIn" routerLink="resources" routerLinkActive="active" mat-button>Resources</button>
   <button *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" mat-button>Login</button>
   <button *ngIf="showCeo" routerLink="register" routerLinkActive="active" mat-button>Create IMS User</button>
+  <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
 </nav>
 
 <router-outlet></router-outlet>

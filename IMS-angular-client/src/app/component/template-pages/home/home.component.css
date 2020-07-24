@@ -258,8 +258,7 @@ table {
  * Global Styles
  */
 body {
-  color: #768089;
-  font-family: "Roboto Condensed", "Open Sans", sans-serif;
+  color: #3f4142;
   font-size: 16px;
   font-weight: 300;
   line-height: normal;
@@ -2218,7 +2217,7 @@ form textarea {
 }
 
 .insurance-item .insurance-content {
-  background: #f1f1f1;
+  background: rgba(241, 241, 241, 0.7);
   border-radius: 3px;
   padding: 30px;
   text-align: center;

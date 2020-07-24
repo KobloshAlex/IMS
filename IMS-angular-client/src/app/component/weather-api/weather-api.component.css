@@ -4,7 +4,7 @@
   border-radius: 10px;
   width: 150px;
   height: 220px;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.7);
   /*background: linear-gradient(180deg, rgb(224, 221, 221) 0%, rgb(220, 208, 208) 75%, rgb(225, 226, 232) 100%);*/
   color: #768089;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
