@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Policy} from '../policy';
 import {PolicyService} from '../../../service/policy.service';
-import {Ceo} from '../../ceo/Ceo';
 
 @Component({
   selector: 'app-create-policy',
@@ -11,6 +10,7 @@ import {Ceo} from '../../ceo/Ceo';
 })
 export class CreatePolicyComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   policy: Policy = new Policy();
 
@@ -22,6 +22,8 @@ export class CreatePolicyComponent implements OnInit {
 
   savePolicy() {
     this.policyService.createPolicy(this.policy).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -30,9 +32,6 @@ export class CreatePolicyComponent implements OnInit {
       }
     );
     this.policy = new Policy();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

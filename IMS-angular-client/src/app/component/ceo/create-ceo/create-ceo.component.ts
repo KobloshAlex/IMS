@@ -10,6 +10,7 @@ import {CeoService} from '../../../service/ceo.service';
 })
 export class CreateCeoComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   ceo: Ceo = new Ceo();
 
@@ -21,6 +22,8 @@ export class CreateCeoComponent implements OnInit {
 
   saveCeo() {
     this.ceoService.createCeo(this.ceo).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -29,9 +32,6 @@ export class CreateCeoComponent implements OnInit {
       }
     );
     this.ceo = new Ceo();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

@@ -10,6 +10,7 @@ import {CustomerService} from '../../../service/customer.service';
 })
 export class CreateCustomerComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   customer: Customer = new Customer();
 
@@ -21,6 +22,8 @@ export class CreateCustomerComponent implements OnInit {
 
   saveCustomer() {
     this.customerService.createCustomer(this.customer).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -29,9 +32,6 @@ export class CreateCustomerComponent implements OnInit {
       }
     );
     this.customer = new Customer();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

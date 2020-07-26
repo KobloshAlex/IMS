@@ -10,6 +10,7 @@ import {ManagerService} from '../../../service/manager.service';
 })
 export class CreateManagerComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   manager: Manager = new Manager();
 
@@ -22,6 +23,8 @@ export class CreateManagerComponent implements OnInit {
   saveManager() {
     this.managerService.createManager(this.manager).subscribe(data => {
         console.log(data);
+        this.isSuccessful = true
+        this.isError = false;
       },
       err => {
         this.errorMessage = err.error.message;
@@ -29,9 +32,6 @@ export class CreateManagerComponent implements OnInit {
       }
     );
     this.manager = new Manager();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

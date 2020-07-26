@@ -11,6 +11,7 @@ import {Ceo} from '../../ceo/Ceo';
 })
 export class CreateCustomerPolicyComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   customerPolicy: CustomerPolicy = new CustomerPolicy();
 
@@ -22,6 +23,8 @@ export class CreateCustomerPolicyComponent implements OnInit {
 
   savePolicy() {
     this.customerPolicyService.createCustomerPolicy(this.customerPolicy).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -30,9 +33,6 @@ export class CreateCustomerPolicyComponent implements OnInit {
       }
     );
     this.customerPolicy = new CustomerPolicy();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

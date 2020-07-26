@@ -7,37 +7,38 @@
 </head>
 <body>
 
+
 <div class="limiter">
   <div class="container-table100">
 
-    <div  *ngIf="customerPolicy" class="wrap-table100">
+    <div *ngIf="customerPolicy" class="wrap-table100">
       <h2>Customer Policy details</h2>
       <div class="table100">
-          <table>
-            <thead>
-            <tr class="table100-head">
-              <th>Customer Policy Id</th>
-              <th>Relational</th>
-              <th>Nominee Name</th>
-              <th>Premium Type</th>
-              <th>Policy Term Conditions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>{{customerPolicy.customerPolicyId}}</td>
-              <td>{{customerPolicy.relational}}</td>
-              <td>{{customerPolicy.nomineeName }}</td>
-              <td>{{customerPolicy.premiumType}}</td>
-              <td>{{customerPolicy.termConditions}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+          <tr class="table100-head">
+            <th>Customer Policy Id</th>
+            <th>Relational</th>
+            <th>Nominee Name</th>
+            <th>Premium Type</th>
+            <th>Policy Term Conditions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{customerPolicy.customerPolicyId}}</td>
+            <td>{{customerPolicy.relational}}</td>
+            <td>{{customerPolicy.nomineeName }}</td>
+            <td>{{customerPolicy.premiumType}}</td>
+            <td>{{customerPolicy.termConditions}}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
 
 
-    <div  *ngIf="customerPolicy" class="wrap-table100">
+    <div *ngIf="customerPolicy" class="wrap-table100">
       <h2>Agent Details details</h2>
       <div class="table100">
         <table>
@@ -64,7 +65,7 @@
         </table>
       </div>
     </div>
-    <div  *ngIf="customerPolicy" class="wrap-table100">
+    <div *ngIf="customerPolicy" class="wrap-table100">
       <h2>Policy Owner details</h2>
       <div class="table100">
         <table>

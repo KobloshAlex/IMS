@@ -11,6 +11,7 @@ import {Ceo} from '../../ceo/Ceo';
 })
 export class CreateAgentComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   agent: Agent = new Agent();
 
@@ -22,6 +23,8 @@ export class CreateAgentComponent implements OnInit {
 
   saveAgent() {
     this.agentService.createAgent(this.agent).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -30,9 +33,6 @@ export class CreateAgentComponent implements OnInit {
       }
     );
     this.agent = new Agent();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {

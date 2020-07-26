@@ -10,6 +10,7 @@ import {BranchService} from '../../../service/branch.service';
 })
 export class CreateBranchComponent implements OnInit {
   isError = false;
+  isSuccessful = false;
   errorMessage = '';
   branch: Branch = new Branch();
 
@@ -21,6 +22,8 @@ export class CreateBranchComponent implements OnInit {
 
   saveBranch() {
     this.branchService.createBranch(this.branch).subscribe(data => {
+        this.isSuccessful = true
+        this.isError = false;
         console.log(data);
       },
       err => {
@@ -29,9 +32,6 @@ export class CreateBranchComponent implements OnInit {
       }
     );
     this.branch = new Branch();
-    if (this.isError == true) {
-      this.gotoList();
-    }
   }
 
   onSubmit() {
