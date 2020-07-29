@@ -316,7 +316,8 @@ form textarea {
 .button, form input[type="submit"], form button, form input[type="reset"] {
   border: none;
   color: white;
-  background: #0f75bd;
+  background: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
   padding: 10px;
   border-radius: 3px;
   display: inline-block;
@@ -325,7 +326,8 @@ form textarea {
 }
 
 .button:hover, form input[type="submit"]:hover, form button:hover, form input[type="reset"]:hover, .button:focus, form input[type="submit"]:focus, form button:focus, form input[type="reset"]:focus {
-  background: #1392ec;
+  background-color: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
 }
 
 .map {
@@ -1692,7 +1694,8 @@ form textarea {
 }
 
 .mobile-navigation .menu .current-menu-item a {
-  color: #1392ec;
+  color: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
 }
 
 .breadcrumbs {
@@ -1738,7 +1741,7 @@ form textarea {
   margin-right: -100%;
   width: 100%;
   background-size: cover;
-  background-position: center center;
+  background: url("src/assets/img/bg.jpg") center center;
 }
 
 .hero-slider .slide-content {
@@ -2183,8 +2186,9 @@ form textarea {
 }
 
 .filterable-nav a.current, .filterable-nav a:hover {
-  color: #0f75bd;
-  border-color: #0f75bd;
+  color: rgb(104, 175, 197);
+  filter: drop-shadow(1px 1px 5px rgb(104, 175, 197));
+  border-color: rgb(104, 175, 197);
 }
 
 .filterable-items {
@@ -2316,62 +2320,4 @@ form textarea {
 .contact-form textarea {
   min-height: 150px;
   margin-bottom: 20px;
-}
-
-/*
- * Footer Styles
- */
-.site-footer {
-  border-top: 1px solid #ccc;
-  padding-top: 50px;
-}
-
-.site-footer .widget-area {
-  margin-bottom: 50px;
-}
-
-.site-footer .widget-area .widget {
-  font-size: 14px;
-  font-size: 0.875em;
-  margin-bottom: 30px;
-}
-
-.site-footer .widget-area .widget-title {
-  font-size: 20px;
-  font-size: 1.25rem;
-}
-
-.site-footer .widget-area a {
-  color: #768089;
-}
-
-.site-footer .widget-area ul {
-  list-style-type: none;
-}
-
-.site-footer .bottom-footer {
-  background-color: #4a4c4e;
-  text-align: center;
-  padding: 30px 0;
-  font-size: 14px;
-  font-size: 0.875em;
-}
-
-.site-footer .footer-navigation {
-  margin-bottom: 30px;
-}
-
-.site-footer .footer-navigation a {
-  color: white;
-  padding: 0 10px;
-  border-right: 1px solid white;
-  line-height: 20px;
-}
-
-.site-footer .footer-navigation a:last-child {
-  border-right: none;
-}
-
-.site-footer .colophon {
-  color: #898b8d;
 }

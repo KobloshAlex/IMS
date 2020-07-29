@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row align-items-center">
     <div class="col-md-4 col-centered">
-      <mat-card class="card">
+      <mat-card class="card login">
         <h2>Log In</h2>
         <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
           <mat-form-field class="example-full-width">

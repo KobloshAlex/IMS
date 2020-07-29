@@ -20,8 +20,10 @@ public class User {
   private String username;
   private String email;
   private String encryptedPassword;
+  private String emailVerificationToken;
+  private Boolean emailVerificationStatus;
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(
       name = "user_roles",
       joinColumns = @JoinColumn(name = "user_id"),
@@ -83,5 +85,21 @@ public class User {
 
   public void setUserId(String userId) {
     this.userId = userId;
+  }
+
+  public String getEmailVerificationToken() {
+    return emailVerificationToken;
+  }
+
+  public void setEmailVerificationToken(String emailVerificationToken) {
+    this.emailVerificationToken = emailVerificationToken;
+  }
+
+  public Boolean getEmailVerificationStatus() {
+    return emailVerificationStatus;
+  }
+
+  public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
+    this.emailVerificationStatus = emailVerificationStatus;
   }
 }

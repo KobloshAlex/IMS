@@ -1841,7 +1841,7 @@ form textarea {
 .feature i {
   font-size: 48px;
   font-size: 3em;
-  color: rgb(104, 175, 197);
+  color: #0f75bd;
   display: inline-block;
   margin-bottom: 20px;
 }
@@ -1850,7 +1850,7 @@ form textarea {
   font-size: 20px;
   font-size: 1.25em;
   margin-bottom: 20px;
-  color: rgb(104, 175, 197);
+  color: #0f75bd;
   font-weight: 400;
 }
 
@@ -2321,6 +2321,7 @@ form textarea {
 .site-footer {
   border-top: 1px solid #ccc;
   padding-top: 50px;
+  margin-top: 40px;
 }
 
 .site-footer .widget-area {
@@ -2372,3 +2373,4 @@ form textarea {
 .site-footer .colophon {
   color: #898b8d;
 }
+

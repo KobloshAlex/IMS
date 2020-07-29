@@ -1,4 +1,11 @@
 <nav class="navigation">
+  <a class="navbar-brand custom-logo" href="#">
+    <img class="logo-img" src="assets/img/Logo.png" alt="Logo">
+  </a>
+
+  <button  routerLink="home" routerLinkActive="active" mat-button>Home</button>
+  <button  routerLink="about" routerLinkActive="active" mat-button>About</button>
+  <button  routerLink="resources" routerLinkActive="active" mat-button>Resources</button>
   <button *ngIf="showManager || showAgent" [matMenuTriggerFor]="menuCustomer" mat-button>Customers</button>
   <mat-menu #menuCustomer="matMenu">
     <button mat-menu-item routerLink="customers" routerLinkActive="active">Show All Customers</button>
@@ -54,14 +61,16 @@
   <button *ngIf="showCustomer" routerLink="payment/1" mat-button>Make a payment</button>
   <button *ngIf="showCustomer" routerLink="showSingle/ptjdhOiR07qWG0CA7UeCiYKvv6B2iH" mat-button>Show my insurance</button>
 
-  <button *ngIf="!isLoggedIn" routerLink="home" routerLinkActive="active" mat-button>Home</button>
-  <button *ngIf="!isLoggedIn" routerLink="about" routerLinkActive="active" mat-button>About</button>
-  <button *ngIf="!isLoggedIn" routerLink="resources" routerLinkActive="active" mat-button>Resources</button>
-  <button *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" mat-button>Login</button>
   <button *ngIf="showCeo" routerLink="register" routerLinkActive="active" mat-button>Create IMS User</button>
   <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Log Out</button>
+  <button *ngIf="!isLoggedIn" routerLink="login" routerLinkActive="active" mat-button>Login</button>
 </nav>
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+
 
 

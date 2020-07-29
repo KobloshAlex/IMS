@@ -6,8 +6,13 @@ import com.cogent.insurance.model.payload.request.LoginRequest;
 import com.cogent.insurance.model.payload.request.MessageResponse;
 import com.cogent.insurance.model.payload.request.SignupRequest;
 import com.cogent.insurance.model.payload.responce.JwtResponse;
+import com.cogent.insurance.model.response.operations.OperationStatusModel;
+import com.cogent.insurance.model.response.operations.RequestOperationName;
+import com.cogent.insurance.model.response.operations.RequestOperationStatus;
 import com.cogent.insurance.security.jwt.JwtUtils;
 import com.cogent.insurance.security.services.UserDetailsImpl;
+import com.cogent.insurance.service.UserService;
+import com.cogent.insurance.service.impl.AmazonSES;
 import com.cogent.insurance.shared.Roles;
 import com.cogent.insurance.shared.Utils;
 import com.cogent.insurance.shared.repository.RoleRepository;
@@ -20,9 +25,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -41,6 +48,7 @@ public class AuthController {
   final BCryptPasswordEncoder bCryptPasswordEncoder;
   final JwtUtils jwtUtils;
   final Utils utils;
+  final UserService userService;
 
   public AuthController(
       AuthenticationManager authenticationManager,
@@ -48,13 +56,15 @@ public class AuthController {
       RoleRepository roleRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
       JwtUtils jwtUtils,
-      Utils utils) {
+      Utils utils,
+      UserService userService) {
     this.authenticationManager = authenticationManager;
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     this.jwtUtils = jwtUtils;
     this.utils = utils;
+    this.userService = userService;
   }
 
   @PostMapping("/signin")
@@ -92,12 +102,16 @@ public class AuthController {
     }
 
     // Create new user's account
+    final String userId = utils.generateId(20);
     User user =
         new User(
             signUpRequest.getUsername(),
             signUpRequest.getEmail(),
             bCryptPasswordEncoder.encode(signUpRequest.getPassword()),
-            utils.generateId(20));
+                userId);
+
+    user.setEmailVerificationToken(utils.generateEmailVerificationToken(userId));
+    user.setEmailVerificationStatus(false);
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
@@ -149,6 +163,25 @@ public class AuthController {
     user.setRoles(roles);
     userRepository.save(user);
 
+    new AmazonSES().verifyEmail(user);
+
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+
+  @GetMapping(path = "/email-verification")
+  public OperationStatusModel verifyEmailToken(@RequestParam(value = "token") String token) {
+
+    OperationStatusModel returnValue = new OperationStatusModel();
+    returnValue.setOperationName(RequestOperationName.VERIFY_EMAIL.name());
+
+    boolean isVerified = userService.verifyEmailToken(token);
+
+    if (isVerified) {
+      returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+    } else {
+      returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
+    }
+
+    return returnValue;
   }
 }
